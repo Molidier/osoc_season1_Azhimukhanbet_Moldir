@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+        int dist = 100;
+        printf("I am $d years old. \n", age);
+	#include <stdio.h>
+
+int main(int argc, char *argv[]){
+        int dist = 100;
+        orintf("You are %d ,iles away. \n", dist);
+return 0;
+}
+	return 0;
+}
