@@ -1,165 +1,184 @@
-/*
- * Primitive alu example for Verilator example
- *
- * File name: alu.sv
- * Author: Norbertas Kremeris 2021
- *
- */
-
-
-module alu #(
-        parameter WIDTH = 16
+/* verilator lint_off DECLFILENAME */
+module logic_unit #(
+/* verilator lint_on DECLFILENAME */
+    parameter WIDTH = 16
 ) (
-        //input clk,
-        //input rst,
-
-        //input  operation_t  op_in, //instead of select ig -> could it be used?
-        input  wire         carry_in;
-        input  wire [WIDTH-1:0]  a_in,
-        input  wire [WIDTH-1:0]  b_in,
-        input  wire [3:0]        select,
-        input  wire              mode,
-        
-        output wire              carry_out,
-        output wire              compare;
-        output wire [WIDTH-1:0]        alu_out
+    input wire [WIDTH-1:0] in_a,
+    input wire [WIDTH-1:0] in_b,
+    input wire [3:0]       select,
+    output wire [WIDTH-1:0] logic_out
+    
 );
-        logic [WIDTH-1:0] res;
-        logic car_out;
-        logic cmp;
 
+    logic [WIDTH-1:0] res;
 
-        always_alu begin
-            if(mode==0) begin
-                logic o1(
-                    .in_a(in_a),
-                    .in_b(in_b),
-                )
+    always_comb begin
+        case (select)
+            4'h0: res = ~in_a;
+            4'h1: res = ~(in_a | in_b); 
+            4'h2: res = ~in_a & in_b; 
+            4'h3: res = 16'h0; 
+            4'h4: res = ~(in_a & in_b); 
+            4'h5: res = ~in_b; 
+            4'h6: res = in_a ^ in_b; 
+            4'h7: res = in_a & ~in_b; 
+            4'h8: res = ~in_a | in_b; 
+            4'h9: res = ~(in_a ^ in_b); 
+            4'hA: res = in_b; 
+            4'hB: res = in_a & in_b; 
+            4'hC: res = 16'h1; 
+            4'hD: res = in_a | ~in_b; 
+            4'hE: res = in_a | in_b; 
+            4'hF: res = in_a; 
+            default: res = 16'h0;
+        endcase
+    end
+    /*
+    0000 0000 0000 1000
+    0000 0000 0000 1001
+    
+    0000 0000 0000 1001
+    */
 
-      /*   operation_t  op_in_r;
-        logic  [WIDTH-1:0]  a_in_r;
-        logic  [WIDTH-1:0]  b_in_r;
-        logic               in_valid_r;
-        logic  [WIDTH-1:0]  result; */
+    assign logic_out = res;
 
-/*         // Register all inputs
-        always_ff @ (posedge clk, posedge rst) begin
-                if (rst) begin
-                        op_in_r     <= '0;
-                        a_in_r      <= '0;
-                        b_in_r      <= '0;
-                        in_valid_r  <= '0;
-                end else begin
-                        op_in_r    <= op_in;
-                        a_in_r     <= a_in;
-                        b_in_r     <= b_in;
-                        in_valid_r <= in_valid;
-                end
-        end
-
-        // Compute the result
-        always_comb begin
-                result = '0;
-                if (in_valid_r) begin
-                        case (op_in_r)
-                                add: result = a_in_r + b_in_r;
-                                sub: result = a_in_r + (~b_in_r+1'b1);
-                                default: result = '0;
-                        endcase
-                end
-        end */
-
-/*         // Register outputs
-        always_ff @ (posedge clk, posedge rst) begin
-                if (rst) begin
-                        out       <= '0;
-                        out_valid <= '0;
-                end else begin
-                        out       <= result;
-                        //out       <= 6'h5;//result;
-                        out_valid <= in_valid_r;
-                end
-        end */
-
-endmodule;
-
-module logic #(
-        parameter WIDTH = 16;
-    )(
-        input wire [WIDTH-1:0] in_a;
-        input wire [WIDTH-1:0] in _b;
-        input wire [3:0]       select;
-
-        output wire [WIDTH-1:0] logic_out;
-    )
-
-       logic [WIDTH-1:0] res;
-
-       always_log begin
-            case (select):
-                4'h0: res = ~A;
-                4'h1: res = ~(A | B); 
-                4'h2: res = ~A & B; 
-                4'h3: res = 4'h0; 
-                4'h4: res = ~(A & B); 
-                4'h5: res = ~B; 
-                4'h6: res = A ^ B; 
-                4'h7: res = A & ~B ; 
-                4'h8: res = ~A | B; 
-                4'h9: res = ~(A ^ B); 
-                4'hA: res = B; 
-                4'hB: res = A&B; 
-                4'hC: res = 4'h1; 
-                4'hD: res = A | ~B; 
-                4'hE: res = A | B; 
-                4'hF: res = A; 
-                default: res = 4h'0;
-            endcase
-       end
-
-       assign logic_out = res;
-
-endmodule;
+endmodule
 
 module arithmetic #(
-        parameter WIDTH = 16;
-    )(
-        input wire carry_in;
-        input wire [WIDTH-1:0] in_a;
-        input wire [WIDTH-1:0] in _b;
-        input wire [3:0]       select;
+    parameter WIDTH = 16
+) (
+    input wire carry_in,
+    input wire [WIDTH-1:0] in_a,
+    input wire [WIDTH-1:0] in_b,
+    input wire [3:0]       select,
+    output wire cmp,
+    output wire carry_out,
+    output wire [WIDTH-1:0] arithmetic_out
+);
 
-        output wire cmp;
-        output wire carry_out;
-        output wire [WIDTH-1:0] logic_out;
+    logic [WIDTH:0] extended_res;
+    assign carry_out = 0;
 
-    )
+    
+                /*
+                0000 0000 0000 1010
+                0000 0000 0000 1001
 
-       logic [WIDTH-1:0] res;
-       logic wire car_out;
+                01111 1111 1111 0110
+            or  00000 0000 0000 1010
+                01111 1111 1111 1110
 
-       always_arith begin
-            case (select):
-                4'h0: res = A;
-                4'h1: res = A | B; 
-                4'h2: res = A | ~B; 
-                4'h3: {car_out,res} = ~(4'h1)+1'b1; 
-                4'h4: res = A | (A&~B); 
-                4'h5: {car_out,res} = (A|B) + A&~B;
-                4'h6: res = (A + (~(B)+1) + (~(4'h1)+1'b1));; 
-                4'h7: res = A&~B + (~(4'h1)+1'b1); 
-                4'h8: {car_out,res} = A + A&B; 
-                4'h9: {car_out,res} = A + B; 
-                4'hA: {car_out,res} = (A|~B) + A&B; 
-                4'hB: res = A&B + (~(4'h1)+1'b1); 
-                4'hC: {car_out,res} = A + A; 
-                4'hD: {car_out,res} = (A|B) + A; 
-                4'hE: {car_out,res} = (A|~B) + A; 
-                4'hF: res = A + (~(4'h1)+1'b1); 
-                default: res = 4h'0;
-            endcase
-       end
+                */
 
-       assign logic_out = res;
+    always_comb begin
+        case (select)
+            4'h0: extended_res = {1'b0, in_a}; // Extend in_a to 17 bits
+            4'h1: extended_res = {1'b0, in_a} | {1'b0, in_b}; // Extend both to 17 bits
+            4'h2: extended_res = {1'b0, in_a} | {1'b0, ~in_b}; // Extend both to 17 bits
+            4'h3: extended_res = ~{{WIDTH{1'b0}}, 1'b1} + 1; // 17-bit zero
+            4'h4: extended_res = {1'b0, in_a} | ({1'b0, in_a} & {1'b0, ~in_b}); // Extend all to 17 bits
+            4'h5: extended_res = {1'b0, (in_a | in_b) + (in_a & ~in_b)} + {{WIDTH{1'b0}}, carry_in};
+            4'h6: extended_res = {1'b0, in_a} + {1'b0, ~in_b}; // Extend both to 17 bits
+            4'h7: extended_res = {1'b0, in_a & ~in_b}; // Extend to 17 bits
+            4'h8: extended_res = {1'b0, in_a} + {1'b0, in_a & in_b} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            4'h9: extended_res = {1'b0, in_a} + {1'b0, in_b} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            4'hA: extended_res = {1'b0, in_a | ~in_b} + {1'b0, in_a & in_b} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            4'hB: extended_res = {1'b0, in_a & in_b}; // Extend to 17 bits
+            4'hC: extended_res = {1'b0, in_a} + {1'b0, in_a} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            4'hD: extended_res = {1'b0, in_a | in_b} + {1'b0, in_a} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            4'hE: extended_res = {1'b0, in_a | ~in_b} + {1'b0, in_a} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            4'hF: extended_res = {1'b0, in_a} + {{WIDTH{1'b0}}, carry_in}; // Extend to 17 bits
+            default: extended_res = {WIDTH+1{1'b0}}; // 17-bit zero
+        endcase
+    end
+    /*
+    
+    0000 0000 0000 0001
 
-endmodule;
+    1111 1111 1111 1110
+    0000 0000 0000 0011
+    1111 1111 1111 1111
+
+    0001
+    0111
+    
+    1000
+    0001
+
+    1001
+    0001
+    1010
+    */
+
+    assign arithmetic_out = extended_res[WIDTH-1:0];
+    assign carry_out = extended_res[WIDTH];
+    assign cmp = (in_a == in_b) ? 1 : 0;
+
+endmodule
+
+module alu #(
+    parameter WIDTH = 16
+) (
+    //input clk,
+    //input rst,
+
+    //input  operation_t  op_in, //instead of select ig -> could it be used?
+    input  wire         carry_in,
+    input  wire [WIDTH-1:0]  a_in,
+    input  wire [WIDTH-1:0]  b_in,
+    input  wire [3:0]        select,
+    input  wire              mode,
+    
+    output wire              carry_out,
+    output wire              compare,
+    output wire [WIDTH-1:0]  alu_out
+);
+
+    logic [WIDTH-1:0] res;
+    logic [WIDTH-1:0] logic_res;
+    logic [WIDTH-1:0] arithmetic_res;
+    logic car_out, car_arith;
+    logic cmp, cmp_ari;
+
+    logic_unit u1 (
+        .in_a(a_in),
+        .in_b(b_in),
+        .select(select),
+        .logic_out(logic_res)
+    );
+
+    arithmetic u2 (
+        .in_a(a_in),
+        .in_b(b_in),
+        .select(select),
+        .carry_in(carry_in),
+        .arithmetic_out(arithmetic_res),
+        .cmp(cmp_ari),
+        .carry_out(car_arith)
+    );
+    always begin
+        if(a_in == b_in) begin
+            cmp = 1;
+        end
+        else begin
+            cmp = 0;
+        end
+    end
+
+
+    always_comb begin
+        if(mode == 1) begin
+            res = logic_res;
+            car_out = 0;
+        end else begin
+            res = arithmetic_res;
+            cmp = cmp_ari;
+            car_out = car_arith;
+        end
+    end
+
+    assign carry_out = car_out;
+    assign alu_out = res;
+    assign compare = cmp;
+
+endmodule

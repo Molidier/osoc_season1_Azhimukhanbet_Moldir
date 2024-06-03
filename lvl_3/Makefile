@@ -1,6 +1,6 @@
 # Verilator example makefile
 # Norbertas Kremeris 2021
-MODULE=alu
+MODULE= lvl3_lab01
 
 .PHONY:sim
 sim: waveform.vcd
