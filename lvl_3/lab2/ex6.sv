@@ -7,7 +7,7 @@ module top_module (
     output done,
     input ack );
     
-    typedef enum reg [2:0]{
+typedef enum reg[2:0]{
     	S0 = 3'b000,
         S1 = 3'b001,
         S2 = 3'b010,
@@ -15,57 +15,104 @@ module top_module (
         S4 = 3'b100,
         S5 = 3'b101,
         S6 = 3'b110,
-        S7 = 3'b111
+    	S7 = 3'b111
     } states;
     
-    states cur_state, next_state;
-    
     logic [3:0] shift_counter;
-    logic [3:0] delay;
-    logic [13:0] timer;
+    states cur_state, next_state;
+    logic signed [3:0] delay;
+    logic [9:0] q;
+    logic stop;
+    logic [13:0] temp;
+    logic lol;
+    
+    /*
+    0000 1
+    0000 2
+    0000 3
+    0001 4
+    */
+    /*always @(posedge clk) begin
+        if(next_state==S4) begin
+    		delay <= {delay[2:0], data};
+            shift_counter <= shift_counter + 3'b001;
+        end
+    end*/
     
     always @(posedge clk) begin
         if(reset) begin
             cur_state = S0;
-            //del_const = 1000;
-            shift_counter = 0;
-            done = 0;
             counting = 0;
-            delay = 4'b1101;
+            done = 0;
+            shift_counter <=0;
+            stop = 0;
+            q<=10'b0000000000;
+            //delay <= 4'b0000;
         end
         else begin
             cur_state = next_state;
-            case(cur_state)
-                S4: begin
-                    delay = {delay[2:0], data};
-                    shift_counter++;
-                    timer = (delay)*1000;
-                end
-                S5: begin
-                    timer--;
-                    count = (timer/1000);
-                    counting = 1;
-                    done = 0;
-                end
-                S6: done = 1;
-            endcase
+            if(cur_state==S4) begin
+               count = {count[2:0], data};
+               shift_counter <= shift_counter + 3'b001;
+            end
+            else begin
+                shift_counter <= 3'b0;
+                delay = 4'b0;
+            end
+
+            if(cur_state==S5) begin
+               count = {count[2:0],data};
+               counting = 1;
+               done = 0;
+               temp <=(count + 1)*1000 - 1;
+            end
+
+            if(cur_state==S6) begin
+                temp <= temp - 1;
+
+                if (q==10'b1111100111) begin
+                   q<= 10'b0;
+                   	   count=count - 4'b0001;
+                       stop = 0;
+               end
+               else begin
+                   q<= q + 10'b0000000001;
+               end
+
+                counting = 1;
+                done = 0;
+            end
+
+            if(cur_state==S7) begin
+                counting = 0;
+                done = 1;
+                q<= 10'b0;
+            end
+            else begin
+                done=0;
+            end
+                
         end
-            
+                
     end
+
     
     always @(*) begin
-        case(cur_state)
-            S0: next_state = (data==1) ? S1:S0;
-            S1: next_state = (data==1) ? S2:S0;
-            S2: next_state = (data==0) ? S3:S2;
-            S3: next_state = (data==1) ? S4:S0;
-            S4: next_state = (shift_counter==3'b100) ? S5:S4;
-            S5: next_state = (timer==0) ? S6:S5;
-            S6: next_state = (ack==1) ? S0:S6;
-            default: next_state = S0;
-        endcase
+            case(cur_state)
+                S0: next_state = (data==1) ? S1:S0;
+                S1: next_state = (data==1) ? S2:S0;
+                S2: next_state = (data==0) ? S3:S2;
+                S3: next_state = (data==1) ? S4:S0;
+                S4: next_state = (shift_counter==3'b100) ? S5:S4;
+                S5: next_state = S6;
+                S6: next_state = (temp==0) ? S7:S6;
+                S7: next_state = (ack==1) ? S0:S7;
+              
+                default: next_state = S0;
+            endcase
     end
     
+
     
 
 endmodule
