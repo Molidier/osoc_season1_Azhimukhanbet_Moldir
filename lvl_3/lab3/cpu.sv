@@ -9,18 +9,11 @@ module cpu(
 
     output d_out,
 
-    output [3:0] sel,
-    output mode,
-    output en_s,
-    output en_c,
-    output en_0,
-    output en_1,
-    output en_2,
-    output en_3,
-    output en_4,
-    output en_5,
-    output en_6,
-    output en_7,
+    output wire [3:0] sel,
+    output wire mode,
+    output wire en_s,
+    output wire en_c,
+    output wire [7:0] en;
     output en_inst,
     //gonna be deleted after fixing alu
     output compare;
@@ -29,18 +22,11 @@ module cpu(
 
     logic [15:0] out_alu, out_mux, out_s, out_inst, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7;
     mux(
-    clk,
-    mux_sel,
-    en_0,
-    en_1,
-    en_2,
-    en_3,
-    en_4,
-    en_5,
-    en_6,
-    en_7,
-    d_in,
-    out_mux
+    .clk(clk),
+    .mu_sel(mux_sel),
+    .en(en),
+    .d_in(d_in),
+    .d_out(out_mux)
 );
     dff reg_s (clk, en_s, out_mux, out_s);
 
@@ -78,7 +64,7 @@ module cpu(
             end
             S2: begin
                 case(run[15:13])
-                    
+                    en = 8'b00100000;
                 endcase
             end
             
@@ -90,6 +76,9 @@ module cpu(
     always @(posedge clk)begin
         if(reset) begin
             cur_state <= S0;
+            en = 8'b0;
+            en_c = 0;
+            en_s = 0;
         end
         else begin
             cur_state <= next_state;
