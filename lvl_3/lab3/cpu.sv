@@ -22,6 +22,7 @@ module cpu(
 );
 
     logic [15:0] out_inst, out_alu, out_mux, out_s, out_inst, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7;
+    
     mux(
     .clk(clk),
     .mu_sel(mux_sel),
