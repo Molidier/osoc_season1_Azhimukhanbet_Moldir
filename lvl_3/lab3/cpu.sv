@@ -2,13 +2,10 @@ module cpu(
     input clk,
     input run,
     input reset,
-    input carry_in,
-    input d_inst,
+    input [15:0] d_inst,
 
     output mux_sel [3:0],
     output done,
-
-    output d_out,
 
     output wire [3:0] sel,
     output wire mode,
@@ -16,36 +13,8 @@ module cpu(
     output wire en_c,
     output wire [7:0] en,
     output en_inst,
-    //gonna be deleted after fixing alu
-    output compare,
-    output carry_out,
+
 );
-
-    logic [15:0] out_inst, out_alu, out_mux, out_s, out_inst, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7;
-    
-    mux(
-    .clk(clk),
-    .mu_sel(mux_sel),
-    .en(en),
-    .d_in(d_in),
-    .d_out(out_mux)
-);
-    dff reg_s (clk, en_s, out_mux, out_s);
-
-    alu alu_instance(
-    carry_in,
-    out_s,
-    out_mux,
-    sel,
-    mode,
-
-    carry_out,
-    compare,
-    out_alu
-);
-
-    dff reg_inst(clk, en_inst, d_inst, out_inst);
-
 
     typedef enum reg[1:0] { 
         S0 = 2'b00;
@@ -59,18 +28,27 @@ module cpu(
         case (cur_state)
             S0: begin
                 en_s <= 1;
-                mux_sel <= {1'b0, out_inst[15:13]} + 1;
+                mux_sel <= {1'b0, d_inst[15:13]} + 1;
             end
             S1: begin
-                mux_sel <= {1'b0, out_inst[12:10]} + 1;
+                mux_sel <= {1'b0, d_inst[12:10]} + 1;
                 en_c <= 1;
-                sel <= out_inst[6:3];
-                mode <= out_inst[2];
+                sel <= d_inst[6:3];
+                mode <= d_inst[2];
             end
             S2: begin
-                case(out_inst[15:13])
-                    en = 8'b00100000;
-                endcase
+                en = 8'b0;
+                en[d_inst[15:13]] = 1;
+                done = 1;
+            end
+            default: begin
+                en_s = 0;
+                en_c = 0;
+                done = 0;
+                mux_sel = 4'b0;
+                sel = 4'b0;
+                mode = 0;
+                en = 8'b0;
             end
             
             default: 
@@ -81,9 +59,13 @@ module cpu(
     always @(posedge clk)begin
         if(reset) begin
             cur_state <= S0;
-            en = 8'b0;
-            en_c = 0;
             en_s = 0;
+            en_c = 0;
+            done = 0;
+            mux_sel = 4'b0;
+            sel = 4'b0;
+            mode = 0;
+            en = 8'b0;
         end
         else begin
             cur_state <= next_state;
