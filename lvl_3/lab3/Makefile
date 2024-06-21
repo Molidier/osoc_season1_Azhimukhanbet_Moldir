@@ -1,6 +1,6 @@
 # Verilator example makefile
 # Norbertas Kremeris 2021
-MODULE= prelab
+MODULE= mux
 
 .PHONY:sim
 sim: waveform.vcd

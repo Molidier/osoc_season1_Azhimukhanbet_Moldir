@@ -1,8 +1,9 @@
 module cpu(
-    input [15:0] run,
     input clk,
+    input run,
     input reset,
-    input carry_in;
+    input carry_in,
+    input d_inst,
 
     output mux_sel [3:0],
     output done,
@@ -13,14 +14,14 @@ module cpu(
     output wire mode,
     output wire en_s,
     output wire en_c,
-    output wire [7:0] en;
+    output wire [7:0] en,
     output en_inst,
     //gonna be deleted after fixing alu
-    output compare;
-    output carry_out;
+    output compare,
+    output carry_out,
 );
 
-    logic [15:0] out_alu, out_mux, out_s, out_inst, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7;
+    logic [15:0] out_inst, out_alu, out_mux, out_s, out_inst, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7;
     mux(
     .clk(clk),
     .mu_sel(mux_sel),
@@ -42,6 +43,9 @@ module cpu(
     out_alu
 );
 
+    dff reg_inst(clk, en_inst, d_inst, out_inst);
+
+
     typedef enum reg[1:0] { 
         S0 = 2'b00;
         S1 = 2'b01;
@@ -54,16 +58,16 @@ module cpu(
         case (cur_state)
             S0: begin
                 en_s <= 1;
-                mux_sel <= {1'b0, run[15:13]} + 1;
+                mux_sel <= {1'b0, out_inst[15:13]} + 1;
             end
             S1: begin
-                mux_sel <= {1'b0, run[12:10]} + 1;
+                mux_sel <= {1'b0, out_inst[12:10]} + 1;
                 en_c <= 1;
-                sel <= run[6:3];
-                mode <= run[2];
+                sel <= out_inst[6:3];
+                mode <= out_inst[2];
             end
             S2: begin
-                case(run[15:13])
+                case(out_inst[15:13])
                     en = 8'b00100000;
                 endcase
             end

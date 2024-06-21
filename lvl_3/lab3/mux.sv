@@ -7,7 +7,7 @@ module mux(
     input [7:0] en,
     input [15:0] d_in,
     
-    output [15:0] d_out
+    output [15:0] d_out,
 );
 
     logic [15:0] out [7:0];
