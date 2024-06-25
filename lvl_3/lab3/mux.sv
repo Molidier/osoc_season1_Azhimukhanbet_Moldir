@@ -1,6 +1,3 @@
-/*`include "alu.sv"
-`include "mux.sv"*/
-
 module mux(
 
     input [15:0] reg0,
@@ -13,8 +10,7 @@ module mux(
     input [15:0] reg7,
 
     input [3:0] mux_sel,
-    
-    output [15:0] mux_out,
+    output [15:0] mux_out
 );
 
     always @(*) begin
@@ -29,6 +25,7 @@ module mux(
             4'b1000: mux_out<= reg7;
             default: mux_out<= 16'b0;
         endcase
+
     end
 
 endmodule

@@ -51,7 +51,7 @@ module arithmetic #(
     input wire [WIDTH-1:0] in_a,
     input wire [WIDTH-1:0] in_b,
     input wire [3:0]       select,
-    output wire cmp,
+    //output wire cmp,
     output wire carry_out,
     output wire [WIDTH-1:0] arithmetic_out
 );
@@ -112,7 +112,7 @@ module arithmetic #(
 
     assign arithmetic_out = extended_res[WIDTH-1:0];
     assign carry_out = extended_res[WIDTH];
-    assign cmp = (in_a == in_b) ? 1 : 0;
+    // cmp = (in_a == in_b) ? 1 : 0;
 
 endmodule
 
@@ -130,7 +130,7 @@ module alu #(
     input  wire              mode,
     
     output wire              carry_out,
-    output wire              compare,
+    //output wire              compare,
     output wire [WIDTH-1:0]  alu_out
 );
 
@@ -138,7 +138,7 @@ module alu #(
     logic [WIDTH-1:0] logic_res;
     logic [WIDTH-1:0] arithmetic_res;
     logic car_out, car_arith;
-    logic cmp, cmp_ari;
+    //logic cmp, cmp_ari;
 
     logic_unit u1 (
         .in_a(a_in),
@@ -153,17 +153,10 @@ module alu #(
         .select(select),
         .carry_in(carry_in),
         .arithmetic_out(arithmetic_res),
-        .cmp(cmp_ari),
+       // .cmp(cmp_ari),
         .carry_out(car_arith)
     );
-    always begin
-        if(a_in == b_in) begin
-            cmp = 1;
-        end
-        else begin
-            cmp = 0;
-        end
-    end
+
 
 
     always_comb begin
@@ -172,13 +165,13 @@ module alu #(
             car_out = 0;
         end else begin
             res = arithmetic_res;
-            cmp = cmp_ari;
+
             car_out = car_arith;
         end
     end
 
     assign carry_out = car_out;
     assign alu_out = res;
-    assign compare = cmp;
+
 
 endmodule
