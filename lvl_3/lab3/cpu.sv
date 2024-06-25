@@ -25,7 +25,7 @@ module cpu(
 
     always @(*) begin
         // Default values to avoid latches
-        if(run ==1) begin
+        if(reset == 1) begin
             en_s = 0;
             en_c = 0;
             done = 0;
@@ -35,32 +35,35 @@ module cpu(
             en = 8'b0;
             en_inst = 0;
         end
-        case (cur_state)
-            S0: begin
-                en_s = 1;
-                mux_sel = {1'b0, d_inst[15:13]};
-            end
-            S1: begin
-                mux_sel = {1'b0, d_inst[12:10]};
-                en_c = 1;
-                sel = d_inst[6:3];
-                mode = d_inst[2];
-            end
-            S2: begin
-                en = 8'b0;
-                en[d_inst[15:13]] = 1;
-                done = 1;
-            end
-            default: begin
-                en_s = 0;
-                en_c = 0;
-                done = 0;
-                mux_sel = 4'b0;
-                sel = 4'b0;
-                mode = 0;
-                en = 8'b0;
-            end
-        endcase
+
+        if(run == 1) begin
+            case (cur_state)
+                S0: begin
+                    en_s = 1;
+                    mux_sel = {1'b0, d_inst[15:13]};
+                end
+                S1: begin
+                    mux_sel = {1'b0, d_inst[12:10]};
+                    en_c = 1;
+                    sel = d_inst[6:3];
+                    mode = d_inst[2];
+                end
+                S2: begin
+                    en = 8'b0;
+                    en[d_inst[15:13]] = 1;
+                    done = 1;
+                end
+                default: begin
+                    en_s = 0;
+                    en_c = 0;
+                    done = 0;
+                    mux_sel = 4'b0;
+                    sel = 4'b0;
+                    mode = 0;
+                    en = 8'b0;
+                end
+            endcase
+        end
     end
 
     // Next state sequential logic

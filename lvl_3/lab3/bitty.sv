@@ -98,6 +98,18 @@ module bitty(
         .mux_sel(mux_sel),
         .mux_out(out_mux)
     );
+    always @(posedge run) begin
+        if(run) begin
+            reg0 = 0;
+            reg1 = 0;
+            reg2 = 0;
+            reg3 = 0;
+            reg4 = 0;
+            reg5 = 0;
+            reg6 = 0;
+            reg7 = 0;
+        end
+    end
 
     // Assigning out array elements to module outputs
     assign reg0 = out[0];
