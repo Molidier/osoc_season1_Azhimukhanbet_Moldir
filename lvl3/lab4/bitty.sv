@@ -19,13 +19,12 @@ module bitty(
     output logic [15:0] regs,
     output logic [15:0] regc,
     output [15:0] d_out,
-    output carry_out,
-    output done
+    output carry_out
 );
 
 // MUX components 
     wire [3:0] mux_sel;
-    logic [7:0] en;
+    wire [7:0] en;
     logic [15:0] out [7:0];
     wire [15:0] out_mux;
     
@@ -33,7 +32,7 @@ module bitty(
     wire [15:0] alu_out;
     
     // CPU components
-    wire en_s, en_c, en_inst, mode;
+    wire en_s, en_c, en_inst, done, mode;
     wire [3:0] alu_sel;
     wire [15:0] instruction;
     
@@ -81,7 +80,7 @@ module bitty(
             dff reg_out (
                 .clk(clk),
                 .en(en[i]),
-                .d_in(regc),  // Corrected input signal name
+                .d_in(out[i]),  // Corrected input signal name
                 .mux_out(out[i])      // Corrected output signal name
             );
         end
@@ -111,23 +110,6 @@ module bitty(
             reg7 = 0;
         end
     end
-    always @(posedge clk, posedge reset) begin
-        if(reset) begin
-            out[0] = 0;
-            out[1] = 0;
-            out[2] = 0;
-            out[3] = 0;
-            out[4] = 0;
-            out[5] = 0;
-            out[6] = 0;
-            out[7] = 0;
-            d_out = 0;
-            en = 8'b0;
-            //regs <= 0;
-            //regc <= 0;
-        end
-    end
-
 
     // Assigning out array elements to module outputs
     assign reg0 = out[0];

@@ -39,20 +39,14 @@ module cpu(
         if(run == 1) begin
             case (cur_state)
                 S0: begin
-                    done = 0;
                     en_s = 1;
-                    en = 8'b0;
-                    en_c = 0;
                     mux_sel = {1'b0, d_inst[15:13]};
                 end
                 S1: begin
                     mux_sel = {1'b0, d_inst[12:10]};
                     en_c = 1;
-                    en_s = 0;
-                    en = 8'b0;
                     sel = d_inst[6:3];
                     mode = d_inst[2];
-                    done = 0;
                 end
                 S2: begin
                     en = 8'b0;
@@ -76,15 +70,7 @@ module cpu(
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             cur_state <= S0;
-            en_s = 0;
-            en_c = 0;
-            done = 0;
-            mux_sel = 4'b0;
-            sel = 4'b0;
-            mode = 0;
-            en = 8'b0;
-        end 
-        else begin
+        end else begin
             cur_state <= next_state;
         end
     end
@@ -94,7 +80,7 @@ module cpu(
         case (cur_state)
             S0: next_state = S1;
             S1: next_state = S2;
-            S2: next_state = (run == 1) ? S0 : S2;
+            S2: next_state = (done == 1) ? S0 : S2;
             default: next_state = S0;
         endcase
     end

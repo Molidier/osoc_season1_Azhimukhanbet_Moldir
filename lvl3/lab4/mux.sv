@@ -1,4 +1,5 @@
 module mux(
+
     input [15:0] reg0,
     input [15:0] reg1,
     input [15:0] reg2,

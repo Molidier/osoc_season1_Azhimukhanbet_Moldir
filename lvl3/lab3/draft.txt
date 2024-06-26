@@ -1,21 +1,5 @@
-    public:
-        uint16_t run;
-        uint8_t clk;
-        uint8_t reset;
-        uint8_t carry_in;
-};
+fe90
 
-// ALU output interface transaction item class
-class AluOutTx {
-    public:
-        uint8_t mux_sel;
-        uint8_t done;
-        uint8_t d_out;
-        uint8_t sel;
-        uint8_t mode;
-        uint8_t en_s;
-        uint8_t en_c;
-        uint8_t en;
-        uint8_t en_inst;
-        uint8_t compare;
-        uint8_t carry_out;
+111 111 101 0010 0 00
+
+re

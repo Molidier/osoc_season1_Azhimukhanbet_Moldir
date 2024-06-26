@@ -29,6 +29,7 @@ VL_MODULE(Vbitty) {
     VL_IN8(reset,0,0);
     VL_IN8(carry_in,0,0);
     VL_OUT8(carry_out,0,0);
+    VL_OUT8(done,0,0);
     VL_IN16(d_instr,15,0);
     VL_OUT16(reg0,15,0);
     VL_OUT16(reg1,15,0);
@@ -49,7 +50,6 @@ VL_MODULE(Vbitty) {
     CData/*0:0*/ bitty__DOT__en_s;
     CData/*0:0*/ bitty__DOT__en_c;
     CData/*0:0*/ bitty__DOT__en_inst;
-    CData/*0:0*/ bitty__DOT__done;
     CData/*0:0*/ bitty__DOT__mode;
     CData/*3:0*/ bitty__DOT__alu_sel;
     CData/*1:0*/ bitty__DOT__cpu_inst__DOT__cur_state;
