@@ -24,9 +24,9 @@ VL_MODULE(Vbitty) {
     // PORTS
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
-    VL_IN8(run,0,0);
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
+    VL_IN8(run,0,0);
     VL_IN8(carry_in,0,0);
     VL_OUT8(carry_out,0,0);
     VL_OUT8(done,0,0);
@@ -65,8 +65,8 @@ VL_MODULE(Vbitty) {
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
+    CData/*2:0*/ __Vtableidx1;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    CData/*0:0*/ __Vclklast__TOP__run;
     CData/*0:0*/ __Vclklast__TOP__reset;
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
@@ -77,6 +77,7 @@ VL_MODULE(Vbitty) {
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
     IData/*31:0*/ __Vm_traceActivity;
+    static CData/*1:0*/ __Vtable1_bitty__DOT__cpu_inst__DOT__next_state[8];
     
     // INTERNAL VARIABLES
     // Internals; generally not touched by application code
@@ -109,7 +110,7 @@ VL_MODULE(Vbitty) {
   private:
     static QData _change_request(Vbitty__Syms* __restrict vlSymsp);
   public:
-    static void _combo__TOP__6(Vbitty__Syms* __restrict vlSymsp);
+    static void _combo__TOP__5(Vbitty__Syms* __restrict vlSymsp);
   private:
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
@@ -124,15 +125,13 @@ VL_MODULE(Vbitty) {
     static void _initial__TOP__1(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__2(Vbitty__Syms* __restrict vlSymsp);
     static void _sequent__TOP__3(Vbitty__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__4(Vbitty__Syms* __restrict vlSymsp);
-    static void _settle__TOP__5(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _settle__TOP__4(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void traceChgThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__3(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__4(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__5(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__6(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__7(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceFullThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
     static void traceFullThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
     static void traceInitThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;

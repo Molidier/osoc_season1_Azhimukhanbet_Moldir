@@ -23,9 +23,39 @@ module cpu(
 
     states cur_state, next_state;
 
+    // Next state combinational logic
+    always @(*) begin
+        case (cur_state)
+            S0: next_state = (run==1) ? S1 : S0;
+            S1: next_state = (run==1) ? S2 : S0;
+            S2: next_state = (run == 1) ? S0 : S2;
+            default: next_state = S0;
+        endcase
+    end
+
+    // State update sequential logic
+    always @(posedge clk) begin
+        if (reset) begin
+            cur_state <= S0;
+        end else begin
+            cur_state <= next_state;
+        end
+    end
+
+    // Output combinational logic
     always @(*) begin
         // Default values to avoid latches
-        if(reset == 1) begin
+        en_s = 0;
+        en_c = 0;
+        done = 0;
+        mux_sel = 4'b0;
+        sel = 4'b0;
+        mode = 0;
+        en = 8'b0;
+        en_inst = 0;
+
+        if (reset) begin
+            // Reset values
             en_s = 0;
             en_c = 0;
             done = 0;
@@ -34,9 +64,8 @@ module cpu(
             mode = 0;
             en = 8'b0;
             en_inst = 0;
-        end
-
-        if(run == 1) begin
+        end else if (run == 1) begin
+            en_inst = 1;
             case (cur_state)
                 S0: begin
                     done = 0;
@@ -70,33 +99,6 @@ module cpu(
                 end
             endcase
         end
-    end
-
-    // Next state sequential logic
-    always @(posedge clk or posedge reset) begin
-        if (reset) begin
-            cur_state <= S0;
-            en_s = 0;
-            en_c = 0;
-            done = 0;
-            mux_sel = 4'b0;
-            sel = 4'b0;
-            mode = 0;
-            en = 8'b0;
-        end 
-        else begin
-            cur_state <= next_state;
-        end
-    end
-
-    // Next state combinational logic
-    always @(*) begin
-        case (cur_state)
-            S0: next_state = S1;
-            S1: next_state = S2;
-            S2: next_state = (run == 1) ? S0 : S2;
-            default: next_state = S0;
-        endcase
     end
 
 endmodule

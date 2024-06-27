@@ -96,68 +96,68 @@ void Vbitty::traceInitThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vc
         vcdp->declBus(c+513,"bitty d_out", false,-1, 15,0);
         vcdp->declBit(c+521,"bitty carry_out", false,-1);
         vcdp->declBit(c+529,"bitty done", false,-1);
-        vcdp->declBus(c+129,"bitty mux_sel", false,-1, 3,0);
-        vcdp->declBus(c+137,"bitty en", false,-1, 7,0);
+        vcdp->declBus(c+201,"bitty mux_sel", false,-1, 3,0);
+        vcdp->declBus(c+129,"bitty en", false,-1, 7,0);
         {int i; for (i=0; i<8; i++) {
                 vcdp->declBus(c+1+i*1,"bitty out", true,(i+0), 15,0);}}
-        vcdp->declBus(c+241,"bitty out_mux", false,-1, 15,0);
-        vcdp->declBus(c+249,"bitty alu_out", false,-1, 15,0);
-        vcdp->declBit(c+145,"bitty en_s", false,-1);
-        vcdp->declBit(c+153,"bitty en_c", false,-1);
-        vcdp->declBit(c+257,"bitty en_inst", false,-1);
-        vcdp->declBit(c+161,"bitty mode", false,-1);
-        vcdp->declBus(c+169,"bitty alu_sel", false,-1, 3,0);
+        vcdp->declBus(c+209,"bitty out_mux", false,-1, 15,0);
+        vcdp->declBus(c+217,"bitty alu_out", false,-1, 15,0);
+        vcdp->declBit(c+225,"bitty en_s", false,-1);
+        vcdp->declBit(c+233,"bitty en_c", false,-1);
+        vcdp->declBit(c+241,"bitty en_inst", false,-1);
+        vcdp->declBit(c+249,"bitty mode", false,-1);
+        vcdp->declBus(c+257,"bitty alu_sel", false,-1, 3,0);
         vcdp->declBus(c+313,"bitty instruction", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty reg_inst clk", false,-1);
-        vcdp->declBit(c+257,"bitty reg_inst en", false,-1);
+        vcdp->declBit(c+241,"bitty reg_inst en", false,-1);
         vcdp->declBus(c+417,"bitty reg_inst d_in", false,-1, 15,0);
         vcdp->declBus(c+313,"bitty reg_inst mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty reg_s clk", false,-1);
-        vcdp->declBit(c+145,"bitty reg_s en", false,-1);
-        vcdp->declBus(c+241,"bitty reg_s d_in", false,-1, 15,0);
+        vcdp->declBit(c+225,"bitty reg_s en", false,-1);
+        vcdp->declBus(c+209,"bitty reg_s d_in", false,-1, 15,0);
         vcdp->declBus(c+497,"bitty reg_s mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty reg_c clk", false,-1);
-        vcdp->declBit(c+153,"bitty reg_c en", false,-1);
-        vcdp->declBus(c+249,"bitty reg_c d_in", false,-1, 15,0);
+        vcdp->declBit(c+233,"bitty reg_c en", false,-1);
+        vcdp->declBus(c+217,"bitty reg_c d_in", false,-1, 15,0);
         vcdp->declBus(c+505,"bitty reg_c mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty cpu_inst clk", false,-1);
         vcdp->declBit(c+393,"bitty cpu_inst run", false,-1);
         vcdp->declBit(c+409,"bitty cpu_inst reset", false,-1);
         vcdp->declBus(c+313,"bitty cpu_inst d_inst", false,-1, 15,0);
-        vcdp->declBus(c+129,"bitty cpu_inst mux_sel", false,-1, 3,0);
+        vcdp->declBus(c+201,"bitty cpu_inst mux_sel", false,-1, 3,0);
         vcdp->declBit(c+529,"bitty cpu_inst done", false,-1);
-        vcdp->declBus(c+169,"bitty cpu_inst sel", false,-1, 3,0);
-        vcdp->declBit(c+161,"bitty cpu_inst mode", false,-1);
-        vcdp->declBit(c+145,"bitty cpu_inst en_s", false,-1);
-        vcdp->declBit(c+153,"bitty cpu_inst en_c", false,-1);
-        vcdp->declBus(c+137,"bitty cpu_inst en", false,-1, 7,0);
-        vcdp->declBit(c+257,"bitty cpu_inst en_inst", false,-1);
-        vcdp->declBus(c+385,"bitty cpu_inst cur_state", false,-1, 1,0);
+        vcdp->declBus(c+257,"bitty cpu_inst sel", false,-1, 3,0);
+        vcdp->declBit(c+249,"bitty cpu_inst mode", false,-1);
+        vcdp->declBit(c+225,"bitty cpu_inst en_s", false,-1);
+        vcdp->declBit(c+233,"bitty cpu_inst en_c", false,-1);
+        vcdp->declBus(c+129,"bitty cpu_inst en", false,-1, 7,0);
+        vcdp->declBit(c+241,"bitty cpu_inst en_inst", false,-1);
+        vcdp->declBus(c+321,"bitty cpu_inst cur_state", false,-1, 1,0);
         vcdp->declBus(c+265,"bitty cpu_inst next_state", false,-1, 1,0);
         vcdp->declBus(c+537,"bitty alu_inst WIDTH", false,-1, 31,0);
         vcdp->declBit(c+425,"bitty alu_inst carry_in", false,-1);
         vcdp->declBus(c+497,"bitty alu_inst a_in", false,-1, 15,0);
-        vcdp->declBus(c+241,"bitty alu_inst b_in", false,-1, 15,0);
-        vcdp->declBus(c+169,"bitty alu_inst select", false,-1, 3,0);
-        vcdp->declBit(c+161,"bitty alu_inst mode", false,-1);
+        vcdp->declBus(c+209,"bitty alu_inst b_in", false,-1, 15,0);
+        vcdp->declBus(c+257,"bitty alu_inst select", false,-1, 3,0);
+        vcdp->declBit(c+249,"bitty alu_inst mode", false,-1);
         vcdp->declBit(c+521,"bitty alu_inst carry_out", false,-1);
-        vcdp->declBus(c+249,"bitty alu_inst alu_out", false,-1, 15,0);
-        vcdp->declBus(c+249,"bitty alu_inst res", false,-1, 15,0);
+        vcdp->declBus(c+217,"bitty alu_inst alu_out", false,-1, 15,0);
+        vcdp->declBus(c+217,"bitty alu_inst res", false,-1, 15,0);
         vcdp->declBus(c+273,"bitty alu_inst logic_res", false,-1, 15,0);
         vcdp->declBus(c+281,"bitty alu_inst arithmetic_res", false,-1, 15,0);
         vcdp->declBit(c+289,"bitty alu_inst car_out", false,-1);
         vcdp->declBit(c+297,"bitty alu_inst car_arith", false,-1);
         vcdp->declBus(c+537,"bitty alu_inst u1 WIDTH", false,-1, 31,0);
         vcdp->declBus(c+497,"bitty alu_inst u1 in_a", false,-1, 15,0);
-        vcdp->declBus(c+241,"bitty alu_inst u1 in_b", false,-1, 15,0);
-        vcdp->declBus(c+169,"bitty alu_inst u1 select", false,-1, 3,0);
+        vcdp->declBus(c+209,"bitty alu_inst u1 in_b", false,-1, 15,0);
+        vcdp->declBus(c+257,"bitty alu_inst u1 select", false,-1, 3,0);
         vcdp->declBus(c+273,"bitty alu_inst u1 logic_out", false,-1, 15,0);
         vcdp->declBus(c+273,"bitty alu_inst u1 res", false,-1, 15,0);
         vcdp->declBus(c+537,"bitty alu_inst u2 WIDTH", false,-1, 31,0);
         vcdp->declBit(c+425,"bitty alu_inst u2 carry_in", false,-1);
         vcdp->declBus(c+497,"bitty alu_inst u2 in_a", false,-1, 15,0);
-        vcdp->declBus(c+241,"bitty alu_inst u2 in_b", false,-1, 15,0);
-        vcdp->declBus(c+169,"bitty alu_inst u2 select", false,-1, 3,0);
+        vcdp->declBus(c+209,"bitty alu_inst u2 in_b", false,-1, 15,0);
+        vcdp->declBus(c+257,"bitty alu_inst u2 select", false,-1, 3,0);
         vcdp->declBit(c+297,"bitty alu_inst u2 carry_out", false,-1);
         vcdp->declBus(c+281,"bitty alu_inst u2 arithmetic_out", false,-1, 15,0);
         vcdp->declBus(c+305,"bitty alu_inst u2 extended_res", false,-1, 16,0);
@@ -169,40 +169,40 @@ void Vbitty::traceInitThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vc
         vcdp->declBus(c+105,"bitty mux_inst reg5", false,-1, 15,0);
         vcdp->declBus(c+113,"bitty mux_inst reg6", false,-1, 15,0);
         vcdp->declBus(c+121,"bitty mux_inst reg7", false,-1, 15,0);
-        vcdp->declBus(c+129,"bitty mux_inst mux_sel", false,-1, 3,0);
-        vcdp->declBus(c+241,"bitty mux_inst mux_out", false,-1, 15,0);
+        vcdp->declBus(c+201,"bitty mux_inst mux_sel", false,-1, 3,0);
+        vcdp->declBus(c+209,"bitty mux_inst mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[0] reg_out clk", false,-1);
-        vcdp->declBit(c+177,"bitty genblk1[0] reg_out en", false,-1);
+        vcdp->declBit(c+137,"bitty genblk1[0] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[0] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+321,"bitty genblk1[0] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+329,"bitty genblk1[0] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[1] reg_out clk", false,-1);
-        vcdp->declBit(c+185,"bitty genblk1[1] reg_out en", false,-1);
+        vcdp->declBit(c+145,"bitty genblk1[1] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[1] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+329,"bitty genblk1[1] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+337,"bitty genblk1[1] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[2] reg_out clk", false,-1);
-        vcdp->declBit(c+193,"bitty genblk1[2] reg_out en", false,-1);
+        vcdp->declBit(c+153,"bitty genblk1[2] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[2] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+337,"bitty genblk1[2] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+345,"bitty genblk1[2] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[3] reg_out clk", false,-1);
-        vcdp->declBit(c+201,"bitty genblk1[3] reg_out en", false,-1);
+        vcdp->declBit(c+161,"bitty genblk1[3] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[3] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+345,"bitty genblk1[3] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+353,"bitty genblk1[3] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[4] reg_out clk", false,-1);
-        vcdp->declBit(c+209,"bitty genblk1[4] reg_out en", false,-1);
+        vcdp->declBit(c+169,"bitty genblk1[4] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[4] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+353,"bitty genblk1[4] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+361,"bitty genblk1[4] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[5] reg_out clk", false,-1);
-        vcdp->declBit(c+217,"bitty genblk1[5] reg_out en", false,-1);
+        vcdp->declBit(c+177,"bitty genblk1[5] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[5] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+361,"bitty genblk1[5] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+369,"bitty genblk1[5] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[6] reg_out clk", false,-1);
-        vcdp->declBit(c+225,"bitty genblk1[6] reg_out en", false,-1);
+        vcdp->declBit(c+185,"bitty genblk1[6] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[6] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+369,"bitty genblk1[6] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+377,"bitty genblk1[6] reg_out mux_out", false,-1, 15,0);
         vcdp->declBit(c+401,"bitty genblk1[7] reg_out clk", false,-1);
-        vcdp->declBit(c+233,"bitty genblk1[7] reg_out en", false,-1);
+        vcdp->declBit(c+193,"bitty genblk1[7] reg_out en", false,-1);
         vcdp->declBus(c+505,"bitty genblk1[7] reg_out d_in", false,-1, 15,0);
-        vcdp->declBus(c+377,"bitty genblk1[7] reg_out mux_out", false,-1, 15,0);
+        vcdp->declBus(c+385,"bitty genblk1[7] reg_out mux_out", false,-1, 15,0);
     }
 }
 
@@ -236,30 +236,30 @@ void Vbitty::traceFullThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vc
                              [6U]),16);
         vcdp->fullBus(c+121,(vlTOPp->bitty__DOT__out
                              [7U]),16);
-        vcdp->fullBus(c+129,(vlTOPp->bitty__DOT__mux_sel),4);
-        vcdp->fullBus(c+137,(vlTOPp->bitty__DOT__en),8);
-        vcdp->fullBit(c+145,(vlTOPp->bitty__DOT__en_s));
-        vcdp->fullBit(c+153,(vlTOPp->bitty__DOT__en_c));
-        vcdp->fullBit(c+161,(vlTOPp->bitty__DOT__mode));
-        vcdp->fullBus(c+169,(vlTOPp->bitty__DOT__alu_sel),4);
-        vcdp->fullBit(c+177,((1U & (IData)(vlTOPp->bitty__DOT__en))));
-        vcdp->fullBit(c+185,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBus(c+129,(vlTOPp->bitty__DOT__en),8);
+        vcdp->fullBit(c+137,((1U & (IData)(vlTOPp->bitty__DOT__en))));
+        vcdp->fullBit(c+145,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 1U))));
-        vcdp->fullBit(c+193,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBit(c+153,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 2U))));
-        vcdp->fullBit(c+201,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBit(c+161,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 3U))));
-        vcdp->fullBit(c+209,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBit(c+169,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 4U))));
-        vcdp->fullBit(c+217,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBit(c+177,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 5U))));
-        vcdp->fullBit(c+225,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBit(c+185,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 6U))));
-        vcdp->fullBit(c+233,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
+        vcdp->fullBit(c+193,((1U & ((IData)(vlTOPp->bitty__DOT__en) 
                                     >> 7U))));
-        vcdp->fullBus(c+241,(vlTOPp->bitty__DOT__out_mux),16);
-        vcdp->fullBus(c+249,(vlTOPp->bitty__DOT__alu_inst__DOT__res),16);
-        vcdp->fullBit(c+257,(vlTOPp->bitty__DOT__en_inst));
+        vcdp->fullBus(c+201,(vlTOPp->bitty__DOT__mux_sel),4);
+        vcdp->fullBus(c+209,(vlTOPp->bitty__DOT__out_mux),16);
+        vcdp->fullBus(c+217,(vlTOPp->bitty__DOT__alu_inst__DOT__res),16);
+        vcdp->fullBit(c+225,(vlTOPp->bitty__DOT__en_s));
+        vcdp->fullBit(c+233,(vlTOPp->bitty__DOT__en_c));
+        vcdp->fullBit(c+241,(vlTOPp->bitty__DOT__en_inst));
+        vcdp->fullBit(c+249,(vlTOPp->bitty__DOT__mode));
+        vcdp->fullBus(c+257,(vlTOPp->bitty__DOT__alu_sel),4);
         vcdp->fullBus(c+265,(vlTOPp->bitty__DOT__cpu_inst__DOT__next_state),2);
         vcdp->fullBus(c+273,(vlTOPp->bitty__DOT__alu_inst__DOT__u1__DOT__res),16);
         vcdp->fullBus(c+281,((0xffffU & vlTOPp->bitty__DOT__alu_inst__DOT__u2__DOT__extended_res)),16);
@@ -267,15 +267,15 @@ void Vbitty::traceFullThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vc
         vcdp->fullBit(c+297,(vlTOPp->bitty__DOT__alu_inst__DOT__car_arith));
         vcdp->fullBus(c+305,(vlTOPp->bitty__DOT__alu_inst__DOT__u2__DOT__extended_res),17);
         vcdp->fullBus(c+313,(vlTOPp->bitty__DOT__instruction),16);
-        vcdp->fullBus(c+321,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+329,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+337,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+345,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__3__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+353,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__4__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+361,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+369,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+377,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out),16);
-        vcdp->fullBus(c+385,(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state),2);
+        vcdp->fullBus(c+321,(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state),2);
+        vcdp->fullBus(c+329,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+337,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+345,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+353,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__3__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+361,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__4__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+369,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+377,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out),16);
+        vcdp->fullBus(c+385,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out),16);
         vcdp->fullBit(c+393,(vlTOPp->run));
         vcdp->fullBit(c+401,(vlTOPp->clk));
         vcdp->fullBit(c+409,(vlTOPp->reset));

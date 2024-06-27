@@ -37,9 +37,6 @@ module bitty(
     wire [3:0] alu_sel;
     wire [15:0] instruction;
     
-    // Additional components
-    //wire [15:0] compare;
-
     // Registers
     dff reg_inst(clk, en_inst, d_instr, instruction);
     dff reg_s(clk, en_s, out_mux, regs);
@@ -69,8 +66,7 @@ module bitty(
         .select(alu_sel),
         .mode(mode),
         .carry_out(carry_out),
-        //.compare(compare),
-        .alu_out(alu_out)  // Changed to alu_out
+        .alu_out(alu_out)
     );
 
     // MUX connection  
@@ -81,8 +77,8 @@ module bitty(
             dff reg_out (
                 .clk(clk),
                 .en(en[i]),
-                .d_in(regc),  // Corrected input signal name
-                .mux_out(out[i])      // Corrected output signal name
+                .d_in(regc),
+                .mux_out(out[i])  // Corrected output signal name to 'q'
             );
         end
     endgenerate
@@ -99,35 +95,35 @@ module bitty(
         .mux_sel(mux_sel),
         .mux_out(out_mux)
     );
-    always @(posedge run) begin
-        if(run) begin
-            reg0 = 0;
-            reg1 = 0;
-            reg2 = 0;
-            reg3 = 0;
-            reg4 = 0;
-            reg5 = 0;
-            reg6 = 0;
-            reg7 = 0;
-        end
-    end
-    always @(posedge clk, posedge reset) begin
-        if(reset) begin
-            out[0] = 0;
-            out[1] = 0;
-            out[2] = 0;
-            out[3] = 0;
-            out[4] = 0;
-            out[5] = 0;
-            out[6] = 0;
-            out[7] = 0;
-            d_out = 0;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset || done) begin
+            reg0 = 16'b0;
+            reg1 = 16'b0;
+            reg2 = 16'b0;
+            reg3 = 16'b0;
+            reg4 = 16'b0;
+            reg5 = 16'b0;
+            reg6 = 16'b0;
+            reg7 = 16'b0;
+
             en = 8'b0;
-            //regs <= 0;
-            //regc <= 0;
         end
     end
 
+    // Reset registers on run
+    /*always @(posedge run) begin
+        if (run) begin
+            reg0 <= 16'b0;
+            reg1 <= 16'b0;
+            reg2 <= 16'b0;
+            reg3 <= 16'b0;
+            reg4 <= 16'b0;
+            reg5 <= 16'b0;
+            reg6 <= 16'b0;
+            reg7 <= 16'b0;
+        end
+    end*/
 
     // Assigning out array elements to module outputs
     assign reg0 = out[0];
@@ -138,6 +134,6 @@ module bitty(
     assign reg5 = out[5];
     assign reg6 = out[6];
     assign reg7 = out[7];
-    assign d_out = alu_out;  // Corrected to alu_out
+    assign d_out = alu_out;
 
 endmodule
