@@ -12,7 +12,7 @@
 #include <ctime>
 
 #define MAX_SIM_TIME 300
-#define VERIF_START_TIME 0
+#define VERIF_START_TIME 7
 vluint64_t sim_time = 0;
 vluint64_t cc = 0;
 bool check = true;
@@ -102,7 +102,7 @@ class CpuScb {
             bool start = false;
 
 
-            if (in->run == 1) {
+            if (in->run == 1 || in->reset == 1) {
                 start = true;
                 if(check){
                     cc=0;
@@ -116,7 +116,7 @@ class CpuScb {
             }
 
             if (start) {
-                if (cc == 0) {
+                if (cc == 1) {
                     switch (rx) {
                         case 0: temp = tx->reg0; break;
                         case 1: temp = tx->reg1; break;
@@ -130,6 +130,7 @@ class CpuScb {
                     }
                     if (tx->regs != temp) {
                         std::cout << "Reg S ERROR!"<<std::endl;
+                        std::cout << "  RX: " << (int) rx <<std::endl;
                         std::cout << "  Expected: regs: " << temp <<std::endl;
                         std::cout << "  Actual regs = " << tx->regs << std::endl;
                         std::cout << "  Simtime: " << sim_time << std::endl;
@@ -137,7 +138,7 @@ class CpuScb {
                     }   
                 }
 
-                if (cc == 1) {
+                if (cc == 2) {
                     
                     //::cout<<"I am here"<<std::endl;
                     if (mode == 1) { // Logic operations
@@ -196,7 +197,7 @@ class CpuScb {
                     }
                 }
 
-                if (cc == 2) {
+                if (cc == 3) {
                     if (tx->done != 1) {
                         std::cout << "Done ERROR!"<<std::endl;
                         std::cout << "Done = "<<(int)tx->done<<std::endl;
@@ -310,7 +311,7 @@ CpuInTx* rndCpuInTx(){
         CpuInTx *tx = new CpuInTx();
         tx->run = rand() % 2;
         
-        tx->reset = 0;
+        tx->reset = rand() % 2;
         tx->carry_in = rand() % 2;
         //if(tx->run==1){
             tx->d_instr = rand() % 65536;

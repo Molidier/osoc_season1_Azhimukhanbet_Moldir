@@ -82,6 +82,7 @@ module bitty(
             );
         end
     endgenerate
+    
 
     mux mux_inst(
         .reg0(out[0]),

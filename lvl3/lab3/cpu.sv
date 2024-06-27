@@ -64,7 +64,8 @@ module cpu(
             mode = 0;
             en = 8'b0;
             en_inst = 0;
-        end else if (run == 1) begin
+        end
+        if (run == 1) begin
             en_inst = 1;
             case (cur_state)
                 S0: begin
@@ -73,6 +74,7 @@ module cpu(
                     en = 8'b0;
                     en_c = 0;
                     mux_sel = {1'b0, d_inst[15:13]};
+                    en_inst = 0;
                 end
                 S1: begin
                     mux_sel = {1'b0, d_inst[12:10]};
@@ -82,11 +84,13 @@ module cpu(
                     sel = d_inst[6:3];
                     mode = d_inst[2];
                     done = 0;
+                    en_inst = 0;
                 end
                 S2: begin
                     en = 8'b0;
                     en[d_inst[15:13]] = 1;
                     done = 1;
+                    en_inst = 0;
                 end
                 default: begin
                     en_s = 0;
