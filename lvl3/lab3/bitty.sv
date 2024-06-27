@@ -99,14 +99,14 @@ module bitty(
 
     always @(posedge clk or posedge reset) begin
         if (reset || done) begin
-            reg0 = 16'b0;
-            reg1 = 16'b0;
-            reg2 = 16'b0;
-            reg3 = 16'b0;
-            reg4 = 16'b0;
-            reg5 = 16'b0;
-            reg6 = 16'b0;
-            reg7 = 16'b0;
+            out[0] <= 16'b0;
+            out[1] <= 16'b0;
+            out[2] <= 16'b0;
+            out[3] <= 16'b0;
+            out[4] <= 16'b0;
+            out[5] <= 16'b0;
+            out[6] <= 16'b0;
+            out[7] <= 16'b0;
 
             en = 8'b0;
         end

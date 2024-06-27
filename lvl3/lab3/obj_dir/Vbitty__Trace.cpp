@@ -24,9 +24,10 @@ void Vbitty::traceChgThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, 
     if (0 && vcdp && c) {}  // Prevent unused
     // Body
     {
-        if (VL_UNLIKELY((1U & (vlTOPp->__Vm_traceActivity 
-                               | (vlTOPp->__Vm_traceActivity 
-                                  >> 1U))))) {
+        if (VL_UNLIKELY((1U & ((vlTOPp->__Vm_traceActivity 
+                                | (vlTOPp->__Vm_traceActivity 
+                                   >> 1U)) | (vlTOPp->__Vm_traceActivity 
+                                              >> 2U))))) {
             vlTOPp->traceChgThis__2(vlSymsp, vcdp, code);
         }
         if (VL_UNLIKELY((1U & ((vlTOPp->__Vm_traceActivity 

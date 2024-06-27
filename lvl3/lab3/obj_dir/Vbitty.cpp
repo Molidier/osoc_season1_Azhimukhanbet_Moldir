@@ -147,6 +147,31 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
         vlTOPp->regc = vlTOPp->bitty__DOT__alu_inst__DOT__res;
     }
     vlTOPp->bitty__DOT__out[0U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
+}
+
+VL_INLINE_OPT void Vbitty::_sequent__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_sequent__TOP__3\n"); );
+    Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Variables
+    CData/*0:0*/ __Vdlyvset__bitty__DOT__out__v0;
+    // Body
+    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
+        vlTOPp->bitty__DOT__en = 0U;
+    }
+    __Vdlyvset__bitty__DOT__out__v0 = 0U;
+    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
+        __Vdlyvset__bitty__DOT__out__v0 = 1U;
+    }
+    if (__Vdlyvset__bitty__DOT__out__v0) {
+        vlTOPp->bitty__DOT__out[0U] = 0U;
+        vlTOPp->bitty__DOT__out[1U] = 0U;
+        vlTOPp->bitty__DOT__out[2U] = 0U;
+        vlTOPp->bitty__DOT__out[3U] = 0U;
+        vlTOPp->bitty__DOT__out[4U] = 0U;
+        vlTOPp->bitty__DOT__out[5U] = 0U;
+        vlTOPp->bitty__DOT__out[6U] = 0U;
+        vlTOPp->bitty__DOT__out[7U] = 0U;
+    }
     vlTOPp->reg0 = vlTOPp->bitty__DOT__out[0U];
     vlTOPp->reg1 = vlTOPp->bitty__DOT__out[1U];
     vlTOPp->reg2 = vlTOPp->bitty__DOT__out[2U];
@@ -155,39 +180,6 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
     vlTOPp->reg5 = vlTOPp->bitty__DOT__out[5U];
     vlTOPp->reg6 = vlTOPp->bitty__DOT__out[6U];
     vlTOPp->reg7 = vlTOPp->bitty__DOT__out[7U];
-}
-
-VL_INLINE_OPT void Vbitty::_sequent__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_sequent__TOP__3\n"); );
-    Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Body
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg3 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg2 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg1 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg4 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg0 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg5 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg6 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->reg7 = 0U;
-    }
-    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
-        vlTOPp->bitty__DOT__en = 0U;
-    }
 }
 
 void Vbitty::_settle__TOP__4(Vbitty__Syms* __restrict vlSymsp) {
