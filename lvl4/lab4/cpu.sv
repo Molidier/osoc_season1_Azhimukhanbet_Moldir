@@ -8,7 +8,6 @@ module cpu(
     output reg done,
 
     output reg [3:0] sel,
-    output reg mode,
     output reg en_s,
     output reg en_c,
     output reg [7:0] en,
@@ -31,7 +30,6 @@ module cpu(
             done = 0;
             mux_sel = 4'b0;
             sel = 4'b0;
-            mode = 0;
             en = 8'b0;
             en_inst = 0;
         end
@@ -45,8 +43,7 @@ module cpu(
                 S1: begin
                     mux_sel = {1'b0, d_inst[12:10]};
                     en_c = 1;
-                    sel = d_inst[6:3];
-                    mode = d_inst[2];
+                    sel = d_inst[4:2];
                 end
                 S2: begin
                     en = 8'b0;
@@ -59,7 +56,6 @@ module cpu(
                     done = 0;
                     mux_sel = 4'b0;
                     sel = 4'b0;
-                    mode = 0;
                     en = 8'b0;
                 end
             endcase

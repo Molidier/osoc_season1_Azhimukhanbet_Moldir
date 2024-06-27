@@ -62,13 +62,10 @@ module bitty(
 
     // ALU Connection
     alu alu_inst(
-        .carry_in(carry_in),
         .a_in(regs),
         .b_in(out_mux),
         .select(alu_sel),
-        .mode(mode),
-        .carry_out(carry_out),
-        //.compare(compare),
+        
         .alu_out(alu_out)  // Changed to alu_out
     );
 

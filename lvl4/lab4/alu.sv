@@ -13,27 +13,27 @@ typedef enum logic [2:0]{
 
 module alu(
     input sel_type select;
-    input [2:0] rx;
-    input [2:0] ry;
+    input [15:0] in_a;
+    input [15:0] in_b;
 
-    output reg [2:0] result;
+    output reg [16:0] alu_out;
 );
-    logic [2:0] res; 
+    logic [16:0] res; 
 
     always @(*) begin
         case (select)
-            add: res = rx + ry;
-            sub: res = rx - ry;
-            and: res = rx & ry;
-            or:  res = rx | ry;
-            xor: res = rx ^ ry;
-            shl: res = rx << ry;
-            shr: res = rx >> ry;
+            add: res = in_a + in_b;
+            sub: res = in_a - in_b;
+            and: res = in_a & in_b;
+            or:  res = in_a | in_b;
+            xor: res = in_a ^ in_b;
+            shl: res = in_a << in_b;
+            shr: res = in_a >> in_b;
             cmp: begin
-                if(rx==ry) begin
+                if(in_a==in_b) begin
                     res = 0;
                 end
-                else if(rx>ry)begin
+                else if(in_a>in_b)begin
                     res = 1;
                 end
                 else begin
@@ -43,6 +43,8 @@ module alu(
             default: res = 0;
         endcase
     end
+
+    assign alu_out = res;
 
 endmodule
 
