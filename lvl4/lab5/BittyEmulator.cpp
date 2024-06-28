@@ -6,7 +6,7 @@ using namespace std;
         BittyEmulator::BittyEmulator() : registers_(16,0){}
 
         uint16_t BittyEmulator::Evaluate(uint16_t instruction){
-            uint16_t rx = instruction & 0xE000;
+            uint16_t rx = (instruction & 0xE000)>>13;
             uint16_t ry = (instruction & 0x1C00)>>10;
             uint16_t alu_sel = (instruction & 0x001C)>>2;
 
@@ -45,6 +45,10 @@ using namespace std;
 
         uint16_t BittyEmulator::GetRegisterValue(uint16_t reg_num){
             return registers_[reg_num];
+        }
+
+        void BittyEmulator::SetRegisterValue(uint16_t reg_num, uint16_t value){
+            registers_[reg_num] = value;
         }
     
 
