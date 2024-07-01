@@ -1,12 +1,12 @@
 /****** bitty.sv ******/
-import "DPI-C" function uint16_t Generate();
+
 module bitty(
     input run,
     input clk,
     input reset, 
     input [15:0] d_instr,
 
-    output [15:0] d_out,
+    output [15:0] d_out
 );
 
    // assign d_instr = Generate();
@@ -22,13 +22,13 @@ module bitty(
     
     // CPU components
     wire en_s, en_c, en_inst, done, mode;
-    wire [3:0] alu_sel;
+    wire [2:0] alu_sel;
     wire [15:0] instruction;
     
     // Additional components
     //wire [15:0] compare;
-    logic [15:0] regs,
-    logic [15:0] regc,
+    logic [15:0] regs;
+    logic [15:0] regc;
 
     // Registers
     dff reg_inst(clk, en_inst, d_instr, instruction);
@@ -53,8 +53,8 @@ module bitty(
 
     // ALU Connection
     alu alu_inst(
-        .a_in(regs),
-        .b_in(out_mux),
+        .in_a(regs),
+        .in_b(out_mux),
         .select(alu_sel),
         
         .alu_out(alu_out)  // Changed to alu_out
@@ -91,7 +91,7 @@ module bitty(
     /*always @(*) begin
         if(done==1) begin
             Evaluate(d_instr);
-        end*/
+        end
 
         case(en)
             8'b00000001: reg_num = 0;
@@ -105,7 +105,7 @@ module bitty(
         endcase
 
 
-    end
+    end*/
     // Assigning out array elements to module outputs
 
 

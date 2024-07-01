@@ -26,6 +26,9 @@ int main(int argc, char **argv, char **env) {
         if(res_test!=top->d_out){
             std::cout<<"Error";
         }
+        else{
+            cout<<"IT WORKS!!";
+        }
     }
 
     delete top;

@@ -1,35 +1,35 @@
 /****** alu.sv ******/
 typedef enum logic [2:0]{
-    add = 3'b000; 
-    sub = 3'b001;
-    and = 3'b010;
-    or =  3'b011;
-    xor = 3'b100;
-    shl = 3'b101;
-    shr = 3'b110;
-    cmp = 3'b111;
+    ADD = 3'b000, 
+    SUB = 3'b001,
+    AND = 3'b010,
+    OR =  3'b011,
+    XOR = 3'b100,
+    SHL = 3'b101,
+    SHR = 3'b110,
+    CMP = 3'b111
 
-} sel_type
+} sel_type;
 
 module alu(
-    input sel_type select;
-    input [15:0] in_a;
-    input [15:0] in_b;
+    input sel_type select,
+    input [15:0] in_a,
+    input [15:0] in_b,
 
-    output reg [16:0] alu_out;
+    output reg [15:0] alu_out
 );
-    logic [16:0] res; 
+    logic [15:0] res; 
 
     always @(*) begin
         case (select)
-            add: res = in_a + in_b;
-            sub: res = in_a - in_b;
-            and: res = in_a & in_b;
-            or:  res = in_a | in_b;
-            xor: res = in_a ^ in_b;
-            shl: res = in_a << in_b;
-            shr: res = in_a >> in_b;
-            cmp: begin
+            ADD: res = in_a + in_b;
+            SUB: res = in_a - in_b;
+            AND: res = in_a & in_b;
+            OR:  res = in_a | in_b;
+            XOR: res = in_a ^ in_b;
+            SHL: res = in_a << in_b;
+            SHR: res = in_a >> in_b;
+            CMP: begin
                 if(in_a==in_b) begin
                     res = 0;
                 end

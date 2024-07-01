@@ -1,4 +1,4 @@
-testbench.o: ../testbench.cpp Vcounter.h \
+testbench.o: ../testbench.cpp Vbitty.h \
  /usr/share/verilator/include/verilated.h \
- /usr/share/verilator/include/verilatedos.h Vcounter__Dpi.h \
- /usr/share/verilator/include/vltstd/svdpi.h
+ /usr/share/verilator/include/verilatedos.h ../BittyEmulator.h \
+ ../BittyInstructionGenerator.h

@@ -7,7 +7,7 @@ module cpu(
     output reg [3:0] mux_sel,
     output reg done,
 
-    output reg [3:0] sel,
+    output reg [2:0] sel,
     output reg en_s,
     output reg en_c,
     output reg [7:0] en,
@@ -29,7 +29,7 @@ module cpu(
             en_c = 0;
             done = 0;
             mux_sel = 4'b0;
-            sel = 4'b0;
+            sel = 3'b0;
             en = 8'b0;
             en_inst = 0;
         end
@@ -55,7 +55,7 @@ module cpu(
                     en_c = 0;
                     done = 0;
                     mux_sel = 4'b0;
-                    sel = 4'b0;
+                    sel = 3'b0;
                     en = 8'b0;
                 end
             endcase

@@ -4,19 +4,17 @@
 // Internal details; most calling programs do not need this header,
 // unless using verilator public meta comments.
 
-#ifndef _VCOUNTER__SYMS_H_
-#define _VCOUNTER__SYMS_H_  // guard
+#ifndef _VBITTY__SYMS_H_
+#define _VBITTY__SYMS_H_  // guard
 
 #include "verilated.h"
 
 // INCLUDE MODULE CLASSES
-#include "Vcounter.h"
-#include "Vcounter___024unit.h"
-
-// DPI TYPES for DPI Export callbacks (Internal use)
+#include "Vbitty.h"
+#include "Vbitty___024unit.h"
 
 // SYMS CLASS
-class Vcounter__Syms : public VerilatedSyms {
+class Vbitty__Syms : public VerilatedSyms {
   public:
     
     // LOCAL STATE
@@ -24,12 +22,11 @@ class Vcounter__Syms : public VerilatedSyms {
     bool __Vm_didInit;
     
     // SUBCELL STATE
-    Vcounter*                      TOPp;
-    Vcounter___024unit             TOP____024unit;
+    Vbitty*                        TOPp;
     
     // CREATORS
-    Vcounter__Syms(Vcounter* topp, const char* namep);
-    ~Vcounter__Syms() {}
+    Vbitty__Syms(Vbitty* topp, const char* namep);
+    ~Vbitty__Syms() {}
     
     // METHODS
     inline const char* name() { return __Vm_namep; }
