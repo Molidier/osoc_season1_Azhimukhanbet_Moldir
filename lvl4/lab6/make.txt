@@ -1,0 +1,4 @@
+verilator --cc counter.v --exe testbench.cpp bitty_dpi.cpp
+make -C obj_dir -f Vcounter.mk Vcounter
+cd obj_dir
+./Vcounter
