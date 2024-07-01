@@ -8,6 +8,7 @@ module bitty(
 
     output [15:0] d_out
 );
+    genvar k;
 
    // assign d_instr = Generate();
 
@@ -15,6 +16,21 @@ module bitty(
     wire [3:0] mux_sel;
     wire [7:0] en;
     logic [15:0] out [7:0];
+
+    always @(*) begin
+        if(k==0) begin
+            out[0] = 10;
+            out[1] = 10;
+            out[2] = 10;
+            out[3] = 10;
+            out[4] = 10;
+            out[5] = 10;
+            out[6] = 10;
+            out[7] = 10;
+        end
+        k=k+1;
+    end
+
     wire [15:0] out_mux;
     
     // ALU components
