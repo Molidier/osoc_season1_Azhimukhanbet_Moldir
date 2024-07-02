@@ -1,7 +1,6 @@
 import "DPI-C" function void notify_counter_nine_1();
 import "DPI-C" function void notify_counter_nine_2();
 import "DPI-C" function void notify_counter_nine_3();
-import "DPI-C" function void notify_counter_nine_here();
 
 
 
@@ -43,24 +42,30 @@ module cpu(
         end
 
         if(run == 1) begin
+           /* en_s = 0;
+            en_c = 0;
+            done = 0;
+            mux_sel = 4'b0;
+            sel = 3'b0;
+            en = 8'b0;*/
             case (cur_state)
                 S0: begin
                     en_s = 1;
                     mux_sel = {1'b0, d_inst[15:13]};
-                    //notify_counter_nine_1();
+                   // notify_counter_nine_1();
                 end
                 S1: begin
                     mux_sel = {1'b0, d_inst[12:10]};
                     en_c = 1;
                     sel = d_inst[4:2];
-                    //notify_counter_nine_2();
+                   // notify_counter_nine_2();
 
                 end
                 S2: begin
                     en = 8'b0;
                     en[d_inst[15:13]] = 1;
                     done = 1;
-                    //cd ..notify_counter_nine_3();
+                    //notify_counter_nine_3();
                 end
                 default: begin
                     en_s = 0;
@@ -81,7 +86,7 @@ module cpu(
         end else begin
             cur_state <= next_state;
         end*/
-        notify_counter_nine_here();
+       // notify_counter_nine_here();
         cur_state <= next_state;
     end
 

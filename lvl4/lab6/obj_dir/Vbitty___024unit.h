@@ -31,6 +31,7 @@ VL_MODULE(Vbitty___024unit) {
     
     // INTERNAL METHODS
     void __Vconfigure(Vbitty__Syms* symsp, bool first);
+    void __Vdpiimwrap_evaluate_values_TOP____024unit(const IData/*31:0*/ instr, const IData/*31:0*/ out);
     void __Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
     void __Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
     void __Vdpiimwrap_notify_counter_nine_3_TOP____024unit();

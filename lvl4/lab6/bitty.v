@@ -1,4 +1,5 @@
 /****** bitty.sv ******/
+import "DPI-C" function void evaluate_values(int instr, int out);
 
 module bitty(
     input run,
@@ -7,7 +8,7 @@ module bitty(
     input [15:0] d_instr,
 
     output [15:0] d_out,
-    output [15:0] reg2,
+    output [15:0] rega,
     output [15:0] regb,
     output done
 );
@@ -37,7 +38,9 @@ module bitty(
     wire [15:0] regc;
 
     // Registers
-    dff reg_inst(clk, en_inst, d_instr, reset, instruction);
+    dff reg_inst(clk, en_inst, d_instr, 16'h0000, reset, instruction);
+    dff reg_s(clk, en_s, out_mux, 16'h0000, reset,  regs);
+    dff reg_c(clk, en_c, alu_out, 16'h0000, reset, regc);
 
     // CPU connection
     cpu cpu_inst(
@@ -63,7 +66,6 @@ module bitty(
         
         .alu_out(alu_out)  // Changed to alu_out
     );
-    dff reg_c(clk, en_c, alu_out, reset, regc);
 
     // MUX connection  
     genvar i;
@@ -73,8 +75,9 @@ module bitty(
             dff reg_out (
                 .clk(clk),
                 .en(en[i]),
-                .d_in(100), 
-                .reset(reset), // Corrected input signal name
+                .d_in(alu_out), 
+                .reset(reset),
+                .starting(16'h000A), // Corrected input signal name
                 .mux_out(out[i])      // Corrected output signal name
             );
         end
@@ -92,7 +95,6 @@ module bitty(
         .mux_sel(mux_sel),
         .mux_out(out_mux)
     );
-    dff reg_s(clk, en_s, out_mux, reset,  regs);
 
     logic reg_num;
 
@@ -116,8 +118,15 @@ module bitty(
     end*/
     // Assigning out array elements to module outputs
 
-    assign reg2 = out[2];
-    assign regb = regs;
+    
+    assign rega = regs;
+    assign regb = out_mux;
     assign d_out = regc;
+
+    always @(*) begin
+        if(done) begin
+            evaluate_values({16'b0, instruction}, {16'b0, d_out});
+        end
+    end
 
 endmodule

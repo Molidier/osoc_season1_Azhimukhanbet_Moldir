@@ -35,7 +35,7 @@ VL_MODULE(Vbitty) {
     VL_OUT8(done,0,0);
     VL_IN16(d_instr,15,0);
     VL_OUT16(d_out,15,0);
-    VL_OUT16(reg2,15,0);
+    VL_OUT16(rega,15,0);
     VL_OUT16(regb,15,0);
     
     // LOCAL SIGNALS
@@ -52,6 +52,7 @@ VL_MODULE(Vbitty) {
     SData/*15:0*/ bitty__DOT__instruction;
     SData/*15:0*/ bitty__DOT__regs;
     SData/*15:0*/ bitty__DOT__regc;
+    SData/*15:0*/ bitty__DOT__alu_inst__DOT__res;
     SData/*15:0*/ bitty__DOT__out[8];
     
     // LOCAL VARIABLES

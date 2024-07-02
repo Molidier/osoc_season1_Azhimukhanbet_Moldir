@@ -1,7 +1,10 @@
+import "DPI-C" function void notify_counter_nine_here();
+
 module dff(
     input clk,
     input en,
     input wire [15:0] d_in,
+    input [15:0] starting,
     input reset,
 
     output reg [15:0] mux_out
@@ -9,10 +12,11 @@ module dff(
 );
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            mux_out <= 16'h000A;
+            mux_out = starting;
         end
         else if(en) begin
-            mux_out <= d_in;
+            notify_counter_nine_here();
+            mux_out = d_in;
         end
     end
 endmodule

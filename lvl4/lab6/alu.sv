@@ -40,7 +40,7 @@ module alu(
                     res = 2;
                 end
             end
-            default: res = 100;
+            default: res = 0;
         endcase
     end
 
