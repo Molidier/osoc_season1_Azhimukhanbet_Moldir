@@ -6,7 +6,10 @@ module bitty(
     input reset, 
     input [15:0] d_instr,
 
-    output [15:0] d_out
+    output [15:0] d_out,
+    output [15:0] reg2,
+    output [15:0] regb,
+    output done
 );
     genvar k;
 
@@ -17,19 +20,6 @@ module bitty(
     wire [7:0] en;
     logic [15:0] out [7:0];
 
-    always @(*) begin
-        if(k==0) begin
-            out[0] = 10;
-            out[1] = 10;
-            out[2] = 10;
-            out[3] = 10;
-            out[4] = 10;
-            out[5] = 10;
-            out[6] = 10;
-            out[7] = 10;
-        end
-        k=k+1;
-    end
 
     wire [15:0] out_mux;
     
@@ -37,19 +27,17 @@ module bitty(
     wire [15:0] alu_out;
     
     // CPU components
-    wire en_s, en_c, en_inst, done, mode;
+    wire en_s, en_c, en_inst, mode;
     wire [2:0] alu_sel;
     wire [15:0] instruction;
     
     // Additional components
     //wire [15:0] compare;
-    logic [15:0] regs;
-    logic [15:0] regc;
+    wire [15:0] regs;
+    wire [15:0] regc;
 
     // Registers
-    dff reg_inst(clk, en_inst, d_instr, instruction);
-    dff reg_s(clk, en_s, out_mux, regs);
-    dff reg_c(clk, en_c, alu_out, regc);
+    dff reg_inst(clk, en_inst, d_instr, reset, instruction);
 
     // CPU connection
     cpu cpu_inst(
@@ -75,6 +63,7 @@ module bitty(
         
         .alu_out(alu_out)  // Changed to alu_out
     );
+    dff reg_c(clk, en_c, alu_out, reset, regc);
 
     // MUX connection  
     genvar i;
@@ -84,7 +73,8 @@ module bitty(
             dff reg_out (
                 .clk(clk),
                 .en(en[i]),
-                .d_in(out[i]),  // Corrected input signal name
+                .d_in(100), 
+                .reset(reset), // Corrected input signal name
                 .mux_out(out[i])      // Corrected output signal name
             );
         end
@@ -102,6 +92,8 @@ module bitty(
         .mux_sel(mux_sel),
         .mux_out(out_mux)
     );
+    dff reg_s(clk, en_s, out_mux, reset,  regs);
+
     logic reg_num;
 
     /*always @(*) begin
@@ -124,5 +116,8 @@ module bitty(
     end*/
     // Assigning out array elements to module outputs
 
+    assign reg2 = out[2];
+    assign regb = regs;
+    assign d_out = regc;
 
 endmodule

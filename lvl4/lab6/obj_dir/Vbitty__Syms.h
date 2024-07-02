@@ -13,6 +13,8 @@
 #include "Vbitty.h"
 #include "Vbitty___024unit.h"
 
+// DPI TYPES for DPI Export callbacks (Internal use)
+
 // SYMS CLASS
 class Vbitty__Syms : public VerilatedSyms {
   public:
@@ -23,6 +25,7 @@ class Vbitty__Syms : public VerilatedSyms {
     
     // SUBCELL STATE
     Vbitty*                        TOPp;
+    Vbitty___024unit               TOP____024unit;
     
     // CREATORS
     Vbitty__Syms(Vbitty* topp, const char* namep);

@@ -5,6 +5,8 @@
 #include "Vbitty___024unit.h"
 #include "Vbitty__Syms.h"
 
+#include "verilated_dpi.h"
+
 //==========
 
 VL_CTOR_IMP(Vbitty___024unit) {
@@ -19,6 +21,30 @@ void Vbitty___024unit::__Vconfigure(Vbitty__Syms* vlSymsp, bool first) {
 }
 
 Vbitty___024unit::~Vbitty___024unit() {
+}
+
+VL_INLINE_OPT void Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_1_TOP____024unit() {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_1_TOP____024unit\n"); );
+    // Body
+    notify_counter_nine_1();
+}
+
+VL_INLINE_OPT void Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_2_TOP____024unit() {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_2_TOP____024unit\n"); );
+    // Body
+    notify_counter_nine_2();
+}
+
+VL_INLINE_OPT void Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_3_TOP____024unit() {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_3_TOP____024unit\n"); );
+    // Body
+    notify_counter_nine_3();
+}
+
+VL_INLINE_OPT void Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_here_TOP____024unit() {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vbitty___024unit::__Vdpiimwrap_notify_counter_nine_here_TOP____024unit\n"); );
+    // Body
+    notify_counter_nine_here();
 }
 
 void Vbitty___024unit::_ctor_var_reset() {

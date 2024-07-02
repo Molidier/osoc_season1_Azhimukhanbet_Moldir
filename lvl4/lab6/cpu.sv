@@ -1,3 +1,11 @@
+import "DPI-C" function void notify_counter_nine_1();
+import "DPI-C" function void notify_counter_nine_2();
+import "DPI-C" function void notify_counter_nine_3();
+import "DPI-C" function void notify_counter_nine_here();
+
+
+
+
 module cpu(
     input clk,
     input run,
@@ -39,16 +47,20 @@ module cpu(
                 S0: begin
                     en_s = 1;
                     mux_sel = {1'b0, d_inst[15:13]};
+                    //notify_counter_nine_1();
                 end
                 S1: begin
                     mux_sel = {1'b0, d_inst[12:10]};
                     en_c = 1;
                     sel = d_inst[4:2];
+                    //notify_counter_nine_2();
+
                 end
                 S2: begin
                     en = 8'b0;
                     en[d_inst[15:13]] = 1;
                     done = 1;
+                    //cd ..notify_counter_nine_3();
                 end
                 default: begin
                     en_s = 0;
@@ -63,12 +75,14 @@ module cpu(
     end
 
     // Next state sequential logic
-    always @(posedge clk or posedge reset) begin
-        if (reset) begin
+    always @(posedge clk) begin
+        /*if (reset) begin
             cur_state <= S0;
         end else begin
             cur_state <= next_state;
-        end
+        end*/
+        notify_counter_nine_here();
+        cur_state <= next_state;
     end
 
     // Next state combinational logic

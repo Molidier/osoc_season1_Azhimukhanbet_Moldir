@@ -1,4 +1,4 @@
-verilator --cc counter.v --exe testbench.cpp bitty_dpi.cpp
-make -C obj_dir -f Vcounter.mk Vcounter
+verilator --cc bitty.v --exe testbench.cpp BittyEmulator.cpp BittyInstructionGenerator.cpp
+make -C obj_dir -f Vbitty.mk Vbitty
 cd obj_dir
-./Vcounter
+./Vbitty
