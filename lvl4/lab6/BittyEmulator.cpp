@@ -1,11 +1,12 @@
 using namespace std;
 #include "BittyEmulator.h"
+#include <iostream>
 
 
 
         BittyEmulator::BittyEmulator() : registers_(16,10){}
 
-        extern "C" uint16_t BittyEmulator::Evaluate(uint16_t instruction){
+        uint16_t BittyEmulator::Evaluate(uint16_t instruction){
             uint16_t rx = (instruction & 0xE000)>>13;
             uint16_t ry = (instruction & 0x1C00)>>10;
             uint16_t alu_sel = (instruction & 0x001C)>>2;
@@ -19,7 +20,9 @@ using namespace std;
             case 0x2: result = registers_[rx] & registers_[ry]; break;
             case 0x3: result = registers_[rx] | registers_[ry]; break;
             case 0x4: result = registers_[rx] ^ registers_[ry]; break;
-            case 0x5: result = registers_[rx] << registers_[ry]; break;
+            case 0x5: result = registers_[rx] << registers_[ry]; 
+                cout<<registers_[rx] << " --- " << registers_[ry]<<endl;
+            break;
             case 0x6: result = registers_[rx] >> registers_[ry]; break;
             case 0x7: 
             if(registers_[rx] == registers_[ry]){

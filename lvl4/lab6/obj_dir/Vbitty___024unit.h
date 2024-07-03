@@ -11,6 +11,8 @@
 //==========
 
 class Vbitty__Syms;
+class Vbitty_VerilatedVcd;
+
 
 //----------
 
@@ -37,6 +39,10 @@ VL_MODULE(Vbitty___024unit) {
     void __Vdpiimwrap_notify_counter_nine_here_TOP____024unit();
   private:
     void _ctor_var_reset() VL_ATTR_COLD;
+  public:
+    static void traceInit(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceFull(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceChg(VerilatedVcd* vcdp, void* userthis, uint32_t code);
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------

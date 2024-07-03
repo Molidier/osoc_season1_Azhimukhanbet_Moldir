@@ -11,6 +11,7 @@
 Vbitty__Syms::Vbitty__Syms(Vbitty* topp, const char* namep)
     // Setup locals
     : __Vm_namep(namep)
+    , __Vm_activity(false)
     , __Vm_didInit(false)
     // Setup submodule names
     , TOP____024unit(Verilated::catName(topp->name(), "$unit"))

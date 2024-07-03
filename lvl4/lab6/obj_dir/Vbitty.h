@@ -14,6 +14,7 @@
 //==========
 
 class Vbitty__Syms;
+class Vbitty_VerilatedVcd;
 class Vbitty___024unit;
 
 
@@ -37,10 +38,21 @@ VL_MODULE(Vbitty) {
     VL_OUT16(d_out,15,0);
     VL_OUT16(rega,15,0);
     VL_OUT16(regb,15,0);
+    VL_OUT16(regcc,15,0);
+    VL_OUT16(regss,15,0);
+    VL_OUT16(reg0,15,0);
+    VL_OUT16(reg1,15,0);
+    VL_OUT16(reg2,15,0);
+    VL_OUT16(reg3,15,0);
+    VL_OUT16(reg4,15,0);
+    VL_OUT16(reg5,15,0);
+    VL_OUT16(reg6,15,0);
+    VL_OUT16(reg7,15,0);
+    VL_OUT16(reginst,15,0);
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
-    CData/*3:0*/ bitty__DOT__mux_sel;
+    CData/*2:0*/ bitty__DOT__mux_sel;
     CData/*7:0*/ bitty__DOT__en;
     CData/*0:0*/ bitty__DOT__en_s;
     CData/*0:0*/ bitty__DOT__en_c;
@@ -51,11 +63,12 @@ VL_MODULE(Vbitty) {
     SData/*15:0*/ bitty__DOT__out_mux;
     SData/*15:0*/ bitty__DOT__instruction;
     SData/*15:0*/ bitty__DOT__regs;
-    SData/*15:0*/ bitty__DOT__alu_inst__DOT__res;
+    SData/*15:0*/ bitty__DOT__regc;
     SData/*15:0*/ bitty__DOT__out[8];
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
+    CData/*4:0*/ __Vtableidx1;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__reset;
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
@@ -66,6 +79,8 @@ VL_MODULE(Vbitty) {
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
+    IData/*31:0*/ __Vm_traceActivity;
+    static CData/*1:0*/ __Vtable1_bitty__DOT__cpu_inst__DOT__next_state[32];
     
     // INTERNAL VARIABLES
     // Internals; generally not touched by application code
@@ -81,6 +96,8 @@ VL_MODULE(Vbitty) {
     Vbitty(const char* name = "TOP");
     /// Destroy the model; called (often implicitly) by application code
     ~Vbitty();
+    /// Trace signals in the model; called by application code
+    void trace(VerilatedVcdC* tfp, int levels, int options = 0);
     
     // API METHODS
     /// Evaluate the model.  Application must call when inputs change.
@@ -96,7 +113,7 @@ VL_MODULE(Vbitty) {
   private:
     static QData _change_request(Vbitty__Syms* __restrict vlSymsp);
   public:
-    static void _combo__TOP__4(Vbitty__Syms* __restrict vlSymsp);
+    static void _combo__TOP__3(Vbitty__Syms* __restrict vlSymsp);
   private:
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
@@ -109,8 +126,20 @@ VL_MODULE(Vbitty) {
     static void _eval_initial(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _eval_settle(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__2(Vbitty__Syms* __restrict vlSymsp);
-    static void _settle__TOP__3(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void traceChgThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceChgThis__2(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceChgThis__3(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceChgThis__4(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceChgThis__5(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceChgThis__6(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceFullThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
+    static void traceFullThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
+    static void traceInitThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
+    static void traceInitThis__1(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
+    static void traceInit(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceFull(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceChg(VerilatedVcd* vcdp, void* userthis, uint32_t code);
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------

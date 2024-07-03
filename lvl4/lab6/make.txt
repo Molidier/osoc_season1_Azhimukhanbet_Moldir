@@ -1,4 +1,5 @@
-verilator --cc bitty.v --exe testbench.cpp BittyEmulator.cpp BittyInstructionGenerator.cpp
+verilator --cc bitty.v --exe testbench.cpp BittyEmulator.cpp BittyInstructionGenerator.cpp --trace --Wno-fatal
 make -C obj_dir -f Vbitty.mk Vbitty
-cd obj_dir
-./Vbitty
+./obj_dir/Vbitty
+gtkwave waveform.vcd
+

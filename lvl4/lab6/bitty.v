@@ -1,6 +1,6 @@
 /****** bitty.sv ******/
-//import "DPI-C" function void evaluate_values(int instr, int out);
-
+//import "DPI-C" function void   evaluate_values(int instr, int out);
+/* verilator lint_off MODDUP */
 module bitty(
     input run,
     input clk,
@@ -10,6 +10,23 @@ module bitty(
     output [15:0] d_out,
     output [15:0] rega,
     output [15:0] regb,
+    output [15:0] regcc,
+    output [15:0] regss,
+
+    output [15:0] reg0,
+    output [15:0] reg1,
+    output [15:0] reg2,
+    output [15:0] reg3,
+    output [15:0] reg4,
+    output [15:0] reg5,
+    output [15:0] reg6,
+    output [15:0] reg7,
+
+    output [15:0] reginst,
+
+
+
+
     output done
 );
     genvar k;
@@ -17,7 +34,7 @@ module bitty(
    // assign d_instr = Generate();
 
 // MUX components 
-    wire [3:0] mux_sel;
+    wire [2:0] mux_sel;
     wire [7:0] en;
     logic [15:0] out [7:0];
 
@@ -28,7 +45,7 @@ module bitty(
     wire [15:0] alu_out;
     
     // CPU components
-    wire en_s, en_c, en_inst, mode;
+    wire en_s, en_c, en_inst;
     wire [2:0] alu_sel;
     wire [15:0] instruction;
     
@@ -75,7 +92,7 @@ module bitty(
             dff reg_out (
                 .clk(clk),
                 .en(en[i]),
-                .d_in(alu_out), 
+                .d_in(regc), 
                 .reset(reset),
                 .starting(16'h000A), // Corrected input signal name
                 .mux_out(out[i])      // Corrected output signal name
@@ -96,7 +113,7 @@ module bitty(
         .mux_out(out_mux)
     );
 
-    logic reg_num;
+    //logic reg_num;
 
     /*always @(*) begin
         if(done==1) begin
@@ -121,7 +138,18 @@ module bitty(
     
     assign rega = regs;
     assign regb = out_mux;
-    assign d_out = alu_out;
+    assign d_out = regc;
+    assign regcc = regc;
+    assign regss = regs;
+    assign reg0 = out[0];
+    assign reg1 = out[1];
+    assign reg2 = out[2];
+    assign reg3 = out[3];
+    assign reg4 = out[4];
+    assign reg5 = out[5];
+    assign reg6 = out[6];
+    assign reg7 = out[7];
+    assign reginst = instruction;
 
     /*always @(*) begin
         if(done) begin

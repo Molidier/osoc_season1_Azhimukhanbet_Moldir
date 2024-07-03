@@ -15,7 +15,7 @@ module dff(
             mux_out = starting;
         end
         else if(en) begin
-            notify_counter_nine_here();
+            //notify_counter_nine_here();
             mux_out = d_in;
         end
     end
