@@ -1,3 +1,4 @@
+
 #include "Vbitty.h"
 #include "verilated.h"
 
@@ -8,27 +9,6 @@
 
 #define MAX_SIM_TIME 10
 vluint64_t sim_time = 0;
-
-extern "C" void evaluate_values(int instr, int out) {
-    BittyEmulator emulator;
-    uint16_t rx, ry, sel;
-    uint16_t instruction = (uint16_t) instr;
-    uint16_t alu_out = (uint16_t) out;
-
-    uint16_t test_res =  emulator.Evaluate(instruction);
-    if(test_res != alu_out){
-            rx = (instruction & 0xE000) >> 13;
-            ry = (instruction & 0x1C00) >> 10;
-            sel = (instruction & 0x001C) >> 2;
-
-            cout<<"Instruction: "<< instruction << endl;
-            cout<< rx<<" " <<sel<<" "<< ry<< " " << endl; 
-            cout<<"Expexted: " <<test_res<<endl;
-            cout<<"Actual: " << alu_out<<endl;
-
-    }
-    
-}
 
 extern "C" void notify_counter_nine_1() {
     std::cout << "S0 BABE!" << std::endl;
@@ -46,35 +26,63 @@ extern "C" void notify_counter_nine_here() {
 int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
     Vbitty* top = new Vbitty;
+    BittyEmulator emulator;
     BittyInstructionGenerator generator;
-    uint16_t instruction, rx, ry, sel;
-    instruction = generator.Generate();
-    top->d_instr = instruction;
-    top->clk = 1;
+    uint16_t rx, ry, alu_sel, instruction;
+    top->clk = !top->clk;
     top->reset = 1;
     top->eval();
-    top->reset = 0;
-    top->run = 1;
+    top->run=1;
+    top->eval();
+    top->eval();
+    instruction = generator.Generate();
+    top->d_instr = instruction;
+    top->eval();
+
 
     while (!Verilated::gotFinish()  && sim_time<=MAX_SIM_TIME) {
         top->clk = !top->clk;
+        top->eval();
         if(top->done){
-            top->run = 0;
-            top->eval();
-            rx = (instruction & 0xE000) >> 13;
-            ry = (instruction & 0x1C00) >> 10;
-            sel = (instruction & 0x001C) >> 2;
+            
+            top->run=1;
+            top->reset = 0;
+            
+            uint16_t reg_num = (instruction & 0xE000)>>13;
+            uint16_t reg_val = emulator.GetRegisterValue(reg_num);
+            emulator.Evaluate(instruction);
+            uint16_t res_test = emulator.GetRegisterValue(reg_num);
+            
+            rx = (instruction & 0xE000)>>13;
+            ry = (instruction & 0x1C00)>>10;
+            alu_sel = (instruction & 0x001C)>>2;
 
-            cout<<"Main instruction: "<< instruction << endl;
-            cout<< rx<<" " <<sel<<" "<< ry<< " " << endl;
+            cout<<"Reg->A: "<<top->rega <<". Reg->B: "<<top->regb<<endl;
             instruction = generator.Generate();
-
+            top->d_instr = instruction;
+            if(res_test!=top->d_out){
+                std::cout<<"Error"<<endl;
+                cout<<"Instuction: "<< instruction <<endl;
+                cout<<rx << " " << alu_sel << " "<< ry<<endl;
+                cout<< "Expected result: "<<res_test<<endl;
+                cout<< "Actual result: "<<top->d_out<<endl;
+                cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
+                cout<<endl;
+            }
+            else{
+                cout<<"Instuction: "<< instruction << ". Result: "<<res_test<<endl;
+                cout<<rx << " " << alu_sel << " "<< ry<<endl;
+                cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
+                cout<<endl;
+                
+            }
+           
             
         }
-        top->run = 1;
-        top->d_instr = instruction;
-        top->eval();
-
+        
+        else{
+            cout<<"Nothing babe!"<<endl;
+        }
         sim_time++;
 
     }
@@ -85,8 +93,4 @@ int main(int argc, char **argv, char **env) {
 }
 /*
 101 100 00111 100 10
-
-101 011 0010 000 01
-
-0 10
 */

@@ -51,7 +51,6 @@ VL_MODULE(Vbitty) {
     SData/*15:0*/ bitty__DOT__out_mux;
     SData/*15:0*/ bitty__DOT__instruction;
     SData/*15:0*/ bitty__DOT__regs;
-    SData/*15:0*/ bitty__DOT__regc;
     SData/*15:0*/ bitty__DOT__alu_inst__DOT__res;
     SData/*15:0*/ bitty__DOT__out[8];
     

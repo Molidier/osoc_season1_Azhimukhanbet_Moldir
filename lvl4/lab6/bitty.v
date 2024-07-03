@@ -1,5 +1,5 @@
 /****** bitty.sv ******/
-import "DPI-C" function void evaluate_values(int instr, int out);
+//import "DPI-C" function void evaluate_values(int instr, int out);
 
 module bitty(
     input run,
@@ -121,12 +121,12 @@ module bitty(
     
     assign rega = regs;
     assign regb = out_mux;
-    assign d_out = regc;
+    assign d_out = alu_out;
 
-    always @(*) begin
+    /*always @(*) begin
         if(done) begin
             evaluate_values({16'b0, instruction}, {16'b0, d_out});
         end
-    end
+    end*/
 
 endmodule
