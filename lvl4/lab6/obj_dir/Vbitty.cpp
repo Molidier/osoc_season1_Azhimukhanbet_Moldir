@@ -107,71 +107,6 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
         }
     }
     if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__regc = 0U;
-    } else {
-        if (vlTOPp->bitty__DOT__en_c) {
-            vlTOPp->bitty__DOT__regc = (0xffffU & (
-                                                   (4U 
-                                                    & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                    ? 
-                                                   ((2U 
-                                                     & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                     ? 
-                                                    ((1U 
-                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                      ? 
-                                                     (((IData)(vlTOPp->bitty__DOT__regs) 
-                                                       == (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                       ? 0U
-                                                       : 
-                                                      (((IData)(vlTOPp->bitty__DOT__regs) 
-                                                        > (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                        ? 1U
-                                                        : 2U))
-                                                      : 
-                                                     ((0xfU 
-                                                       >= (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                       ? 
-                                                      ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                       >> (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                       : 0U))
-                                                     : 
-                                                    ((1U 
-                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                      ? 
-                                                     ((0xfU 
-                                                       >= (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                       ? 
-                                                      ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                       << (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                       : 0U)
-                                                      : 
-                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                      ^ (IData)(vlTOPp->bitty__DOT__out_mux))))
-                                                    : 
-                                                   ((2U 
-                                                     & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                     ? 
-                                                    ((1U 
-                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                      ? 
-                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                      | (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                      : 
-                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                      & (IData)(vlTOPp->bitty__DOT__out_mux)))
-                                                     : 
-                                                    ((1U 
-                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
-                                                      ? 
-                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                      - (IData)(vlTOPp->bitty__DOT__out_mux))
-                                                      : 
-                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                      + (IData)(vlTOPp->bitty__DOT__out_mux))))));
-        }
-    }
-    if (vlTOPp->reset) {
         vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out = 0xaU;
     } else {
         if ((1U & (IData)(vlTOPp->bitty__DOT__en))) {
@@ -235,13 +170,84 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
                 = vlTOPp->bitty__DOT__regc;
         }
     }
+    if (vlTOPp->reset) {
+        vlTOPp->bitty__DOT__regc = 0U;
+    } else {
+        if (vlTOPp->bitty__DOT__en_c) {
+            vlTOPp->bitty__DOT__regc = (0xffffU & (
+                                                   (4U 
+                                                    & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                    ? 
+                                                   ((2U 
+                                                     & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                     ? 
+                                                    ((1U 
+                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                      ? 
+                                                     (((IData)(vlTOPp->bitty__DOT__regs) 
+                                                       == (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                       ? 0U
+                                                       : 
+                                                      (((IData)(vlTOPp->bitty__DOT__regs) 
+                                                        > (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                        ? 1U
+                                                        : 2U))
+                                                      : 
+                                                     ((0xfU 
+                                                       >= 
+                                                       (0x1fU 
+                                                        & (IData)(vlTOPp->bitty__DOT__out_mux)))
+                                                       ? 
+                                                      ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                       >> 
+                                                       (0x1fU 
+                                                        & (IData)(vlTOPp->bitty__DOT__out_mux)))
+                                                       : 0U))
+                                                     : 
+                                                    ((1U 
+                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                      ? 
+                                                     ((0xfU 
+                                                       >= 
+                                                       (0x1fU 
+                                                        & (IData)(vlTOPp->bitty__DOT__out_mux)))
+                                                       ? 
+                                                      ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                       << 
+                                                       (0x1fU 
+                                                        & (IData)(vlTOPp->bitty__DOT__out_mux)))
+                                                       : 0U)
+                                                      : 
+                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                      ^ (IData)(vlTOPp->bitty__DOT__out_mux))))
+                                                    : 
+                                                   ((2U 
+                                                     & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                     ? 
+                                                    ((1U 
+                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                      ? 
+                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                      | (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                      : 
+                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                      & (IData)(vlTOPp->bitty__DOT__out_mux)))
+                                                     : 
+                                                    ((1U 
+                                                      & (IData)(vlTOPp->bitty__DOT__alu_sel))
+                                                      ? 
+                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                      - (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                      : 
+                                                     ((IData)(vlTOPp->bitty__DOT__regs) 
+                                                      + (IData)(vlTOPp->bitty__DOT__out_mux))))));
+        }
+    }
     vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state = 
         ((IData)(vlTOPp->reset) ? 0U : (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__next_state));
     vlTOPp->rega = vlTOPp->bitty__DOT__regs;
     vlTOPp->regss = vlTOPp->bitty__DOT__regs;
     vlTOPp->reginst = vlTOPp->bitty__DOT__instruction;
-    vlTOPp->d_out = vlTOPp->bitty__DOT__regc;
-    vlTOPp->regcc = vlTOPp->bitty__DOT__regc;
     vlTOPp->bitty__DOT__out[0U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[1U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[2U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -250,6 +256,8 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
     vlTOPp->bitty__DOT__out[5U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[6U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[7U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
+    vlTOPp->d_out = vlTOPp->bitty__DOT__regc;
+    vlTOPp->regcc = vlTOPp->bitty__DOT__regc;
     vlTOPp->reg0 = vlTOPp->bitty__DOT__out[0U];
     vlTOPp->reg1 = vlTOPp->bitty__DOT__out[1U];
     vlTOPp->reg2 = vlTOPp->bitty__DOT__out[2U];
@@ -278,119 +286,61 @@ void Vbitty::_settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
     vlTOPp->bitty__DOT__out[6U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[7U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
     if (vlTOPp->reset) {
+        vlTOPp->bitty__DOT__en_s = 0U;
+        vlTOPp->bitty__DOT__en_c = 0U;
+        vlTOPp->done = 0U;
+        vlTOPp->bitty__DOT__mux_sel = 0U;
+        vlTOPp->bitty__DOT__alu_sel = 0U;
+        vlTOPp->bitty__DOT__en = 0U;
         vlTOPp->bitty__DOT__en_inst = 0U;
     } else {
         if (vlTOPp->run) {
             vlTOPp->bitty__DOT__en_inst = 1U;
+            vlTOPp->bitty__DOT__en_s = 0U;
+            vlTOPp->bitty__DOT__en_c = 0U;
+            vlTOPp->done = 0U;
+            vlTOPp->bitty__DOT__alu_sel = 0U;
+            vlTOPp->bitty__DOT__en = 0U;
             if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                vlTOPp->bitty__DOT__en_s = 1U;
+                vlTOPp->bitty__DOT__mux_sel = (7U & 
+                                               ((IData)(vlTOPp->bitty__DOT__instruction) 
+                                                >> 0xdU));
+                vlTOPp->done = 0U;
                 vlTOPp->bitty__DOT__en_inst = 1U;
+                vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
             } else {
                 if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                    if (vlTOPp->bitty__DOT__en_s) {
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                    }
+                    vlTOPp->bitty__DOT__mux_sel = (7U 
+                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
+                                                      >> 0xaU));
+                    vlTOPp->bitty__DOT__en_c = 1U;
+                    vlTOPp->bitty__DOT__alu_sel = (7U 
+                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
+                                                      >> 2U));
                     vlTOPp->bitty__DOT__en_inst = 0U;
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__en = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__en = 0U;
-            if ((0U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                if ((1U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__en = ((3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))
-                                               ? ((IData)(vlTOPp->bitty__DOT__en) 
+                } else {
+                    if ((3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                        if (vlTOPp->bitty__DOT__en_s) {
+                            vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
+                        }
+                        vlTOPp->bitty__DOT__en = ((IData)(vlTOPp->bitty__DOT__en) 
                                                   | ((IData)(1U) 
                                                      << 
                                                      (7U 
                                                       & ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                         >> 0xdU))))
-                                               : 0U);
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__alu_sel = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__alu_sel = 0U;
-            if ((0U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__alu_sel = (7U 
-                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                      >> 2U));
-                } else {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                        vlTOPp->bitty__DOT__alu_sel = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__en_s = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__en_s = 0U;
-            if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                vlTOPp->bitty__DOT__en_s = 1U;
-            } else {
-                if ((1U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                                                         >> 0xdU))));
+                        vlTOPp->done = 1U;
+                    } else {
                         vlTOPp->bitty__DOT__en_s = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__en_c = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__en_c = 0U;
-            if ((0U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__en_c = 1U;
-                } else {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
                         vlTOPp->bitty__DOT__en_c = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->done = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->done = 0U;
-            if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                vlTOPp->done = 0U;
-            } else {
-                if ((1U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->done = (3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state));
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__mux_sel = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__mux_sel = 0U;
-            if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                vlTOPp->bitty__DOT__mux_sel = (7U & 
-                                               ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                >> 0xdU));
-            } else {
-                if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__mux_sel = (7U 
-                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                      >> 0xaU));
-                } else {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                        vlTOPp->done = 0U;
                         vlTOPp->bitty__DOT__mux_sel = 0U;
+                        vlTOPp->bitty__DOT__alu_sel = 0U;
+                        vlTOPp->bitty__DOT__en = 0U;
                     }
                 }
             }
@@ -449,119 +399,61 @@ VL_INLINE_OPT void Vbitty::_combo__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
     Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     if (vlTOPp->reset) {
+        vlTOPp->bitty__DOT__en_s = 0U;
+        vlTOPp->bitty__DOT__en_c = 0U;
+        vlTOPp->done = 0U;
+        vlTOPp->bitty__DOT__mux_sel = 0U;
+        vlTOPp->bitty__DOT__alu_sel = 0U;
+        vlTOPp->bitty__DOT__en = 0U;
         vlTOPp->bitty__DOT__en_inst = 0U;
     } else {
         if (vlTOPp->run) {
             vlTOPp->bitty__DOT__en_inst = 1U;
+            vlTOPp->bitty__DOT__en_s = 0U;
+            vlTOPp->bitty__DOT__en_c = 0U;
+            vlTOPp->done = 0U;
+            vlTOPp->bitty__DOT__alu_sel = 0U;
+            vlTOPp->bitty__DOT__en = 0U;
             if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                vlTOPp->bitty__DOT__en_s = 1U;
+                vlTOPp->bitty__DOT__mux_sel = (7U & 
+                                               ((IData)(vlTOPp->bitty__DOT__instruction) 
+                                                >> 0xdU));
+                vlTOPp->done = 0U;
                 vlTOPp->bitty__DOT__en_inst = 1U;
+                vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
             } else {
                 if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                    if (vlTOPp->bitty__DOT__en_s) {
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                    }
+                    vlTOPp->bitty__DOT__mux_sel = (7U 
+                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
+                                                      >> 0xaU));
+                    vlTOPp->bitty__DOT__en_c = 1U;
+                    vlTOPp->bitty__DOT__alu_sel = (7U 
+                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
+                                                      >> 2U));
                     vlTOPp->bitty__DOT__en_inst = 0U;
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__en = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__en = 0U;
-            if ((0U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                if ((1U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__en = ((3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))
-                                               ? ((IData)(vlTOPp->bitty__DOT__en) 
+                } else {
+                    if ((3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                        if (vlTOPp->bitty__DOT__en_s) {
+                            vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
+                        }
+                        vlTOPp->bitty__DOT__en = ((IData)(vlTOPp->bitty__DOT__en) 
                                                   | ((IData)(1U) 
                                                      << 
                                                      (7U 
                                                       & ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                         >> 0xdU))))
-                                               : 0U);
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__alu_sel = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__alu_sel = 0U;
-            if ((0U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__alu_sel = (7U 
-                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                      >> 2U));
-                } else {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                        vlTOPp->bitty__DOT__alu_sel = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__en_s = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__en_s = 0U;
-            if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                vlTOPp->bitty__DOT__en_s = 1U;
-            } else {
-                if ((1U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                                                         >> 0xdU))));
+                        vlTOPp->done = 1U;
+                    } else {
                         vlTOPp->bitty__DOT__en_s = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__en_c = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__en_c = 0U;
-            if ((0U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__en_c = 1U;
-                } else {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
                         vlTOPp->bitty__DOT__en_c = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->done = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->done = 0U;
-            if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                vlTOPp->done = 0U;
-            } else {
-                if ((1U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->done = (3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state));
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__mux_sel = 0U;
-    } else {
-        if (vlTOPp->run) {
-            vlTOPp->bitty__DOT__mux_sel = 0U;
-            if ((0U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                vlTOPp->bitty__DOT__mux_sel = (7U & 
-                                               ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                >> 0xdU));
-            } else {
-                if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    vlTOPp->bitty__DOT__mux_sel = (7U 
-                                                   & ((IData)(vlTOPp->bitty__DOT__instruction) 
-                                                      >> 0xaU));
-                } else {
-                    if ((3U != (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
+                        vlTOPp->done = 0U;
                         vlTOPp->bitty__DOT__mux_sel = 0U;
+                        vlTOPp->bitty__DOT__alu_sel = 0U;
+                        vlTOPp->bitty__DOT__en = 0U;
                     }
                 }
             }

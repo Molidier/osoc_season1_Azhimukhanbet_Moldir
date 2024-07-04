@@ -10,7 +10,7 @@
 #include "BittyInstructionGenerator.h"
 #include <cassert>
 
-#define MAX_SIM_TIME 500
+#define MAX_SIM_TIME 5000
 vluint64_t sim_time = 0;
 
 extern "C" void notify_counter_nine_1() {

@@ -47,7 +47,7 @@ module cpu(
             en_s = 0;
             en_c = 0;
             done = 0;
-            mux_sel = 3'b0;
+            //mux_sel = 3'b0;
             sel = 3'b0;
             en = 8'b0;
             case (cur_state)
@@ -56,23 +56,27 @@ module cpu(
                     mux_sel = d_inst[15:13];
                     done = 0;
                     en_inst = 1;
-
-                   // notify_counter_nine_1();
+                    if(en_s) begin
+                        notify_counter_nine_1();
+                    end
                 end
                 S1: begin
                     mux_sel = d_inst[12:10];
                     en_c = 1;
                     sel = d_inst[4:2];
                     en_inst = 0;
-
-                    //notify_counter_nine_2();
+                    if(en_s) begin
+                        notify_counter_nine_2();
+                    end
 
                 end
                 S2: begin
                     //en = 8'b0;
                     en[d_inst[15:13]] = 1;
                     done = 1;
-
+                    if(en_s) begin
+                        notify_counter_nine_3();
+                    end
                    //  notify_counter_nine_3();
                 end
                 default: begin

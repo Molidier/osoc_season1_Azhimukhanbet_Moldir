@@ -98,19 +98,27 @@ void Vbitty::traceChgThis__3(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcd
                                                    : 2U))
                                                  : 
                                                 ((0xfU 
-                                                  >= (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                  >= 
+                                                  (0x1fU 
+                                                   & (IData)(vlTOPp->bitty__DOT__out_mux)))
                                                   ? 
                                                  ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                  >> (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                  >> 
+                                                  (0x1fU 
+                                                   & (IData)(vlTOPp->bitty__DOT__out_mux)))
                                                   : 0U))
                                              : ((1U 
                                                  & (IData)(vlTOPp->bitty__DOT__alu_sel))
                                                  ? 
                                                 ((0xfU 
-                                                  >= (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                  >= 
+                                                  (0x1fU 
+                                                   & (IData)(vlTOPp->bitty__DOT__out_mux)))
                                                   ? 
                                                  ((IData)(vlTOPp->bitty__DOT__regs) 
-                                                  << (IData)(vlTOPp->bitty__DOT__out_mux))
+                                                  << 
+                                                  (0x1fU 
+                                                   & (IData)(vlTOPp->bitty__DOT__out_mux)))
                                                   : 0U)
                                                  : 
                                                 ((IData)(vlTOPp->bitty__DOT__regs) 

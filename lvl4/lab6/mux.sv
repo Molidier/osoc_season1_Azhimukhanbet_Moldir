@@ -21,7 +21,9 @@ module mux(
             3'b011: mux_out= reg3;
             3'b100: mux_out= reg4;
             3'b101: mux_out= reg5;
-            3'b110: mux_out= reg6;
+            3'b110: begin 
+                mux_out= reg6;
+            end
             3'b111: mux_out= reg7;
             default: mux_out= 16'b0;
         endcase
