@@ -1,4 +1,4 @@
-#include "Vbitty.h"
+#include "Vbigger.h"
 #include "verilated.h"
 #include <verilated_vcd_c.h>
 #include <ctime>
@@ -7,7 +7,7 @@
 #include "BittyInstructionGenerator.h"
 #include <cassert>
 
-#define MAX_SIM_TIME 50
+#define MAX_SIM_TIME 20
 vluint64_t sim_time = 0;
 
 extern "C" void notify_counter_nine_1() {
@@ -23,7 +23,7 @@ extern "C" void notify_counter_nine_here() {
     std::cout << "HERE BABE" << std::endl;
 }
 
-BittyEmulator emulator;
+/*BittyEmulator emulator;
 
 extern "C" void evaluate_values(int instr, int out) {
     uint16_t instruction = static_cast<uint16_t>(instr);
@@ -52,7 +52,7 @@ extern "C" void evaluate_values(int instr, int out) {
 
 int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
-    Vbitty* top = new Vbitty;
+    Vbigger* top = new Vbigger;
 
     Verilated::traceEverOn(true);
     VerilatedVcdC *m_trace = new VerilatedVcdC;
@@ -96,27 +96,28 @@ int main(int argc, char **argv, char **env) {
     m_trace->close();
     delete top;
     exit(0);
-}
+}*/
 
 
 // TESTING WITHOUT DPI
 
 
-/*int main(int argc, char **argv, char **env) {
+int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
-    Vbitty* top = new Vbitty;
+    Vbigger* top = new Vbigger;
 
     Verilated::traceEverOn(true);
     VerilatedVcdC *m_trace = new VerilatedVcdC;
     top->trace(m_trace, 5);
     m_trace->open("waveform.vcd");
 
-    BittyEmulator emulator;
     BittyInstructionGenerator generator;
     uint16_t rx, ry, alu_sel, instruction;
-    instruction = generator.Generate();
-    top->d_instr = instruction;
+    generator.Generate();
+    BittyEmulator emulator;
 
+
+    uint16_t pc = 0;
 
 
     top->reset = 1;
@@ -134,12 +135,12 @@ int main(int argc, char **argv, char **env) {
             top->eval();
         }
         if(top->done && top->clk){
-            
+            uint16_t instruction = emulator.GetInstructionValue(pc);
             top->run=0;
             top->eval();
             uint16_t reg_num = (instruction & 0xE000)>>13;
             uint16_t reg_val = emulator.GetRegisterValue(reg_num);
-            emulator.Evaluate(instruction);
+            emulator.Evaluate(pc);
             uint16_t res_test = emulator.GetRegisterValue(reg_num);
             
             rx = (instruction & 0xE000)>>13;
@@ -166,11 +167,7 @@ int main(int argc, char **argv, char **env) {
                 cout<<endl;
                 
             }
-            instruction = generator.Generate();
-            top->d_instr = instruction;
-
-           
-            
+            pc++;  
         }
         
         else{
@@ -184,4 +181,4 @@ int main(int argc, char **argv, char **env) {
     delete top;
     exit(0);
 
-}*/
+}

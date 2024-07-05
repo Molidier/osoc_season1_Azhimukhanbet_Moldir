@@ -7,7 +7,7 @@
 #include <sstream>
 #include <iomanip>
 
-extern "C" uint16_t BittyInstructionGenerator::Generate(){
+extern "C" void BittyInstructionGenerator::Generate(){
     int count;
     uint16_t instruction;
     std::cout<<"Write number of instructions";
@@ -18,13 +18,14 @@ extern "C" uint16_t BittyInstructionGenerator::Generate(){
 
     if(file.is_open()){
         for(int i=0;i<count;i++){
-            //hex convertation
             instruction = rand()%0xFFFF;
+            std::cout<<"Instruction generated: "<<instruction<<std::endl;
 
-            //std:: string hex_instr = ss.str();
-            //write into file
-            file<< std::hex << std::setw(256)<< std:: setfill('0')<<std::endl;
+            file<< std::hex << std::setw(4)<< std:: setfill('0')<< instruction<<std::endl;
         }
+    }
+    else{
+        std::cerr << "Error opening instruction.txt file" << std::endl;
     }
     file.close();
     

@@ -6,7 +6,8 @@ module bitty(
     input reset, 
     input [15:0] d_instr,
 
-    /*output [15:0] d_out,
+    output [15:0] d_out,
+    /*
     output [15:0] rega,
     output [15:0] regb,
     output [15:0] regcc,
@@ -29,7 +30,7 @@ module bitty(
     output done
 );
     genvar k;
-    logic [15:0] d_out;
+    //logic [15:0] d_out;
    // assign d_instr = Generate();
 
 // MUX components 
@@ -129,7 +130,7 @@ module bitty(
     assign reg5 = out[5];
     assign reg6 = out[6];
     assign reg7 = out[7];
-    assign reginst = instruction;*/
+    assign reginst = instruction;
 
     import "DPI-C" function void   evaluate_values(int instr, int out);
 
@@ -137,6 +138,6 @@ module bitty(
         if(done) begin
             evaluate_values({16'b0, instruction}, {16'b0, d_out});
         end
-    end
+    end*/
 
 endmodule

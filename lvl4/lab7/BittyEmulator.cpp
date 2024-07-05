@@ -7,14 +7,21 @@ using namespace std;
 
 
         BittyEmulator::BittyEmulator() : registers_(16,10){
-            ifstream infile;
-            infile.open("instruction.txt");
+            std:: ifstream infile; 
+            infile.open("instructions.txt", std::ios::in);
+
             uint16_t instr;
             
             if(infile.is_open()){
                 while(infile >> std::hex >> instr){
+                    cout<<"Instruction pushed: "<<instr<<endl;
                     memory_array.push_back(instr);
+
                 }
+                infile.close();
+            }
+            else{
+                cerr<<"Error opening file"<<endl;
             }
         }
 
@@ -61,6 +68,10 @@ using namespace std;
 
         extern "C" uint16_t BittyEmulator::GetRegisterValue(uint16_t reg_num){
             return registers_[reg_num];
+        }
+
+        uint16_t BittyEmulator::GetInstructionValue(uint16_t address){
+            return memory_array[address];
         }
 
         void BittyEmulator::SetRegisterValue(uint16_t reg_num, uint16_t value){
