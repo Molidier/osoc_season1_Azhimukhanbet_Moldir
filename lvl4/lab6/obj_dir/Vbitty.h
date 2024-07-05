@@ -35,20 +35,6 @@ VL_MODULE(Vbitty) {
     VL_IN8(run,0,0);
     VL_OUT8(done,0,0);
     VL_IN16(d_instr,15,0);
-    VL_OUT16(d_out,15,0);
-    VL_OUT16(rega,15,0);
-    VL_OUT16(regb,15,0);
-    VL_OUT16(regcc,15,0);
-    VL_OUT16(regss,15,0);
-    VL_OUT16(reg0,15,0);
-    VL_OUT16(reg1,15,0);
-    VL_OUT16(reg2,15,0);
-    VL_OUT16(reg3,15,0);
-    VL_OUT16(reg4,15,0);
-    VL_OUT16(reg5,15,0);
-    VL_OUT16(reg6,15,0);
-    VL_OUT16(reg7,15,0);
-    VL_OUT16(reginst,15,0);
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
@@ -110,10 +96,11 @@ VL_MODULE(Vbitty) {
     static void _eval_initial_loop(Vbitty__Syms* __restrict vlSymsp);
   public:
     void __Vconfigure(Vbitty__Syms* symsp, bool first);
+    void __Vdpiimwrap_bitty__DOT__evaluate_values_TOP(const IData/*31:0*/ instr, const IData/*31:0*/ out);
   private:
     static QData _change_request(Vbitty__Syms* __restrict vlSymsp);
   public:
-    static void _combo__TOP__3(Vbitty__Syms* __restrict vlSymsp);
+    static void _combo__TOP__4(Vbitty__Syms* __restrict vlSymsp);
   private:
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
@@ -126,7 +113,8 @@ VL_MODULE(Vbitty) {
     static void _eval_initial(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _eval_settle(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp);
-    static void _settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _sequent__TOP__2(Vbitty__Syms* __restrict vlSymsp);
+    static void _settle__TOP__3(Vbitty__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void traceChgThis(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__3(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);

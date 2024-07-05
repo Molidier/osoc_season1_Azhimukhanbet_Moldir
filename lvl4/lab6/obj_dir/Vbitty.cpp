@@ -53,7 +53,7 @@ void Vbitty::eval() {
             Verilated::debug(1);
             __Vchange = _change_request(vlSymsp);
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("bitty.v", 4, "",
+            VL_FATAL_MT("bitty.v", 3, "",
                 "Verilated model didn't converge\n"
                 "- See DIDNOTCONVERGE in the Verilator manual");
         } else {
@@ -79,7 +79,7 @@ void Vbitty::_eval_initial_loop(Vbitty__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = _change_request(vlSymsp);
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("bitty.v", 4, "",
+            VL_FATAL_MT("bitty.v", 3, "",
                 "Verilated model didn't DC converge\n"
                 "- See DIDNOTCONVERGE in the Verilator manual");
         } else {
@@ -88,8 +88,27 @@ void Vbitty::_eval_initial_loop(Vbitty__Syms* __restrict vlSymsp) {
     } while (VL_UNLIKELY(__Vchange));
 }
 
+VL_INLINE_OPT void Vbitty::__Vdpiimwrap_bitty__DOT__evaluate_values_TOP(const IData/*31:0*/ instr, const IData/*31:0*/ out) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::__Vdpiimwrap_bitty__DOT__evaluate_values_TOP\n"); );
+    // Body
+    int instr__Vcvt;
+    instr__Vcvt = instr;
+    int out__Vcvt;
+    out__Vcvt = out;
+    evaluate_values(instr__Vcvt, out__Vcvt);
+}
+
 VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_sequent__TOP__1\n"); );
+    Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    if (vlTOPp->done) {
+        vlTOPp->__Vdpiimwrap_bitty__DOT__evaluate_values_TOP(vlTOPp->bitty__DOT__instruction, (IData)(vlTOPp->bitty__DOT__regc));
+    }
+}
+
+VL_INLINE_OPT void Vbitty::_sequent__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_sequent__TOP__2\n"); );
     Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     if (vlTOPp->reset) {
@@ -97,13 +116,6 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
     } else {
         if (vlTOPp->bitty__DOT__en_s) {
             vlTOPp->bitty__DOT__regs = vlTOPp->bitty__DOT__out_mux;
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bitty__DOT__instruction = 0U;
-    } else {
-        if (vlTOPp->bitty__DOT__en_inst) {
-            vlTOPp->bitty__DOT__instruction = vlTOPp->d_instr;
         }
     }
     if (vlTOPp->reset) {
@@ -168,6 +180,13 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
         if ((0x80U & (IData)(vlTOPp->bitty__DOT__en))) {
             vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out 
                 = vlTOPp->bitty__DOT__regc;
+        }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->bitty__DOT__instruction = 0U;
+    } else {
+        if (vlTOPp->bitty__DOT__en_inst) {
+            vlTOPp->bitty__DOT__instruction = vlTOPp->d_instr;
         }
     }
     if (vlTOPp->reset) {
@@ -245,9 +264,6 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
     }
     vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state = 
         ((IData)(vlTOPp->reset) ? 0U : (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__next_state));
-    vlTOPp->rega = vlTOPp->bitty__DOT__regs;
-    vlTOPp->regss = vlTOPp->bitty__DOT__regs;
-    vlTOPp->reginst = vlTOPp->bitty__DOT__instruction;
     vlTOPp->bitty__DOT__out[0U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[1U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[2U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -256,27 +272,12 @@ VL_INLINE_OPT void Vbitty::_sequent__TOP__1(Vbitty__Syms* __restrict vlSymsp) {
     vlTOPp->bitty__DOT__out[5U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[6U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[7U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
-    vlTOPp->d_out = vlTOPp->bitty__DOT__regc;
-    vlTOPp->regcc = vlTOPp->bitty__DOT__regc;
-    vlTOPp->reg0 = vlTOPp->bitty__DOT__out[0U];
-    vlTOPp->reg1 = vlTOPp->bitty__DOT__out[1U];
-    vlTOPp->reg2 = vlTOPp->bitty__DOT__out[2U];
-    vlTOPp->reg3 = vlTOPp->bitty__DOT__out[3U];
-    vlTOPp->reg4 = vlTOPp->bitty__DOT__out[4U];
-    vlTOPp->reg5 = vlTOPp->bitty__DOT__out[5U];
-    vlTOPp->reg6 = vlTOPp->bitty__DOT__out[6U];
-    vlTOPp->reg7 = vlTOPp->bitty__DOT__out[7U];
 }
 
-void Vbitty::_settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_settle__TOP__2\n"); );
+void Vbitty::_settle__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_settle__TOP__3\n"); );
     Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->rega = vlTOPp->bitty__DOT__regs;
-    vlTOPp->d_out = vlTOPp->bitty__DOT__regc;
-    vlTOPp->regcc = vlTOPp->bitty__DOT__regc;
-    vlTOPp->regss = vlTOPp->bitty__DOT__regs;
-    vlTOPp->reginst = vlTOPp->bitty__DOT__instruction;
     vlTOPp->bitty__DOT__out[0U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[1U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     vlTOPp->bitty__DOT__out[2U] = vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -308,12 +309,8 @@ void Vbitty::_settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
                                                 >> 0xdU));
                 vlTOPp->done = 0U;
                 vlTOPp->bitty__DOT__en_inst = 1U;
-                vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
             } else {
                 if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    if (vlTOPp->bitty__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
-                    }
                     vlTOPp->bitty__DOT__mux_sel = (7U 
                                                    & ((IData)(vlTOPp->bitty__DOT__instruction) 
                                                       >> 0xaU));
@@ -322,6 +319,9 @@ void Vbitty::_settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
                                                    & ((IData)(vlTOPp->bitty__DOT__instruction) 
                                                       >> 2U));
                     vlTOPp->bitty__DOT__en_inst = 0U;
+                    if (vlTOPp->bitty__DOT__en_s) {
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                    }
                 } else {
                     if ((3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
                         if (vlTOPp->bitty__DOT__en_s) {
@@ -346,22 +346,6 @@ void Vbitty::_settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
             }
         }
     }
-    vlTOPp->reg0 = vlTOPp->bitty__DOT__out[0U];
-    vlTOPp->reg1 = vlTOPp->bitty__DOT__out[1U];
-    vlTOPp->reg2 = vlTOPp->bitty__DOT__out[2U];
-    vlTOPp->reg3 = vlTOPp->bitty__DOT__out[3U];
-    vlTOPp->reg4 = vlTOPp->bitty__DOT__out[4U];
-    vlTOPp->reg5 = vlTOPp->bitty__DOT__out[5U];
-    vlTOPp->reg6 = vlTOPp->bitty__DOT__out[6U];
-    vlTOPp->reg7 = vlTOPp->bitty__DOT__out[7U];
-    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
-                             << 4U) | (((IData)(vlTOPp->bitty__DOT__en_c) 
-                                        << 3U) | (((IData)(vlTOPp->bitty__DOT__en_s) 
-                                                   << 2U) 
-                                                  | (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))));
-    vlTOPp->bitty__DOT__cpu_inst__DOT__next_state = 
-        vlTOPp->__Vtable1_bitty__DOT__cpu_inst__DOT__next_state
-        [vlTOPp->__Vtableidx1];
     vlTOPp->bitty__DOT__out_mux = ((4U & (IData)(vlTOPp->bitty__DOT__mux_sel))
                                     ? ((2U & (IData)(vlTOPp->bitty__DOT__mux_sel))
                                         ? ((1U & (IData)(vlTOPp->bitty__DOT__mux_sel))
@@ -391,11 +375,18 @@ void Vbitty::_settle__TOP__2(Vbitty__Syms* __restrict vlSymsp) {
                                                     : 
                                                    vlTOPp->bitty__DOT__out
                                                    [0U])));
-    vlTOPp->regb = vlTOPp->bitty__DOT__out_mux;
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
+                             << 4U) | (((IData)(vlTOPp->bitty__DOT__en_c) 
+                                        << 3U) | (((IData)(vlTOPp->bitty__DOT__en_s) 
+                                                   << 2U) 
+                                                  | (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))));
+    vlTOPp->bitty__DOT__cpu_inst__DOT__next_state = 
+        vlTOPp->__Vtable1_bitty__DOT__cpu_inst__DOT__next_state
+        [vlTOPp->__Vtableidx1];
 }
 
-VL_INLINE_OPT void Vbitty::_combo__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_combo__TOP__3\n"); );
+VL_INLINE_OPT void Vbitty::_combo__TOP__4(Vbitty__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_combo__TOP__4\n"); );
     Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     if (vlTOPp->reset) {
@@ -421,12 +412,8 @@ VL_INLINE_OPT void Vbitty::_combo__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
                                                 >> 0xdU));
                 vlTOPp->done = 0U;
                 vlTOPp->bitty__DOT__en_inst = 1U;
-                vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
             } else {
                 if ((1U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
-                    if (vlTOPp->bitty__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
-                    }
                     vlTOPp->bitty__DOT__mux_sel = (7U 
                                                    & ((IData)(vlTOPp->bitty__DOT__instruction) 
                                                       >> 0xaU));
@@ -435,6 +422,9 @@ VL_INLINE_OPT void Vbitty::_combo__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
                                                    & ((IData)(vlTOPp->bitty__DOT__instruction) 
                                                       >> 2U));
                     vlTOPp->bitty__DOT__en_inst = 0U;
+                    if (vlTOPp->bitty__DOT__en_s) {
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                    }
                 } else {
                     if ((3U == (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))) {
                         if (vlTOPp->bitty__DOT__en_s) {
@@ -459,14 +449,6 @@ VL_INLINE_OPT void Vbitty::_combo__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
             }
         }
     }
-    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
-                             << 4U) | (((IData)(vlTOPp->bitty__DOT__en_c) 
-                                        << 3U) | (((IData)(vlTOPp->bitty__DOT__en_s) 
-                                                   << 2U) 
-                                                  | (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))));
-    vlTOPp->bitty__DOT__cpu_inst__DOT__next_state = 
-        vlTOPp->__Vtable1_bitty__DOT__cpu_inst__DOT__next_state
-        [vlTOPp->__Vtableidx1];
     vlTOPp->bitty__DOT__out_mux = ((4U & (IData)(vlTOPp->bitty__DOT__mux_sel))
                                     ? ((2U & (IData)(vlTOPp->bitty__DOT__mux_sel))
                                         ? ((1U & (IData)(vlTOPp->bitty__DOT__mux_sel))
@@ -496,19 +478,29 @@ VL_INLINE_OPT void Vbitty::_combo__TOP__3(Vbitty__Syms* __restrict vlSymsp) {
                                                     : 
                                                    vlTOPp->bitty__DOT__out
                                                    [0U])));
-    vlTOPp->regb = vlTOPp->bitty__DOT__out_mux;
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
+                             << 4U) | (((IData)(vlTOPp->bitty__DOT__en_c) 
+                                        << 3U) | (((IData)(vlTOPp->bitty__DOT__en_s) 
+                                                   << 2U) 
+                                                  | (IData)(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state))));
+    vlTOPp->bitty__DOT__cpu_inst__DOT__next_state = 
+        vlTOPp->__Vtable1_bitty__DOT__cpu_inst__DOT__next_state
+        [vlTOPp->__Vtableidx1];
 }
 
 void Vbitty::_eval(Vbitty__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_eval\n"); );
     Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
+    if (((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk)))) {
+        vlTOPp->_sequent__TOP__1(vlSymsp);
+    }
     if ((((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk))) 
          | ((IData)(vlTOPp->reset) & (~ (IData)(vlTOPp->__Vclklast__TOP__reset))))) {
-        vlTOPp->_sequent__TOP__1(vlSymsp);
+        vlTOPp->_sequent__TOP__2(vlSymsp);
         vlTOPp->__Vm_traceActivity = (2U | vlTOPp->__Vm_traceActivity);
     }
-    vlTOPp->_combo__TOP__3(vlSymsp);
+    vlTOPp->_combo__TOP__4(vlSymsp);
     vlTOPp->__Vm_traceActivity = (4U | vlTOPp->__Vm_traceActivity);
     // Final
     vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
@@ -534,7 +526,7 @@ void Vbitty::_eval_settle(Vbitty__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vbitty::_eval_settle\n"); );
     Vbitty* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->_settle__TOP__2(vlSymsp);
+    vlTOPp->_settle__TOP__3(vlSymsp);
     vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
 }
 
@@ -567,20 +559,6 @@ void Vbitty::_ctor_var_reset() {
     clk = VL_RAND_RESET_I(1);
     reset = VL_RAND_RESET_I(1);
     d_instr = VL_RAND_RESET_I(16);
-    d_out = VL_RAND_RESET_I(16);
-    rega = VL_RAND_RESET_I(16);
-    regb = VL_RAND_RESET_I(16);
-    regcc = VL_RAND_RESET_I(16);
-    regss = VL_RAND_RESET_I(16);
-    reg0 = VL_RAND_RESET_I(16);
-    reg1 = VL_RAND_RESET_I(16);
-    reg2 = VL_RAND_RESET_I(16);
-    reg3 = VL_RAND_RESET_I(16);
-    reg4 = VL_RAND_RESET_I(16);
-    reg5 = VL_RAND_RESET_I(16);
-    reg6 = VL_RAND_RESET_I(16);
-    reg7 = VL_RAND_RESET_I(16);
-    reginst = VL_RAND_RESET_I(16);
     done = VL_RAND_RESET_I(1);
     bitty__DOT__mux_sel = VL_RAND_RESET_I(3);
     bitty__DOT__en = VL_RAND_RESET_I(8);

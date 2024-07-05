@@ -13,6 +13,8 @@ extern "C" {
     
     
     // DPI IMPORTS
+    // DPI import at bitty.v:134
+    extern void evaluate_values(int instr, int out);
     // DPI import at cpu.sv:1
     extern void notify_counter_nine_1();
     // DPI import at cpu.sv:2
