@@ -8,6 +8,7 @@
 #include "verilated_dpi.h"
 
 //==========
+CData/*1:0*/ Vbigger::__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[32];
 
 VL_CTOR_IMP(Vbigger) {
     Vbigger__Syms* __restrict vlSymsp = __VlSymsp = new Vbigger__Syms(this, name());
@@ -90,48 +91,30 @@ void Vbigger::_eval_initial_loop(Vbigger__Syms* __restrict vlSymsp) {
 VL_INLINE_OPT void Vbigger::_sequent__TOP__1(Vbigger__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vbigger::_sequent__TOP__1\n"); );
     Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Variables
-    CData/*0:0*/ __Vdly__bigger__DOT__valid_bitty;
     // Body
-    __Vdly__bigger__DOT__valid_bitty = vlTOPp->bigger__DOT__valid_bitty;
     if (vlTOPp->done) {
         vlTOPp->bigger__DOT__addr = vlTOPp->bigger__DOT____Vcellinp__instance1__d_in;
     }
     if (vlTOPp->reset) {
         vlTOPp->bigger__DOT__addr = 0U;
     }
-    if (vlTOPp->bigger__DOT__instr_valid) {
-        vlTOPp->bigger__DOT__instruction = vlTOPp->bigger__DOT__fetched_instruction;
-        __Vdly__bigger__DOT__valid_bitty = 1U;
-    } else {
-        if (vlTOPp->bigger__DOT__valid_bitty) {
-            vlTOPp->bigger__DOT__run_bitty = 1U;
-        }
+    if (vlTOPp->run) {
+        vlTOPp->bigger__DOT__cur_state = vlTOPp->bigger__DOT__next_state;
     }
-    if ((1U & (~ (IData)(vlTOPp->run)))) {
-        if (vlTOPp->done) {
-            vlTOPp->bigger__DOT__run_bitty = 0U;
-            __Vdly__bigger__DOT__valid_bitty = 0U;
-        } else {
-            if (vlTOPp->reset) {
-                vlTOPp->bigger__DOT__run_bitty = 0U;
-            }
-        }
+    if (((IData)(vlTOPp->reset) | (IData)(vlTOPp->done))) {
+        vlTOPp->bigger__DOT__cur_state = 0U;
     }
     vlTOPp->bigger__DOT____Vcellinp__instance1__d_in 
         = (0xffU & ((IData)(1U) + (IData)(vlTOPp->bigger__DOT__addr)));
-    vlTOPp->bigger__DOT__valid_bitty = __Vdly__bigger__DOT__valid_bitty;
-    if (vlTOPp->run) {
-        vlTOPp->bigger__DOT__instr_valid = 1U;
-    } else {
-        if (vlTOPp->done) {
-            vlTOPp->bigger__DOT__instr_valid = 0U;
-        } else {
-            if (vlTOPp->reset) {
-                vlTOPp->bigger__DOT__instr_valid = 0U;
-            }
-        }
-    }
+    vlTOPp->bigger__DOT__next_state = ((0U == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                        ? 1U : ((1U 
+                                                 == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                                 ? 3U
+                                                 : 
+                                                ((3U 
+                                                  == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                                  ? 3U
+                                                  : 0U)));
 }
 
 VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) {
@@ -144,21 +127,6 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
         if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
             vlTOPp->bigger__DOT__instance3__DOT__regs 
                 = vlTOPp->bigger__DOT__instance3__DOT__out_mux;
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bigger__DOT__instruction = 0U;
-    } else {
-        if (vlTOPp->bigger__DOT__en_instr) {
-            vlTOPp->bigger__DOT__instruction = vlTOPp->bigger__DOT__mem_out;
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bigger__DOT__instance3__DOT__instruction = 0U;
-    } else {
-        if (vlTOPp->bigger__DOT__instance3__DOT__en_inst) {
-            vlTOPp->bigger__DOT__instance3__DOT__instruction 
-                = vlTOPp->bigger__DOT__instruction;
         }
     }
     if (vlTOPp->reset) {
@@ -267,12 +235,18 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
                 = vlTOPp->bigger__DOT__instance3__DOT__regc;
         }
     }
+    if (vlTOPp->reset) {
+        vlTOPp->bigger__DOT__instance3__DOT__instruction = 0U;
+    } else {
+        if (vlTOPp->bigger__DOT__instance3__DOT__en_inst) {
+            vlTOPp->bigger__DOT__instance3__DOT__instruction 
+                = vlTOPp->bigger__DOT__mem_out;
+        }
+    }
     vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state 
         = ((IData)(vlTOPp->reset) ? 0U : (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state));
     vlTOPp->rega = vlTOPp->bigger__DOT__instance3__DOT__regs;
     vlTOPp->regss = vlTOPp->bigger__DOT__instance3__DOT__regs;
-    vlTOPp->instr = vlTOPp->bigger__DOT__instruction;
-    vlTOPp->reginst = vlTOPp->bigger__DOT__instance3__DOT__instruction;
     vlTOPp->d_out = vlTOPp->bigger__DOT__instance3__DOT__regc;
     vlTOPp->regcc = vlTOPp->bigger__DOT__instance3__DOT__regc;
     vlTOPp->bigger__DOT__instance3__DOT__out[0U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
@@ -283,6 +257,7 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
     vlTOPp->bigger__DOT__instance3__DOT__out[5U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[6U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[7U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
+    vlTOPp->reginst = vlTOPp->bigger__DOT__instance3__DOT__instruction;
     vlTOPp->reg0 = vlTOPp->bigger__DOT__instance3__DOT__out
         [0U];
     vlTOPp->reg1 = vlTOPp->bigger__DOT__instance3__DOT__out
@@ -320,7 +295,15 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
     vlTOPp->bigger__DOT__instance3__DOT__out[5U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[6U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[7U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
-    vlTOPp->instr = vlTOPp->bigger__DOT__instruction;
+    vlTOPp->bigger__DOT__next_state = ((0U == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                        ? 1U : ((1U 
+                                                 == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                                 ? 3U
+                                                 : 
+                                                ((3U 
+                                                  == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                                  ? 3U
+                                                  : 0U)));
     if (vlTOPp->reset) {
         vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
         vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
@@ -330,59 +313,58 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
         vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
         vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
     } else {
-        if (vlTOPp->bigger__DOT__run_bitty) {
-            vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-            vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+        vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+        vlTOPp->done = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+        if (VL_UNLIKELY((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
+            vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
+                = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                         >> 0xdU));
+            vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
+            VL_WRITEF("S0 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
             vlTOPp->done = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-            if (VL_UNLIKELY((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
+            vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+            vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
+        } else {
+            if (VL_UNLIKELY((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
                 vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
                     = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                             >> 0xdU));
-                vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
-                VL_WRITEF("S0 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
-                vlTOPp->done = 0U;
-                vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-                vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
+                             >> 0xaU));
+                VL_WRITEF("S1 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
+                vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
+                vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
+                    = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                             >> 2U));
+                vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
+                if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
+                    vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                }
             } else {
-                if (VL_UNLIKELY((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
-                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
-                        = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                 >> 0xaU));
-                    VL_WRITEF("S1 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
-                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
-                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
-                        = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                 >> 2U));
-                    vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
+                if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
                     if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
                     }
+                    vlTOPp->bigger__DOT__instance3__DOT__en 
+                        = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
+                           | ((IData)(1U) << (7U & 
+                                              ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                               >> 0xdU))));
+                    vlTOPp->done = 1U;
                 } else {
-                    if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                        if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                            vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
-                        }
-                        vlTOPp->bigger__DOT__instance3__DOT__en 
-                            = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                               | ((IData)(1U) << (7U 
-                                                  & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                                     >> 0xdU))));
-                        vlTOPp->done = 1U;
-                    } else {
-                        vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-                        vlTOPp->done = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-                    }
+                    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+                    vlTOPp->done = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
                 }
             }
         }
     }
+    vlTOPp->instr = vlTOPp->bigger__DOT__mem_out;
     vlTOPp->reg0 = vlTOPp->bigger__DOT__instance3__DOT__out
         [0U];
     vlTOPp->reg1 = vlTOPp->bigger__DOT__instance3__DOT__out
@@ -399,18 +381,20 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
         [6U];
     vlTOPp->reg7 = vlTOPp->bigger__DOT__instance3__DOT__out
         [7U];
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
+                             << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
+                                        << 3U) | ((
+                                                   ((0U 
+                                                     != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                                    & ((1U 
+                                                        != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                                       & (3U 
+                                                          == (IData)(vlTOPp->bigger__DOT__cur_state)))) 
+                                                   << 2U) 
+                                                  | (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
     vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state 
-        = ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-            ? ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction))
-                ? 1U : 0U) : ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                               ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c)
-                                   ? 3U : 1U) : ((3U 
-                                                  == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                                                  ? 
-                                                 ((IData)(vlTOPp->done)
-                                                   ? 0U
-                                                   : 3U)
-                                                  : 0U)));
+        = vlTOPp->__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state
+        [vlTOPp->__Vtableidx1];
     vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
         ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
           ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
@@ -456,15 +440,7 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__5(Vbigger__Syms* __restrict vlSymsp) 
     // Body
     vlTOPp->bigger__DOT__mem_out = vlTOPp->bigger__DOT__instance2__DOT__memory_array
         [vlTOPp->bigger__DOT__addr];
-    if (vlTOPp->run) {
-        vlTOPp->bigger__DOT__en_instr = 1U;
-    } else {
-        if ((1U & (~ (IData)(vlTOPp->done)))) {
-            if (vlTOPp->reset) {
-                vlTOPp->bigger__DOT__en_instr = 0U;
-            }
-        }
-    }
+    vlTOPp->instr = vlTOPp->bigger__DOT__mem_out;
 }
 
 VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
@@ -480,71 +456,71 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
         vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
         vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
     } else {
-        if (vlTOPp->bigger__DOT__run_bitty) {
-            vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-            vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+        vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+        vlTOPp->done = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
+        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+        if (VL_UNLIKELY((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
+            vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
+                = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                         >> 0xdU));
+            vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
+            VL_WRITEF("S0 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
             vlTOPp->done = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-            if (VL_UNLIKELY((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
+            vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+            vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
+        } else {
+            if (VL_UNLIKELY((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
                 vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
                     = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                             >> 0xdU));
-                vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
-                VL_WRITEF("S0 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
-                vlTOPp->done = 0U;
-                vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-                vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_1_TOP____024unit();
+                             >> 0xaU));
+                VL_WRITEF("S1 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
+                vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
+                vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
+                    = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                             >> 2U));
+                vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
+                if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
+                    vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                }
             } else {
-                if (VL_UNLIKELY((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
-                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
-                        = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                 >> 0xaU));
-                    VL_WRITEF("S1 state %x\n",3,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
-                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
-                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
-                        = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                 >> 2U));
-                    vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
+                if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
                     if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_2_TOP____024unit();
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
                     }
+                    vlTOPp->bigger__DOT__instance3__DOT__en 
+                        = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
+                           | ((IData)(1U) << (7U & 
+                                              ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                               >> 0xdU))));
+                    vlTOPp->done = 1U;
                 } else {
-                    if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                        if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                            vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
-                        }
-                        vlTOPp->bigger__DOT__instance3__DOT__en 
-                            = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                               | ((IData)(1U) << (7U 
-                                                  & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                                     >> 0xdU))));
-                        vlTOPp->done = 1U;
-                    } else {
-                        vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-                        vlTOPp->done = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-                        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-                    }
+                    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+                    vlTOPp->done = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
+                    vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
                 }
             }
         }
     }
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
+                             << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
+                                        << 3U) | ((
+                                                   ((0U 
+                                                     != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                                    & ((1U 
+                                                        != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                                       & (3U 
+                                                          == (IData)(vlTOPp->bigger__DOT__cur_state)))) 
+                                                   << 2U) 
+                                                  | (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
     vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state 
-        = ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-            ? ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction))
-                ? 1U : 0U) : ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                               ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c)
-                                   ? 3U : 1U) : ((3U 
-                                                  == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                                                  ? 
-                                                 ((IData)(vlTOPp->done)
-                                                   ? 0U
-                                                   : 3U)
-                                                  : 0U)));
+        = vlTOPp->__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state
+        [vlTOPp->__Vtableidx1];
     vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
         ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
           ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
@@ -661,16 +637,13 @@ void Vbigger::_ctor_var_reset() {
     reg7 = VL_RAND_RESET_I(16);
     reginst = VL_RAND_RESET_I(16);
     d_out = VL_RAND_RESET_I(16);
-    bigger__DOT__run_bitty = VL_RAND_RESET_I(1);
+    bigger__DOT__cur_state = VL_RAND_RESET_I(2);
+    bigger__DOT__next_state = VL_RAND_RESET_I(2);
     bigger__DOT__mem_out = VL_RAND_RESET_I(16);
     bigger__DOT__addr = VL_RAND_RESET_I(8);
     bigger__DOT__d_in = VL_RAND_RESET_I(8);
     bigger__DOT____Vcellinp__instance1__d_in = VL_RAND_RESET_I(8);
-    bigger__DOT__instruction = VL_RAND_RESET_I(16);
-    bigger__DOT__fetched_instruction = VL_RAND_RESET_I(16);
-    bigger__DOT__en_instr = VL_RAND_RESET_I(1);
     bigger__DOT__instr_valid = VL_RAND_RESET_I(1);
-    bigger__DOT__valid_bitty = VL_RAND_RESET_I(1);
     { int __Vi0=0; for (; __Vi0<256; ++__Vi0) {
             bigger__DOT__instance2__DOT__memory_array[__Vi0] = VL_RAND_RESET_I(16);
     }}
@@ -697,5 +670,38 @@ void Vbigger::_ctor_var_reset() {
     bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out = VL_RAND_RESET_I(16);
     bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state = VL_RAND_RESET_I(2);
     bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state = VL_RAND_RESET_I(2);
+    __Vtableidx1 = 0;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[0] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[1] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[2] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[3] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[4] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[5] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[6] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[7] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[8] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[9] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[10] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[11] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[12] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[13] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[14] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[15] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[16] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[17] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[18] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[19] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[20] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[21] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[22] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[23] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[24] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[25] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[26] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[27] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[28] = 1U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[29] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[30] = 0U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[31] = 0U;
     __Vm_traceActivity = 0;
 }

@@ -41,8 +41,7 @@ module cpu(
             en_inst = 0;
             
         end
-
-        else if(run == 1) begin
+        else begin
             en_inst = 1;
             en_s = 0;
             en_c = 0;
@@ -108,7 +107,7 @@ module cpu(
     // Next state combinational logic
     always @(*) begin
         case (cur_state)
-            S0: next_state = (d_inst!=16'h0) ? S1:S0;
+            S0: next_state = (run==1) ? S1:S0;
             S1: next_state = (en_c==1) ? S2:S1;
             S2: next_state = (done == 1) ? S0 : S2;
             default: next_state = S0;

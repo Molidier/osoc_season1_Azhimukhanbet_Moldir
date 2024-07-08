@@ -23,12 +23,6 @@ void Vbigger___024unit::__Vconfigure(Vbigger__Syms* vlSymsp, bool first) {
 Vbigger___024unit::~Vbigger___024unit() {
 }
 
-VL_INLINE_OPT void Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_here_TOP____024unit() {
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_here_TOP____024unit\n"); );
-    // Body
-    notify_counter_nine_here();
-}
-
 VL_INLINE_OPT void Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_1_TOP____024unit() {
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_1_TOP____024unit\n"); );
     // Body
@@ -45,6 +39,12 @@ VL_INLINE_OPT void Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_3_TOP____
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_3_TOP____024unit\n"); );
     // Body
     notify_counter_nine_3();
+}
+
+VL_INLINE_OPT void Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_here_TOP____024unit() {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vbigger___024unit::__Vdpiimwrap_notify_counter_nine_here_TOP____024unit\n"); );
+    // Body
+    notify_counter_nine_here();
 }
 
 void Vbigger___024unit::_ctor_var_reset() {

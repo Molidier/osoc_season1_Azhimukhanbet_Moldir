@@ -43,18 +43,13 @@ void Vbigger::traceChgThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp
         if (VL_UNLIKELY((2U & vlTOPp->__Vm_traceActivity))) {
             vlTOPp->traceChgThis__5(vlSymsp, vcdp, code);
         }
-        if (VL_UNLIKELY((1U & ((vlTOPp->__Vm_traceActivity 
-                                >> 1U) | (vlTOPp->__Vm_traceActivity 
-                                          >> 2U))))) {
+        if (VL_UNLIKELY((4U & vlTOPp->__Vm_traceActivity))) {
             vlTOPp->traceChgThis__6(vlSymsp, vcdp, code);
         }
-        if (VL_UNLIKELY((4U & vlTOPp->__Vm_traceActivity))) {
+        if (VL_UNLIKELY((8U & vlTOPp->__Vm_traceActivity))) {
             vlTOPp->traceChgThis__7(vlSymsp, vcdp, code);
         }
-        if (VL_UNLIKELY((8U & vlTOPp->__Vm_traceActivity))) {
-            vlTOPp->traceChgThis__8(vlSymsp, vcdp, code);
-        }
-        vlTOPp->traceChgThis__9(vlSymsp, vcdp, code);
+        vlTOPp->traceChgThis__8(vlSymsp, vcdp, code);
     }
     // Final
     vlTOPp->__Vm_traceActivity = 0U;
@@ -172,20 +167,21 @@ void Vbigger::traceChgThis__4(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* v
         vcdp->chgBit(c+169,(vlTOPp->bigger__DOT__instance3__DOT__en_c));
         vcdp->chgBit(c+177,(vlTOPp->bigger__DOT__instance3__DOT__en_inst));
         vcdp->chgBus(c+185,(vlTOPp->bigger__DOT__instance3__DOT__alu_sel),3);
-        vcdp->chgBit(c+193,((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__en))));
-        vcdp->chgBit(c+201,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                                   >> 1U))));
+        vcdp->chgBus(c+193,(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state),2);
+        vcdp->chgBit(c+201,((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__en))));
         vcdp->chgBit(c+209,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                                   >> 2U))));
+                                   >> 1U))));
         vcdp->chgBit(c+217,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                                   >> 3U))));
+                                   >> 2U))));
         vcdp->chgBit(c+225,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                                   >> 4U))));
+                                   >> 3U))));
         vcdp->chgBit(c+233,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                                   >> 5U))));
+                                   >> 4U))));
         vcdp->chgBit(c+241,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                                   >> 6U))));
+                                   >> 5U))));
         vcdp->chgBit(c+249,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
+                                   >> 6U))));
+        vcdp->chgBit(c+257,((1U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
                                    >> 7U))));
     }
 }
@@ -196,25 +192,22 @@ void Vbigger::traceChgThis__5(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* v
     if (0 && vcdp && c) {}  // Prevent unused
     // Body
     {
-        vcdp->chgBit(c+257,(vlTOPp->bigger__DOT__run_bitty));
-        vcdp->chgBus(c+265,(vlTOPp->bigger__DOT__addr),8);
-        vcdp->chgBit(c+273,(vlTOPp->bigger__DOT__instr_valid));
-        vcdp->chgBit(c+281,(vlTOPp->bigger__DOT__valid_bitty));
-        vcdp->chgBus(c+289,((0xffU & ((IData)(1U) + (IData)(vlTOPp->bigger__DOT__addr)))),8);
+        vcdp->chgBus(c+265,(vlTOPp->bigger__DOT__cur_state),2);
+        vcdp->chgBus(c+273,(((0U == (IData)(vlTOPp->bigger__DOT__cur_state))
+                              ? 1U : ((1U == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                       ? 3U : ((3U 
+                                                == (IData)(vlTOPp->bigger__DOT__cur_state))
+                                                ? 3U
+                                                : 0U)))),2);
+        vcdp->chgBit(c+281,(((0U != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                             & ((1U != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                & (3U == (IData)(vlTOPp->bigger__DOT__cur_state))))));
+        vcdp->chgBus(c+289,(vlTOPp->bigger__DOT__addr),8);
+        vcdp->chgBus(c+297,((0xffU & ((IData)(1U) + (IData)(vlTOPp->bigger__DOT__addr)))),8);
     }
 }
 
 void Vbigger::traceChgThis__6(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) {
-    Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    int c = code;
-    if (0 && vcdp && c) {}  // Prevent unused
-    // Body
-    {
-        vcdp->chgBus(c+297,(vlTOPp->bigger__DOT__instruction),16);
-    }
-}
-
-void Vbigger::traceChgThis__7(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) {
     Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     int c = code;
     if (0 && vcdp && c) {}  // Prevent unused
@@ -235,57 +228,40 @@ void Vbigger::traceChgThis__7(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* v
     }
 }
 
-void Vbigger::traceChgThis__8(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) {
+void Vbigger::traceChgThis__7(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) {
     Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     int c = code;
     if (0 && vcdp && c) {}  // Prevent unused
     // Body
     {
         vcdp->chgBus(c+401,(vlTOPp->bigger__DOT__mem_out),16);
-        vcdp->chgBit(c+409,(vlTOPp->bigger__DOT__en_instr));
     }
 }
 
-void Vbigger::traceChgThis__9(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) {
+void Vbigger::traceChgThis__8(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) {
     Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     int c = code;
     if (0 && vcdp && c) {}  // Prevent unused
     // Body
     {
-        vcdp->chgBit(c+417,(vlTOPp->clk));
-        vcdp->chgBit(c+425,(vlTOPp->reset));
-        vcdp->chgBit(c+433,(vlTOPp->run));
-        vcdp->chgBit(c+441,(vlTOPp->done));
-        vcdp->chgBus(c+449,(vlTOPp->instr),16);
-        vcdp->chgBus(c+457,(vlTOPp->rega),16);
-        vcdp->chgBus(c+465,(vlTOPp->regb),16);
-        vcdp->chgBus(c+473,(vlTOPp->regcc),16);
-        vcdp->chgBus(c+481,(vlTOPp->regss),16);
-        vcdp->chgBus(c+489,(vlTOPp->reg0),16);
-        vcdp->chgBus(c+497,(vlTOPp->reg1),16);
-        vcdp->chgBus(c+505,(vlTOPp->reg2),16);
-        vcdp->chgBus(c+513,(vlTOPp->reg3),16);
-        vcdp->chgBus(c+521,(vlTOPp->reg4),16);
-        vcdp->chgBus(c+529,(vlTOPp->reg5),16);
-        vcdp->chgBus(c+537,(vlTOPp->reg6),16);
-        vcdp->chgBus(c+545,(vlTOPp->reg7),16);
-        vcdp->chgBus(c+553,(vlTOPp->reginst),16);
-        vcdp->chgBus(c+561,(vlTOPp->d_out),16);
-        vcdp->chgBus(c+569,(((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                              ? ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction))
-                                  ? 1U : 0U) : ((1U 
-                                                 == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                                                 ? 
-                                                ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c)
-                                                  ? 3U
-                                                  : 1U)
-                                                 : 
-                                                ((3U 
-                                                  == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
-                                                  ? 
-                                                 ((IData)(vlTOPp->done)
-                                                   ? 0U
-                                                   : 3U)
-                                                  : 0U)))),2);
+        vcdp->chgBit(c+409,(vlTOPp->clk));
+        vcdp->chgBit(c+417,(vlTOPp->reset));
+        vcdp->chgBit(c+425,(vlTOPp->run));
+        vcdp->chgBit(c+433,(vlTOPp->done));
+        vcdp->chgBus(c+441,(vlTOPp->instr),16);
+        vcdp->chgBus(c+449,(vlTOPp->rega),16);
+        vcdp->chgBus(c+457,(vlTOPp->regb),16);
+        vcdp->chgBus(c+465,(vlTOPp->regcc),16);
+        vcdp->chgBus(c+473,(vlTOPp->regss),16);
+        vcdp->chgBus(c+481,(vlTOPp->reg0),16);
+        vcdp->chgBus(c+489,(vlTOPp->reg1),16);
+        vcdp->chgBus(c+497,(vlTOPp->reg2),16);
+        vcdp->chgBus(c+505,(vlTOPp->reg3),16);
+        vcdp->chgBus(c+513,(vlTOPp->reg4),16);
+        vcdp->chgBus(c+521,(vlTOPp->reg5),16);
+        vcdp->chgBus(c+529,(vlTOPp->reg6),16);
+        vcdp->chgBus(c+537,(vlTOPp->reg7),16);
+        vcdp->chgBus(c+545,(vlTOPp->reginst),16);
+        vcdp->chgBus(c+553,(vlTOPp->d_out),16);
     }
 }
