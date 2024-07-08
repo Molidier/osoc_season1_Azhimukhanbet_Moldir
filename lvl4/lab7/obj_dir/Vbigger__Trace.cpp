@@ -195,13 +195,9 @@ void Vbigger::traceChgThis__5(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* v
         vcdp->chgBus(c+265,(vlTOPp->bigger__DOT__cur_state),2);
         vcdp->chgBus(c+273,(((0U == (IData)(vlTOPp->bigger__DOT__cur_state))
                               ? 1U : ((1U == (IData)(vlTOPp->bigger__DOT__cur_state))
-                                       ? 3U : ((3U 
-                                                == (IData)(vlTOPp->bigger__DOT__cur_state))
-                                                ? 3U
-                                                : 0U)))),2);
+                                       ? 1U : 0U))),2);
         vcdp->chgBit(c+281,(((0U != (IData)(vlTOPp->bigger__DOT__cur_state)) 
-                             & ((1U != (IData)(vlTOPp->bigger__DOT__cur_state)) 
-                                & (3U == (IData)(vlTOPp->bigger__DOT__cur_state))))));
+                             & (1U == (IData)(vlTOPp->bigger__DOT__cur_state)))));
         vcdp->chgBus(c+289,(vlTOPp->bigger__DOT__addr),8);
         vcdp->chgBus(c+297,((0xffU & ((IData)(1U) + (IData)(vlTOPp->bigger__DOT__addr)))),8);
     }
@@ -249,19 +245,6 @@ void Vbigger::traceChgThis__8(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* v
         vcdp->chgBit(c+425,(vlTOPp->run));
         vcdp->chgBit(c+433,(vlTOPp->done));
         vcdp->chgBus(c+441,(vlTOPp->instr),16);
-        vcdp->chgBus(c+449,(vlTOPp->rega),16);
-        vcdp->chgBus(c+457,(vlTOPp->regb),16);
-        vcdp->chgBus(c+465,(vlTOPp->regcc),16);
-        vcdp->chgBus(c+473,(vlTOPp->regss),16);
-        vcdp->chgBus(c+481,(vlTOPp->reg0),16);
-        vcdp->chgBus(c+489,(vlTOPp->reg1),16);
-        vcdp->chgBus(c+497,(vlTOPp->reg2),16);
-        vcdp->chgBus(c+505,(vlTOPp->reg3),16);
-        vcdp->chgBus(c+513,(vlTOPp->reg4),16);
-        vcdp->chgBus(c+521,(vlTOPp->reg5),16);
-        vcdp->chgBus(c+529,(vlTOPp->reg6),16);
-        vcdp->chgBus(c+537,(vlTOPp->reg7),16);
-        vcdp->chgBus(c+545,(vlTOPp->reginst),16);
-        vcdp->chgBus(c+553,(vlTOPp->d_out),16);
+        vcdp->chgBus(c+449,(vlTOPp->d_out),16);
     }
 }

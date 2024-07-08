@@ -109,12 +109,8 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__1(Vbigger__Syms* __restrict vlSymsp) 
     vlTOPp->bigger__DOT__next_state = ((0U == (IData)(vlTOPp->bigger__DOT__cur_state))
                                         ? 1U : ((1U 
                                                  == (IData)(vlTOPp->bigger__DOT__cur_state))
-                                                 ? 3U
-                                                 : 
-                                                ((3U 
-                                                  == (IData)(vlTOPp->bigger__DOT__cur_state))
-                                                  ? 3U
-                                                  : 0U)));
+                                                 ? 1U
+                                                 : 0U));
 }
 
 VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) {
@@ -127,48 +123,6 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
         if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
             vlTOPp->bigger__DOT__instance3__DOT__regs 
                 = vlTOPp->bigger__DOT__instance3__DOT__out_mux;
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->bigger__DOT__instance3__DOT__regc = 0U;
-    } else {
-        if (vlTOPp->bigger__DOT__instance3__DOT__en_c) {
-            vlTOPp->bigger__DOT__instance3__DOT__regc 
-                = (0xffffU & ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                               ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                                   ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                                       ? (((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                           == (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
-                                           ? 0U : (
-                                                   ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                                    > (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
-                                                    ? 1U
-                                                    : 2U))
-                                       : ((0xfU >= 
-                                           (0x1fU & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
-                                           ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                              >> (0x1fU 
-                                                  & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
-                                           : 0U)) : 
-                                  ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                                    ? ((0xfU >= (0x1fU 
-                                                 & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
-                                        ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                           << (0x1fU 
-                                               & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
-                                        : 0U) : ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                                 ^ (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))))
-                               : ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                                   ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                                       ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                          | (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
-                                       : ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                          & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
-                                   : ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
-                                       ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                          - (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
-                                       : ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
-                                          + (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))))));
         }
     }
     if (vlTOPp->reset) {
@@ -236,6 +190,48 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
         }
     }
     if (vlTOPp->reset) {
+        vlTOPp->bigger__DOT__instance3__DOT__regc = 0U;
+    } else {
+        if (vlTOPp->bigger__DOT__instance3__DOT__en_c) {
+            vlTOPp->bigger__DOT__instance3__DOT__regc 
+                = (0xffffU & ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                               ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                                   ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                                       ? (((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                           == (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
+                                           ? 0U : (
+                                                   ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                                    > (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
+                                                    ? 1U
+                                                    : 2U))
+                                       : ((0xfU >= 
+                                           (0x1fU & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
+                                           ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                              >> (0x1fU 
+                                                  & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
+                                           : 0U)) : 
+                                  ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                                    ? ((0xfU >= (0x1fU 
+                                                 & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
+                                        ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                           << (0x1fU 
+                                               & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
+                                        : 0U) : ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                                 ^ (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))))
+                               : ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                                   ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                                       ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                          | (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
+                                       : ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                          & (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux)))
+                                   : ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__alu_sel))
+                                       ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                          - (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))
+                                       : ((IData)(vlTOPp->bigger__DOT__instance3__DOT__regs) 
+                                          + (IData)(vlTOPp->bigger__DOT__instance3__DOT__out_mux))))));
+        }
+    }
+    if (vlTOPp->reset) {
         vlTOPp->bigger__DOT__instance3__DOT__instruction = 0U;
     } else {
         if (vlTOPp->bigger__DOT__instance3__DOT__en_inst) {
@@ -245,10 +241,6 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
     }
     vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state 
         = ((IData)(vlTOPp->reset) ? 0U : (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state));
-    vlTOPp->rega = vlTOPp->bigger__DOT__instance3__DOT__regs;
-    vlTOPp->regss = vlTOPp->bigger__DOT__instance3__DOT__regs;
-    vlTOPp->d_out = vlTOPp->bigger__DOT__instance3__DOT__regc;
-    vlTOPp->regcc = vlTOPp->bigger__DOT__instance3__DOT__regc;
     vlTOPp->bigger__DOT__instance3__DOT__out[0U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[1U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[2U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -257,23 +249,7 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp) 
     vlTOPp->bigger__DOT__instance3__DOT__out[5U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[6U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[7U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
-    vlTOPp->reginst = vlTOPp->bigger__DOT__instance3__DOT__instruction;
-    vlTOPp->reg0 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [0U];
-    vlTOPp->reg1 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [1U];
-    vlTOPp->reg2 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [2U];
-    vlTOPp->reg3 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [3U];
-    vlTOPp->reg4 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [4U];
-    vlTOPp->reg5 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [5U];
-    vlTOPp->reg6 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [6U];
-    vlTOPp->reg7 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [7U];
+    vlTOPp->d_out = vlTOPp->bigger__DOT__instance3__DOT__regc;
 }
 
 void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
@@ -283,10 +259,6 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
     vlTOPp->bigger__DOT____Vcellinp__instance1__d_in 
         = (0xffU & ((IData)(1U) + (IData)(vlTOPp->bigger__DOT__addr)));
     vlTOPp->d_out = vlTOPp->bigger__DOT__instance3__DOT__regc;
-    vlTOPp->rega = vlTOPp->bigger__DOT__instance3__DOT__regs;
-    vlTOPp->regcc = vlTOPp->bigger__DOT__instance3__DOT__regc;
-    vlTOPp->regss = vlTOPp->bigger__DOT__instance3__DOT__regs;
-    vlTOPp->reginst = vlTOPp->bigger__DOT__instance3__DOT__instruction;
     vlTOPp->bigger__DOT__instance3__DOT__out[0U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[1U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     vlTOPp->bigger__DOT__instance3__DOT__out[2U] = vlTOPp->bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -298,12 +270,8 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
     vlTOPp->bigger__DOT__next_state = ((0U == (IData)(vlTOPp->bigger__DOT__cur_state))
                                         ? 1U : ((1U 
                                                  == (IData)(vlTOPp->bigger__DOT__cur_state))
-                                                 ? 3U
-                                                 : 
-                                                ((3U 
-                                                  == (IData)(vlTOPp->bigger__DOT__cur_state))
-                                                  ? 3U
-                                                  : 0U)));
+                                                 ? 1U
+                                                 : 0U));
     if (vlTOPp->reset) {
         vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
         vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
@@ -365,36 +333,6 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
         }
     }
     vlTOPp->instr = vlTOPp->bigger__DOT__mem_out;
-    vlTOPp->reg0 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [0U];
-    vlTOPp->reg1 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [1U];
-    vlTOPp->reg2 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [2U];
-    vlTOPp->reg3 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [3U];
-    vlTOPp->reg4 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [4U];
-    vlTOPp->reg5 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [5U];
-    vlTOPp->reg6 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [6U];
-    vlTOPp->reg7 = vlTOPp->bigger__DOT__instance3__DOT__out
-        [7U];
-    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
-                             << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
-                                        << 3U) | ((
-                                                   ((0U 
-                                                     != (IData)(vlTOPp->bigger__DOT__cur_state)) 
-                                                    & ((1U 
-                                                        != (IData)(vlTOPp->bigger__DOT__cur_state)) 
-                                                       & (3U 
-                                                          == (IData)(vlTOPp->bigger__DOT__cur_state)))) 
-                                                   << 2U) 
-                                                  | (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
-    vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state 
-        = vlTOPp->__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state
-        [vlTOPp->__Vtableidx1];
     vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
         ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
           ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
@@ -416,7 +354,18 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
                                                   : 
                                                  vlTOPp->bigger__DOT__instance3__DOT__out
                                                  [0U])));
-    vlTOPp->regb = vlTOPp->bigger__DOT__instance3__DOT__out_mux;
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
+                             << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
+                                        << 3U) | ((
+                                                   ((0U 
+                                                     != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                                    & (1U 
+                                                       == (IData)(vlTOPp->bigger__DOT__cur_state))) 
+                                                   << 2U) 
+                                                  | (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
+    vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state 
+        = vlTOPp->__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state
+        [vlTOPp->__Vtableidx1];
 }
 
 void Vbigger::_initial__TOP__4(Vbigger__Syms* __restrict vlSymsp) {
@@ -507,20 +456,6 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
             }
         }
     }
-    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
-                             << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
-                                        << 3U) | ((
-                                                   ((0U 
-                                                     != (IData)(vlTOPp->bigger__DOT__cur_state)) 
-                                                    & ((1U 
-                                                        != (IData)(vlTOPp->bigger__DOT__cur_state)) 
-                                                       & (3U 
-                                                          == (IData)(vlTOPp->bigger__DOT__cur_state)))) 
-                                                   << 2U) 
-                                                  | (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
-    vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state 
-        = vlTOPp->__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state
-        [vlTOPp->__Vtableidx1];
     vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
         ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
           ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
@@ -542,7 +477,18 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
                                                   : 
                                                  vlTOPp->bigger__DOT__instance3__DOT__out
                                                  [0U])));
-    vlTOPp->regb = vlTOPp->bigger__DOT__instance3__DOT__out_mux;
+    vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
+                             << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
+                                        << 3U) | ((
+                                                   ((0U 
+                                                     != (IData)(vlTOPp->bigger__DOT__cur_state)) 
+                                                    & (1U 
+                                                       == (IData)(vlTOPp->bigger__DOT__cur_state))) 
+                                                   << 2U) 
+                                                  | (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
+    vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state 
+        = vlTOPp->__Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state
+        [vlTOPp->__Vtableidx1];
 }
 
 void Vbigger::_eval(Vbigger__Syms* __restrict vlSymsp) {
@@ -623,19 +569,6 @@ void Vbigger::_ctor_var_reset() {
     run = VL_RAND_RESET_I(1);
     done = VL_RAND_RESET_I(1);
     instr = VL_RAND_RESET_I(16);
-    rega = VL_RAND_RESET_I(16);
-    regb = VL_RAND_RESET_I(16);
-    regcc = VL_RAND_RESET_I(16);
-    regss = VL_RAND_RESET_I(16);
-    reg0 = VL_RAND_RESET_I(16);
-    reg1 = VL_RAND_RESET_I(16);
-    reg2 = VL_RAND_RESET_I(16);
-    reg3 = VL_RAND_RESET_I(16);
-    reg4 = VL_RAND_RESET_I(16);
-    reg5 = VL_RAND_RESET_I(16);
-    reg6 = VL_RAND_RESET_I(16);
-    reg7 = VL_RAND_RESET_I(16);
-    reginst = VL_RAND_RESET_I(16);
     d_out = VL_RAND_RESET_I(16);
     bigger__DOT__cur_state = VL_RAND_RESET_I(2);
     bigger__DOT__next_state = VL_RAND_RESET_I(2);
