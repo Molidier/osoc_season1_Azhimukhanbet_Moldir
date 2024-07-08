@@ -35,6 +35,20 @@ VL_MODULE(Vbitty) {
     VL_IN8(run,0,0);
     VL_OUT8(done,0,0);
     VL_IN16(d_instr,15,0);
+    VL_OUT16(d_out,15,0);
+    VL_OUT16(rega,15,0);
+    VL_OUT16(regb,15,0);
+    VL_OUT16(regcc,15,0);
+    VL_OUT16(regss,15,0);
+    VL_OUT16(reg0,15,0);
+    VL_OUT16(reg1,15,0);
+    VL_OUT16(reg2,15,0);
+    VL_OUT16(reg3,15,0);
+    VL_OUT16(reg4,15,0);
+    VL_OUT16(reg5,15,0);
+    VL_OUT16(reg6,15,0);
+    VL_OUT16(reg7,15,0);
+    VL_OUT16(reginst,15,0);
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code

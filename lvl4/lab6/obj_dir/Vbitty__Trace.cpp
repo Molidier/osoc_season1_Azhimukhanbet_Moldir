@@ -181,9 +181,9 @@ void Vbitty::traceChgThis__5(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcd
     if (0 && vcdp && c) {}  // Prevent unused
     // Body
     {
-        vcdp->chgBus(c+265,(vlTOPp->bitty__DOT__regc),16);
-        vcdp->chgBus(c+273,(vlTOPp->bitty__DOT__instruction),16);
-        vcdp->chgBus(c+281,(vlTOPp->bitty__DOT__regs),16);
+        vcdp->chgBus(c+265,(vlTOPp->bitty__DOT__instruction),16);
+        vcdp->chgBus(c+273,(vlTOPp->bitty__DOT__regs),16);
+        vcdp->chgBus(c+281,(vlTOPp->bitty__DOT__regc),16);
         vcdp->chgBus(c+289,(vlTOPp->bitty__DOT__cpu_inst__DOT__cur_state),2);
         vcdp->chgBus(c+297,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out),16);
         vcdp->chgBus(c+305,(vlTOPp->bitty__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out),16);
@@ -206,6 +206,20 @@ void Vbitty::traceChgThis__6(Vbitty__Syms* __restrict vlSymsp, VerilatedVcd* vcd
         vcdp->chgBit(c+369,(vlTOPp->clk));
         vcdp->chgBit(c+377,(vlTOPp->reset));
         vcdp->chgBus(c+385,(vlTOPp->d_instr),16);
-        vcdp->chgBit(c+393,(vlTOPp->done));
+        vcdp->chgBus(c+393,(vlTOPp->d_out),16);
+        vcdp->chgBus(c+401,(vlTOPp->rega),16);
+        vcdp->chgBus(c+409,(vlTOPp->regb),16);
+        vcdp->chgBus(c+417,(vlTOPp->regcc),16);
+        vcdp->chgBus(c+425,(vlTOPp->regss),16);
+        vcdp->chgBus(c+433,(vlTOPp->reg0),16);
+        vcdp->chgBus(c+441,(vlTOPp->reg1),16);
+        vcdp->chgBus(c+449,(vlTOPp->reg2),16);
+        vcdp->chgBus(c+457,(vlTOPp->reg3),16);
+        vcdp->chgBus(c+465,(vlTOPp->reg4),16);
+        vcdp->chgBus(c+473,(vlTOPp->reg5),16);
+        vcdp->chgBus(c+481,(vlTOPp->reg6),16);
+        vcdp->chgBus(c+489,(vlTOPp->reg7),16);
+        vcdp->chgBus(c+497,(vlTOPp->reginst),16);
+        vcdp->chgBit(c+505,(vlTOPp->done));
     }
 }

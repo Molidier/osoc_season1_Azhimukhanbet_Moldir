@@ -54,12 +54,17 @@ module cpu(
                 S0: begin
                     en_s = 1;
                     mux_sel = d_inst[15:13];
+                    $display("S0 state ", mux_sel);
                     done = 0;
                     en_inst = 1;
+                    if(en_s) begin
+                        notify_counter_nine_1();
+                    end
     
                 end
                 S1: begin
                     mux_sel = d_inst[12:10];
+                    $display("S1 state ", mux_sel);
                     en_c = 1;
                     sel = d_inst[4:2];
                     en_inst = 0;
@@ -103,7 +108,7 @@ module cpu(
     // Next state combinational logic
     always @(*) begin
         case (cur_state)
-            S0: next_state = (en_s==1) ? S1:S0;
+            S0: next_state = (d_inst!=16'h0) ? S1:S0;
             S1: next_state = (en_c==1) ? S2:S1;
             S2: next_state = (done == 1) ? S0 : S2;
             default: next_state = S0;

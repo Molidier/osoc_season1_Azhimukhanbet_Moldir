@@ -1,13 +1,11 @@
-/****** bitty.sv ******/
 /* verilator lint_off MODDUP */
 module bitty(
     input run,
     input clk,
-    input reset, 
+    input reset,
     input [15:0] d_instr,
 
     output [15:0] d_out,
-    /*
     output [15:0] rega,
     output [15:0] regb,
     output [15:0] regcc,
@@ -22,42 +20,27 @@ module bitty(
     output [15:0] reg6,
     output [15:0] reg7,
 
-    output [15:0] reginst,*/
-
-
-
-
+    output [15:0] reginst,
     output done
 );
     genvar k;
-    //logic [15:0] d_out;
-   // assign d_instr = Generate();
-
-// MUX components 
     wire [2:0] mux_sel;
     wire [7:0] en;
     logic [15:0] out [7:0];
 
-
     wire [15:0] out_mux;
-    
+
     // ALU components
     wire [15:0] alu_out;
-    
+
     // CPU components
     wire en_s, en_c, en_inst;
     wire [2:0] alu_sel;
     wire [15:0] instruction;
-    
+
     // Additional components
-    //wire [15:0] compare;
     wire [15:0] regs;
     wire [15:0] regc;
-
-    // Registers
-    dff reg_inst(clk, en_inst, d_instr, 16'h0000, reset, instruction);
-    dff reg_s(clk, en_s, out_mux, 16'h0000, reset,  regs);
-    dff reg_c(clk, en_c, alu_out, 16'h0000, reset, regc);
 
     // CPU connection
     cpu cpu_inst(
@@ -74,28 +57,25 @@ module bitty(
         .en_inst(en_inst)
     );
 
-
     // ALU Connection
     alu alu_inst(
         .in_a(regs),
         .in_b(out_mux),
         .select(alu_sel),
-        
-        .alu_out(alu_out)  // Changed to alu_out
+        .alu_out(alu_out) // Changed to alu_out
     );
 
-    // MUX connection  
-    genvar i;
+    // MUX connection
     generate
-        for (i = 0; i < 8; i++) begin
+        for (k = 0; k < 8; k++) begin
             /* verilator lint_off PINMISSING */
             dff reg_out (
                 .clk(clk),
-                .en(en[i]),
-                .d_in(regc), 
+                .en(en[k]),
+                .d_in(regc),
                 .reset(reset),
                 .starting(16'h000A), // Corrected input signal name
-                .mux_out(out[i])      // Corrected output signal name
+                .mux_out(out[k])      // Corrected output signal name
             );
         end
     endgenerate
@@ -113,13 +93,16 @@ module bitty(
         .mux_out(out_mux)
     );
 
+    dff reg_inst(clk, en_inst, d_instr, 16'h0000, reset, instruction);
+    dff reg_s(clk, en_s, out_mux, 16'h0000, reset, regs);
+    dff reg_c(clk, en_c, alu_out, 16'h0000, reset, regc);
 
     // Assigning out array elements to module outputs
     assign d_out = regc;
-    
-    /*assign rega = regs;
+
+    assign rega = regs;
     assign regb = out_mux;
-    
+
     assign regcc = regc;
     assign regss = regs;
     assign reg0 = out[0];
@@ -131,13 +114,5 @@ module bitty(
     assign reg6 = out[6];
     assign reg7 = out[7];
     assign reginst = instruction;
-
-    import "DPI-C" function void   evaluate_values(int instr, int out);
-
-    always @(posedge clk) begin
-        if(done) begin
-            evaluate_values({16'b0, instruction}, {16'b0, d_out});
-        end
-    end*/
 
 endmodule

@@ -151,7 +151,9 @@ int main(int argc, char **argv, char **env) {
             if(res_test!=top->d_out){
                 std::cout<<"Error"<<endl;
                 cout<<sim_time<<endl;
-                cout<<"Instuction: "<< instruction <<endl;
+                cout<<"Instuction emulator: "<< instruction <<endl;
+                cout<<"Instuction bigger: "<< top->instr <<endl;
+
                 cout<<rx << " " << alu_sel << " "<< ry<<endl;
                 cout<< "Expected result: "<<res_test<<endl;
                 cout<< "Actual result: "<<top->d_out<<endl;

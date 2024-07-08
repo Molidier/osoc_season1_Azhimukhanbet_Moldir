@@ -34,12 +34,30 @@ VL_MODULE(Vbigger) {
     VL_IN8(reset,0,0);
     VL_IN8(run,0,0);
     VL_OUT8(done,0,0);
+    VL_OUT16(instr,15,0);
+    VL_OUT16(rega,15,0);
+    VL_OUT16(regb,15,0);
+    VL_OUT16(regcc,15,0);
+    VL_OUT16(regss,15,0);
+    VL_OUT16(reg0,15,0);
+    VL_OUT16(reg1,15,0);
+    VL_OUT16(reg2,15,0);
+    VL_OUT16(reg3,15,0);
+    VL_OUT16(reg4,15,0);
+    VL_OUT16(reg5,15,0);
+    VL_OUT16(reg6,15,0);
+    VL_OUT16(reg7,15,0);
+    VL_OUT16(reginst,15,0);
     VL_OUT16(d_out,15,0);
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
+    CData/*0:0*/ bigger__DOT__run_bitty;
     CData/*7:0*/ bigger__DOT__addr;
     CData/*7:0*/ bigger__DOT__d_in;
+    CData/*0:0*/ bigger__DOT__en_instr;
+    CData/*0:0*/ bigger__DOT__instr_valid;
+    CData/*0:0*/ bigger__DOT__valid_bitty;
     CData/*2:0*/ bigger__DOT__instance3__DOT__mux_sel;
     CData/*7:0*/ bigger__DOT__instance3__DOT__en;
     CData/*0:0*/ bigger__DOT__instance3__DOT__en_s;
@@ -49,6 +67,8 @@ VL_MODULE(Vbigger) {
     CData/*1:0*/ bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state;
     CData/*1:0*/ bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state;
     SData/*15:0*/ bigger__DOT__mem_out;
+    SData/*15:0*/ bigger__DOT__instruction;
+    SData/*15:0*/ bigger__DOT__fetched_instruction;
     SData/*15:0*/ bigger__DOT__instance3__DOT__out_mux;
     SData/*15:0*/ bigger__DOT__instance3__DOT__instruction;
     SData/*15:0*/ bigger__DOT__instance3__DOT__regs;
@@ -59,7 +79,6 @@ VL_MODULE(Vbigger) {
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
     CData/*7:0*/ bigger__DOT____Vcellinp__instance1__d_in;
-    CData/*4:0*/ __Vtableidx1;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__reset;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
@@ -71,7 +90,6 @@ VL_MODULE(Vbigger) {
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
     IData/*31:0*/ __Vm_traceActivity;
-    static CData/*1:0*/ __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[32];
     
     // INTERNAL VARIABLES
     // Internals; generally not touched by application code
@@ -129,6 +147,7 @@ VL_MODULE(Vbigger) {
     static void traceChgThis__6(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__7(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__8(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceChgThis__9(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceFullThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
     static void traceFullThis__1(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
     static void traceInitThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
