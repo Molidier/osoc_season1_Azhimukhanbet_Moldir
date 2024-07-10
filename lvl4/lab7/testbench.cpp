@@ -100,8 +100,6 @@ int main(int argc, char **argv, char **env) {
 
 
 // TESTING WITHOUT DPI
-
-
 int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
     Vbigger* top = new Vbigger;
