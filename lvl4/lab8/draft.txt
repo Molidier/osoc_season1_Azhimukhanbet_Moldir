@@ -1,0 +1,7 @@
+sub r3 r3
+add r3 r2    second = res
+
+add r2 r1    res = second + first
+
+sub r1 r1
+add r1 r3    first = second
