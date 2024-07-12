@@ -116,7 +116,6 @@ int main(int argc, char **argv, char **env) {
 
 
     uint16_t pc = 0;
-    uint16_t next_pc = 0;
 
 
     top->reset = 1;
@@ -139,7 +138,7 @@ int main(int argc, char **argv, char **env) {
             top->eval();
             uint16_t reg_num = (instruction & 0xE000)>>13;
             uint16_t reg_val = emulator.GetRegisterValue(reg_num);
-            next_pc = emulator.Evaluate(pc);
+            emulator.Evaluate(pc);
             uint16_t res_test = emulator.GetRegisterValue(reg_num);
             
             rx = (instruction & 0xE000)>>13;
@@ -168,7 +167,7 @@ int main(int argc, char **argv, char **env) {
                 cout<<endl;
                 
             }
-            pc=next_pc;  
+            pc++;  
         }
         
         else{
