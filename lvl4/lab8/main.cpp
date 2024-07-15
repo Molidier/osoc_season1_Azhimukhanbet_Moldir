@@ -1,7 +1,7 @@
 using namespace std;
 
-#include "assemble.cpp"
-#include "dissemble.cpp"
+#include "assemble.h"
+#include "dissemble.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -14,26 +14,26 @@ using namespace std;
 
 
 int main(int argc, char* argv[]){
-   // if(argc < 3) showError("Error: Input file and action (-a or -d) required!");
+   // if(argc < 3) cout<<"Error: Input file and action (-a or -d) required!");
     
     string inputFile;
     string outputFile;
     bool assembleFlag = false;
     bool disassembleFlag = false;
     assemble assembler;
-    dissemble dissembler;
+    Dissembler dissembler;
     bool outFileFlag = false;
 
     for (int i = 0; i<argc;i++){
         string val = argv[i];
         if(val == "-i"){
             if(i+1<argc) inputFile = argv[++i];
-            else showError("Error: No input file");
+            else cout<<"Error: No input file"<<endl;
         }
         else if(val == "-o"){
             outFileFlag = true;
             if(i+1<argc) outputFile = argv[++i];
-            else showError("Error: No output file");
+            else cout<<"Error: No output file"<<endl;
 
         }
         else if(val == "-a"){
@@ -44,14 +44,14 @@ int main(int argc, char* argv[]){
         }
     }
 
-    if (inputFile.empty()) showError("Error: Input file is requiered!");
-    if(!assembleFlag &&!disassembleFlag) showError("Error: Either -a or -d flag must be specified!");
+    if (inputFile.empty()) cout<<"Error: Input file is requiered!"<<endl;
+    if(!assembleFlag &&!disassembleFlag) cout<< "Error: Either -a or -d flag must be specified!" << endl;
 
     if(assembleFlag){
         assembler.assembler(inputFile, outputFile);
     }
     else if(disassembleFlag){
-        dissembler.dissembler(inputFile, outputFile);
+        dissembler.dissemble(inputFile, outputFile);
     }
 
     if(!outFileFlag){

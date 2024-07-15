@@ -9,6 +9,7 @@ module mux(
     input [15:0] reg6,
     input [15:0] reg7,
     input [15:0] im_d,
+    input [15:0] def_val,
 
     input [3:0] mux_sel,
     output reg [15:0] mux_out
@@ -25,6 +26,7 @@ module mux(
             4'b0110: mux_out= reg6;
             4'b0111: mux_out= reg7;
             4'b1000: mux_out= im_d;
+            4'b1001: mux_out= def_val;
 
             default: mux_out= 16'b0;
         endcase

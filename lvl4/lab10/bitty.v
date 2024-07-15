@@ -63,7 +63,7 @@ module bitty(
                 .en(en[k]),
                 .d_in(regc),
                 .reset(reset),
-                .starting(16'h000A), // Corrected input signal name
+                .starting(16'h0000), // Corrected input signal name
                 .mux_out(out[k])      // Corrected output signal name
             );
         end
@@ -79,6 +79,7 @@ module bitty(
         .reg6(out[6]),
         .reg7(out[7]),
         .im_d(im_d),
+        .def_val(0),
         .mux_sel(mux_sel),
         .mux_out(out_mux)
     );

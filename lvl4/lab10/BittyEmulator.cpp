@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-        BittyEmulator::BittyEmulator() : registers_(16,10){
+        BittyEmulator::BittyEmulator() : registers_(16,0){
             std:: ifstream infile; 
             infile.open("instructions.txt", std::ios::in);
 
@@ -50,15 +50,15 @@ using namespace std;
                 switch (branch_cond)
                 {
                 case 0: if(compare_value == 0){
-                    return address + branch_immid;
+                    return branch_immid;
                     }
                     break;
                 case 1: if(compare_value == 1){
-                    return address + branch_immid;
+                    return branch_immid;
                     }
                     break;
                 case 2: if(compare_value == 2){
-                    return address + branch_immid;
+                    return branch_immid;
                     }
                     break;
                 default: return address + 1;

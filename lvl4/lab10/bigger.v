@@ -9,10 +9,11 @@ module bigger(
     output [15:0] d_out
 );
 
-    typedef enum reg [1:0] { 
+    typedef enum  logic [1:0] { 
         S0 = 2'b00,
-        S1 = 2'b01
-       
+        S1 = 2'b01,
+        S2 = 2'b10,
+        S3 = 2'b11
     } states;
 
     states cur_state, next_state;
@@ -54,7 +55,7 @@ module bigger(
             S0: begin
                 run_bitty = 0;
             end 
-            S1:  run_bitty = 1;
+            S3:  run_bitty = 1;
             default: run_bitty = 0;
         endcase
     end
@@ -63,6 +64,8 @@ module bigger(
     always @(posedge clk) begin
         if(run) begin
             cur_state <= next_state;
+          //  $display("cur_state: ", cur_state);
+            //$display("instr: ", instr);
         end
         if(reset || done) begin
             cur_state<= S0;
@@ -72,7 +75,9 @@ module bigger(
     always @(*) begin
         case(cur_state)
             S0: next_state = S1;
-            S1: next_state = S1;
+            S1: next_state = S2;
+            S2: next_state = S3;
+            S3: next_state = S0;
             default: next_state = S0;
         endcase
     end

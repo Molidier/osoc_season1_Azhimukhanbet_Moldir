@@ -7,7 +7,7 @@
 #include "BittyInstructionGenerator.h"
 #include <cassert>
 
-#define MAX_SIM_TIME 500
+#define MAX_SIM_TIME 60
 vluint64_t sim_time = 0;
 
 extern "C" void notify_counter_nine_1() {
@@ -109,9 +109,9 @@ int main(int argc, char **argv, char **env) {
     top->trace(m_trace, 5);
     m_trace->open("waveform.vcd");
 
-    BittyInstructionGenerator generator;
+    //BittyInstructionGenerator generator;
     uint16_t rx, ry, alu_sel, instruction;
-    generator.Generate();
+    //generator.Generate();
     BittyEmulator emulator;
 
 
@@ -138,7 +138,7 @@ int main(int argc, char **argv, char **env) {
             top->eval();
             uint16_t reg_num = (instruction & 0xE000)>>13;
             uint16_t reg_val = emulator.GetRegisterValue(reg_num);
-            emulator.Evaluate(pc);
+            uint16_t next_address = emulator.Evaluate(pc);
             uint16_t res_test = emulator.GetRegisterValue(reg_num);
             
             rx = (instruction & 0xE000)>>13;
@@ -167,7 +167,7 @@ int main(int argc, char **argv, char **env) {
                 cout<<endl;
                 
             }
-            pc++;  
+            pc = next_address;  
         }
         
         else{

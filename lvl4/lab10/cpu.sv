@@ -49,41 +49,52 @@ module cpu(
             en_s = 0;
             en_c = 0;
             done = 0;
-            //mux_sel = 3'b0;
+            mux_sel = 4'b1001;
             sel = 3'b0;
             en = 8'b0;
             case (cur_state)
                 S0: begin
-                    en_s = 1;
-                    mux_sel = {1'b0,d_inst[15:13]};
-                    $display("S0 state ", mux_sel);
+                    if(format!=2'b10) begin
+                        en_s = 1;
+                        mux_sel = {1'b0,d_inst[15:13]};
+                        if(format == 2'b01) begin
+                            im_d = {8'b0, d_inst[12:5]}; 
+                            
+                        end
+                    end
                     done = 0;
+                    //$display("instruction: ", d_inst);
+                    $display("S0 state ", mux_sel);
+                    
                     en_inst = 1;
                 /*    if(en_s) begin
                         notify_counter_nine_1();
                     end*/
                 end
                 S1: begin
-                    if(format==0) begin
-                        mux_sel = {1'b0, d_inst[12:10]};
-                         //$display("HERE");
+                    // Default assignment to handle other values of format
+                    if(format!=2'b10) begin
+                        if(format == 2'b00) begin
+                            mux_sel = {1'b0, d_inst[12:10]};
+                        end
+                        else if(format == 2'b01) begin
+                            mux_sel = 4'b1000;
+                        end
+                        else begin
+                            mux_sel = 4'b1001;
+                        end
+                        $display("S1 state ", mux_sel);
+                    // $display("instruction: ", d_inst);
+                        sel = d_inst[4:2];
                     end
-                    else if(format==1) begin
-                        mux_sel = 4'b1000;
-                         //$display("ELSE HERE");
-                        im_d = {8'b0,d_inst[12:5]};
-                    end
-                    $display("S1 state ", mux_sel);
-                    en_c = 1;
-                    sel = d_inst[4:2];
-                    en_inst = 0;
-                    /*if(en_s) begin
-                        notify_counter_nine_2();
-                    end*/
 
+                    en_inst = 0;
+                    en_c = 1;
                 end
+
                 S2: begin
                     //en = 8'b0;
+                    
                     if (format!=2'b10) begin
                         en[d_inst[15:13]] = 1;
                     end
@@ -109,9 +120,7 @@ module cpu(
         if (reset) begin
             cur_state <= S0;
         end 
-        else if(format == 2'b10) begin
-            cur_state <= S2;
-        end
+
         else begin
             cur_state <= next_state;
         end
@@ -121,6 +130,9 @@ module cpu(
 
     // Next state combinational logic
     always @(*) begin
+        /*if(format == 2'b10) begin
+            cur_state = S2;
+        end*/
         case (cur_state)
             S0: next_state = (run==1) ? S1:S0;
             S1: next_state = (en_c==1) ? S2:S1;

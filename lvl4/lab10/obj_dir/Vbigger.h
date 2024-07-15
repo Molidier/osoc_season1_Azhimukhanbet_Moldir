@@ -32,8 +32,8 @@ VL_MODULE(Vbigger) {
     // propagate new values into/out from the Verilated model.
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
-    VL_OUT8(done,0,0);
     VL_IN8(run,0,0);
+    VL_OUT8(done,0,0);
     VL_OUT16(instr,15,0);
     VL_OUT16(d_out,15,0);
     
@@ -45,8 +45,6 @@ VL_MODULE(Vbigger) {
     CData/*7:0*/ bigger__DOT__new_pc;
     CData/*7:0*/ bigger__DOT__d_in;
     CData/*0:0*/ bigger__DOT__instr_valid;
-    CData/*0:0*/ bigger__DOT__instance4__DOT__cur_state;
-    CData/*0:0*/ bigger__DOT__instance4__DOT__next_state;
     CData/*3:0*/ bigger__DOT__instance3__DOT__mux_sel;
     CData/*7:0*/ bigger__DOT__instance3__DOT__en;
     CData/*0:0*/ bigger__DOT__instance3__DOT__en_s;
@@ -69,7 +67,6 @@ VL_MODULE(Vbigger) {
     CData/*4:0*/ __Vtableidx1;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__reset;
-    CData/*0:0*/ __Vclklast__TOP__done;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -113,7 +110,6 @@ VL_MODULE(Vbigger) {
     static QData _change_request(Vbigger__Syms* __restrict vlSymsp);
   public:
     static void _combo__TOP__6(Vbigger__Syms* __restrict vlSymsp);
-    static void _combo__TOP__9(Vbigger__Syms* __restrict vlSymsp);
   private:
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
@@ -130,7 +126,6 @@ VL_MODULE(Vbigger) {
     static void _sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp);
     static void _sequent__TOP__5(Vbigger__Syms* __restrict vlSymsp);
     static void _sequent__TOP__7(Vbigger__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__8(Vbigger__Syms* __restrict vlSymsp);
     static void _settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void traceChgThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
