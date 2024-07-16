@@ -64,7 +64,7 @@ module cpu(
                     end
                     done = 0;
                     //$display("instruction: ", d_inst);
-                    $display("S0 state ", mux_sel);
+                    //$display("S0 state ", mux_sel);
                     
                     en_inst = 1;
                 /*    if(en_s) begin
@@ -72,7 +72,6 @@ module cpu(
                     end*/
                 end
                 S1: begin
-                    // Default assignment to handle other values of format
                     if(format!=2'b10) begin
                         if(format == 2'b00) begin
                             mux_sel = {1'b0, d_inst[12:10]};
@@ -83,7 +82,7 @@ module cpu(
                         else begin
                             mux_sel = 4'b1001;
                         end
-                        $display("S1 state ", mux_sel);
+                        //$display("S1 state ", mux_sel);
                     // $display("instruction: ", d_inst);
                         sel = d_inst[4:2];
                     end

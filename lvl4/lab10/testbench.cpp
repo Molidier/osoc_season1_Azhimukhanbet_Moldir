@@ -7,7 +7,7 @@
 #include "BittyInstructionGenerator.h"
 #include <cassert>
 
-#define MAX_SIM_TIME 60
+#define MAX_SIM_TIME 130
 vluint64_t sim_time = 0;
 
 extern "C" void notify_counter_nine_1() {
@@ -110,7 +110,7 @@ int main(int argc, char **argv, char **env) {
     m_trace->open("waveform.vcd");
 
     //BittyInstructionGenerator generator;
-    uint16_t rx, ry, alu_sel, instruction;
+    uint16_t rx, ry, alu_sel, instruction, format, res_test;
     //generator.Generate();
     BittyEmulator emulator;
 
@@ -139,33 +139,43 @@ int main(int argc, char **argv, char **env) {
             uint16_t reg_num = (instruction & 0xE000)>>13;
             uint16_t reg_val = emulator.GetRegisterValue(reg_num);
             uint16_t next_address = emulator.Evaluate(pc);
-            uint16_t res_test = emulator.GetRegisterValue(reg_num);
+            format = (instruction & 0x0003);
+            res_test = emulator.GetRegisterValue(reg_num);
+
+            /*if(format== 0 || format == 1){
+            }
+            else{
+                uint16_t prev_instruction = emulator.GetInstructionValue(pc-1);
+                uint16_t prev_reg_num = (instruction & 0xE000)>>13;
+                res_test = emulator.GetRegisterValue(prev_reg_num);
+            }*/
             
             rx = (instruction & 0xE000)>>13;
             ry = (instruction & 0x1C00)>>10;
             alu_sel = (instruction & 0x001C)>>2;
 
-         
-            if(res_test!=top->d_out){
-                std::cout<<"Error"<<endl;
-                cout<<sim_time<<endl;
-                cout<<"Instuction emulator: "<< instruction <<endl;
-                cout<<"Instuction bigger: "<< top->instr <<endl;
+            if(format!=2){
+                if(res_test!=top->d_out){
+                    std::cout<<"Error"<<endl;
+                    cout<<sim_time<<endl;
+                    cout<<"Instuction emulator: "<< instruction <<endl;
+                    cout<<"Instuction bigger: "<< top->instr <<endl;
 
-                cout<<rx << " " << alu_sel << " "<< ry<<endl;
-                cout<< "Expected result: "<<res_test<<endl;
-                cout<< "Actual result: "<<top->d_out<<endl;
-                cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
-                cout<<endl;
-            }
-            else{
-                cout<<"GOOD!!"<<endl;
-                cout<<sim_time<<endl;
-                cout<<"Instuction: "<< instruction << ". Result: "<<res_test<<endl;
-                cout<<rx << " " << alu_sel << " "<< ry<<endl;
-                cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
-                cout<<endl;
-                
+                    cout<<rx << " " << alu_sel << " "<< ry<<endl;
+                    cout<< "Expected result: "<<res_test<<endl;
+                    cout<< "Actual result: "<<top->d_out<<endl;
+                    cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
+                    cout<<endl;
+                }
+                else{
+                    cout<<"GOOD!!"<<endl;
+                    cout<<sim_time<<endl;
+                    cout<<"Instuction: "<< instruction << ". Result: "<<res_test<<endl;
+                    cout<<rx << " " << alu_sel << " "<< ry<<endl;
+                    cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
+                    cout<<endl;
+                    
+                }
             }
             pc = next_address;  
         }

@@ -1,6 +1,11 @@
-addi r1 1
-addi r2 2
+addi r1 3
+addi r2 5
+cmp r1 r2 
+bil 7
+addi r1 10
 cmp r1 r2
-bie 5
-addi r3 5
-add r2 r1
+big 10
+add r3 r1
+cmp r3 r1
+bie 4
+add r3 r2

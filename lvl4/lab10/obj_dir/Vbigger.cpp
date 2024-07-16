@@ -278,7 +278,7 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
         vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
         vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
         vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-        if (VL_UNLIKELY((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
+        if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
             if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
                 vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
                 vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
@@ -292,10 +292,9 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
             }
             vlTOPp->done = 0U;
             vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-            VL_WRITEF("S0 state %x\n",4,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
         } else {
             if ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                if (VL_UNLIKELY((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction))))) {
+                if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
                     vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
                         = ((0U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                             ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
@@ -305,7 +304,6 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
                                                     & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                                                    ? 8U
                                                    : 9U));
-                    VL_WRITEF("S1 state %x\n",4,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
                     vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
                         = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
                                  >> 2U));
@@ -314,9 +312,6 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
                 vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
             } else {
                 if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                    if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
-                    }
                     if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
                         vlTOPp->bigger__DOT__instance3__DOT__en 
                             = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
@@ -325,6 +320,9 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
                                                      >> 0xdU))));
                     }
                     vlTOPp->done = 1U;
+                    if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
+                    }
                 } else {
                     vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
                     vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
@@ -342,44 +340,50 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
                 vlTOPp->bigger__DOT__new_pc = (0xffU 
                                                & ((IData)(vlTOPp->bigger__DOT__mem_out) 
                                                   >> 4U));
-                VL_WRITEF("here: %x\n",8,(0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                   >> 4U)));
+                VL_WRITEF("branching to: %x\n",8,(0xffU 
+                                                  & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                                     >> 4U)));
             } else {
                 vlTOPp->bigger__DOT__new_pc = (0xffU 
                                                & ((IData)(1U) 
                                                   + (IData)(vlTOPp->bigger__DOT__addr)));
             }
         } else {
-            vlTOPp->bigger__DOT__new_pc = (0xffU & 
-                                           ((1U == 
-                                             (3U & 
-                                              ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                               >> 2U)))
-                                             ? ((1U 
-                                                 == (IData)(vlTOPp->d_out))
-                                                 ? 
-                                                ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                 >> 4U)
-                                                 : 
-                                                ((IData)(1U) 
-                                                 + (IData)(vlTOPp->bigger__DOT__addr)))
-                                             : ((2U 
-                                                 == 
-                                                 (3U 
-                                                  & ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                     >> 2U)))
-                                                 ? 
-                                                ((2U 
-                                                  == (IData)(vlTOPp->d_out))
-                                                  ? 
-                                                 ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                  >> 4U)
-                                                  : 
-                                                 ((IData)(1U) 
-                                                  + (IData)(vlTOPp->bigger__DOT__addr)))
-                                                 : 
-                                                ((IData)(1U) 
-                                                 + (IData)(vlTOPp->bigger__DOT__addr)))));
+            if ((1U == (3U & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                              >> 2U)))) {
+                if (VL_UNLIKELY((1U == (IData)(vlTOPp->d_out)))) {
+                    VL_WRITEF("branching to: %x\n",
+                              8,(0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                          >> 4U)));
+                    vlTOPp->bigger__DOT__new_pc = (0xffU 
+                                                   & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                                      >> 4U));
+                } else {
+                    vlTOPp->bigger__DOT__new_pc = (0xffU 
+                                                   & ((IData)(1U) 
+                                                      + (IData)(vlTOPp->bigger__DOT__addr)));
+                }
+            } else {
+                if ((2U == (3U & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                  >> 2U)))) {
+                    if (VL_UNLIKELY((2U == (IData)(vlTOPp->d_out)))) {
+                        VL_WRITEF("branching to: %x\n",
+                                  8,(0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                              >> 4U)));
+                        vlTOPp->bigger__DOT__new_pc 
+                            = (0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                        >> 4U));
+                    } else {
+                        vlTOPp->bigger__DOT__new_pc 
+                            = (0xffU & ((IData)(1U) 
+                                        + (IData)(vlTOPp->bigger__DOT__addr)));
+                    }
+                } else {
+                    vlTOPp->bigger__DOT__new_pc = (0xffU 
+                                                   & ((IData)(1U) 
+                                                      + (IData)(vlTOPp->bigger__DOT__addr)));
+                }
+            }
         }
     } else {
         vlTOPp->bigger__DOT__new_pc = (0xffU & ((IData)(1U) 
@@ -473,7 +477,7 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
         vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
         vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
         vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-        if (VL_UNLIKELY((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))) {
+        if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
             if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
                 vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
                 vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
@@ -487,10 +491,9 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
             }
             vlTOPp->done = 0U;
             vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-            VL_WRITEF("S0 state %x\n",4,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
         } else {
             if ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                if (VL_UNLIKELY((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction))))) {
+                if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
                     vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
                         = ((0U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                             ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
@@ -500,7 +503,6 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
                                                     & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                                                    ? 8U
                                                    : 9U));
-                    VL_WRITEF("S1 state %x\n",4,vlTOPp->bigger__DOT__instance3__DOT__mux_sel);
                     vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
                         = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
                                  >> 2U));
@@ -509,9 +511,6 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
                 vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
             } else {
                 if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                    if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
-                    }
                     if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
                         vlTOPp->bigger__DOT__instance3__DOT__en 
                             = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
@@ -520,6 +519,9 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
                                                      >> 0xdU))));
                     }
                     vlTOPp->done = 1U;
+                    if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
+                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
+                    }
                 } else {
                     vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
                     vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
@@ -579,44 +581,50 @@ VL_INLINE_OPT void Vbigger::_sequent__TOP__7(Vbigger__Syms* __restrict vlSymsp) 
                 vlTOPp->bigger__DOT__new_pc = (0xffU 
                                                & ((IData)(vlTOPp->bigger__DOT__mem_out) 
                                                   >> 4U));
-                VL_WRITEF("here: %x\n",8,(0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                   >> 4U)));
+                VL_WRITEF("branching to: %x\n",8,(0xffU 
+                                                  & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                                     >> 4U)));
             } else {
                 vlTOPp->bigger__DOT__new_pc = (0xffU 
                                                & ((IData)(1U) 
                                                   + (IData)(vlTOPp->bigger__DOT__addr)));
             }
         } else {
-            vlTOPp->bigger__DOT__new_pc = (0xffU & 
-                                           ((1U == 
-                                             (3U & 
-                                              ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                               >> 2U)))
-                                             ? ((1U 
-                                                 == (IData)(vlTOPp->d_out))
-                                                 ? 
-                                                ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                 >> 4U)
-                                                 : 
-                                                ((IData)(1U) 
-                                                 + (IData)(vlTOPp->bigger__DOT__addr)))
-                                             : ((2U 
-                                                 == 
-                                                 (3U 
-                                                  & ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                     >> 2U)))
-                                                 ? 
-                                                ((2U 
-                                                  == (IData)(vlTOPp->d_out))
-                                                  ? 
-                                                 ((IData)(vlTOPp->bigger__DOT__mem_out) 
-                                                  >> 4U)
-                                                  : 
-                                                 ((IData)(1U) 
-                                                  + (IData)(vlTOPp->bigger__DOT__addr)))
-                                                 : 
-                                                ((IData)(1U) 
-                                                 + (IData)(vlTOPp->bigger__DOT__addr)))));
+            if ((1U == (3U & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                              >> 2U)))) {
+                if (VL_UNLIKELY((1U == (IData)(vlTOPp->d_out)))) {
+                    VL_WRITEF("branching to: %x\n",
+                              8,(0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                          >> 4U)));
+                    vlTOPp->bigger__DOT__new_pc = (0xffU 
+                                                   & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                                      >> 4U));
+                } else {
+                    vlTOPp->bigger__DOT__new_pc = (0xffU 
+                                                   & ((IData)(1U) 
+                                                      + (IData)(vlTOPp->bigger__DOT__addr)));
+                }
+            } else {
+                if ((2U == (3U & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                  >> 2U)))) {
+                    if (VL_UNLIKELY((2U == (IData)(vlTOPp->d_out)))) {
+                        VL_WRITEF("branching to: %x\n",
+                                  8,(0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                              >> 4U)));
+                        vlTOPp->bigger__DOT__new_pc 
+                            = (0xffU & ((IData)(vlTOPp->bigger__DOT__mem_out) 
+                                        >> 4U));
+                    } else {
+                        vlTOPp->bigger__DOT__new_pc 
+                            = (0xffU & ((IData)(1U) 
+                                        + (IData)(vlTOPp->bigger__DOT__addr)));
+                    }
+                } else {
+                    vlTOPp->bigger__DOT__new_pc = (0xffU 
+                                                   & ((IData)(1U) 
+                                                      + (IData)(vlTOPp->bigger__DOT__addr)));
+                }
+            }
         }
     } else {
         vlTOPp->bigger__DOT__new_pc = (0xffU & ((IData)(1U) 

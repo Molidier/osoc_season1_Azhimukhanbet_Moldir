@@ -61,7 +61,7 @@ module branch_logic (
             2'b00: begin
                 if (last_alu_result == 0) begin
                     new_pc = immediate;
-                    $display("here: ", immediate);
+                    $display("branching to: ", immediate);
                 end else begin
                     new_pc = address + 1;
                 end
@@ -69,6 +69,7 @@ module branch_logic (
             2'b01: begin
                 if (last_alu_result == 1) begin
                     new_pc = immediate;
+                    $display("branching to: ", immediate);
                 end else begin
                     new_pc = address + 1;
                 end  
@@ -76,6 +77,7 @@ module branch_logic (
             2'b10: begin
                 if (last_alu_result == 2) begin
                     new_pc = immediate;
+                    $display("branching to: ", immediate);
                 end else begin
                     new_pc = address + 1;
                 end  
