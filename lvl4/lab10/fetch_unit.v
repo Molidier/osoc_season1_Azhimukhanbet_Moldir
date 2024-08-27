@@ -1,4 +1,5 @@
 /******* fetch_unit.sv ****/
+/* verilator lint_off DECLFILENAME */
 module memory(
     input clk,
     input [7:0] addr,
@@ -34,9 +35,9 @@ endmodule
 
 module branch_logic (
     input [7:0] address,
+    /* verilator lint_off UNUSED */
     input [15:0] instruction,
     input [15:0] last_alu_result,
-    input done,
     output reg [7:0] new_pc
 );
    /* typedef enum  logic [1:0] { 
@@ -48,9 +49,9 @@ module branch_logic (
 
     //states cur_state, next_state;
 
-    logic [1:0] branch_cond;
-    logic [7:0] immediate;
-    logic [1:0] format;
+    reg [1:0] branch_cond;
+    reg [7:0] immediate;
+    reg [1:0] format;
     assign branch_cond = instruction[3:2];
     assign immediate = instruction[11:4];
     assign format = instruction[1:0];

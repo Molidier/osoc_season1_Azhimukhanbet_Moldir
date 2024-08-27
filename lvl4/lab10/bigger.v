@@ -1,6 +1,7 @@
 /* verilator lint_off MODDUP */
 module bigger(
     input clk,
+    /* verilator lint_off SYNCASYNCNET */
     input reset,
     input run,
 
@@ -9,26 +10,23 @@ module bigger(
     output [15:0] d_out
 );
 
-    typedef enum  logic [1:0] { 
-        S0 = 2'b00,
-        S1 = 2'b01,
-        S2 = 2'b10,
-        S3 = 2'b11
-    } states;
+ 
+    parameter S0 = 2'b00;
+    parameter S1 = 2'b01;
+    parameter S2 = 2'b10;
+    parameter S3 = 2'b11;
 
-    states cur_state, next_state;
+    reg [1:0] cur_state, next_state;
 
-    logic run_bitty;
-    logic [15:0] mem_out;
-    logic [7:0] addr;
-    logic [7:0] new_pc;
-    logic [7:0] d_in;
+    reg run_bitty;
+    reg [15:0] mem_out;
+    reg [7:0] addr;
+    reg [7:0] new_pc;
 
     branch_logic instance4(
         .address(addr),
         .instruction(mem_out),
         .last_alu_result(d_out),
-        .done(done),
         .new_pc(new_pc)
     );
 
@@ -48,7 +46,6 @@ module bigger(
 
 
 
-    logic instr_valid;
 
     always @(*) begin
         case (cur_state)

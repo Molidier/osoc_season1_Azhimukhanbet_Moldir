@@ -43,8 +43,6 @@ VL_MODULE(Vbigger) {
     CData/*1:0*/ bigger__DOT__next_state;
     CData/*7:0*/ bigger__DOT__addr;
     CData/*7:0*/ bigger__DOT__new_pc;
-    CData/*7:0*/ bigger__DOT__d_in;
-    CData/*0:0*/ bigger__DOT__instr_valid;
     CData/*3:0*/ bigger__DOT__instance3__DOT__mux_sel;
     CData/*7:0*/ bigger__DOT__instance3__DOT__en;
     CData/*0:0*/ bigger__DOT__instance3__DOT__en_s;
@@ -125,8 +123,9 @@ VL_MODULE(Vbigger) {
     static void _sequent__TOP__1(Vbigger__Syms* __restrict vlSymsp);
     static void _sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp);
     static void _sequent__TOP__5(Vbigger__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__7(Vbigger__Syms* __restrict vlSymsp);
+    static void _sequent__TOP__8(Vbigger__Syms* __restrict vlSymsp);
     static void _settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _settle__TOP__7(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void traceChgThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__3(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);

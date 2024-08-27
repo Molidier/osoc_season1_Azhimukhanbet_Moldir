@@ -24,7 +24,9 @@ using namespace std;
                 cerr<<"Error opening file"<<endl;
             }
         }
-
+        /*
+        step instruction -> compare PC -> last computed value 
+         */
         uint16_t BittyEmulator::Evaluate(uint16_t address){
             uint16_t instruction = memory_array[address];
             uint16_t format = (instruction & 0x0003);

@@ -27,6 +27,7 @@ extern "C" void BittyInstructionGenerator::Generate(){
             else if(format==3){
                 instruction = instruction & 0xFFFE;
             }
+                 
             std::cout<<"Instruction generated: "<<instruction<<std::endl;
 
             file<< std::hex << std::setw(4)<< std:: setfill('0')<< instruction<<std::endl;

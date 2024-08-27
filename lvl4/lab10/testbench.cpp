@@ -160,8 +160,15 @@ int main(int argc, char **argv, char **env) {
                     cout<<sim_time<<endl;
                     cout<<"Instuction emulator: "<< instruction <<endl;
                     cout<<"Instuction bigger: "<< top->instr <<endl;
-
+                    
+                    if(format==0){
                     cout<<rx << " " << alu_sel << " "<< ry<<endl;
+                    }
+                    else if(format==1){
+                        uint16_t immed = (instruction & 0xEFE0) >>5;
+                        cout<<rx << " " << immed <<endl;
+
+                    }
                     cout<< "Expected result: "<<res_test<<endl;
                     cout<< "Actual result: "<<top->d_out<<endl;
                     cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;

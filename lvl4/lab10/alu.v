@@ -1,22 +1,22 @@
 /****** alu.sv ******/
-typedef enum logic [2:0]{
-    ADD = 3'b000, 
-    SUB = 3'b001,
-    AND = 3'b010,
-    OR =  3'b011,
-    XOR = 3'b100,
-    SHL = 3'b101,
-    SHR = 3'b110,
-    CMP = 3'b111
-} sel_type;
+
 
 module alu(
-    input sel_type select,
+    input [2:0] select,
     input [15:0] in_a,
     input [15:0] in_b,
     output reg [15:0] alu_out
 );
-    logic [15:0] res; 
+    reg [15:0] res; 
+
+    parameter ADD = 3'b000; 
+    parameter SUB = 3'b001;
+    parameter AND = 3'b010;
+    parameter OR =  3'b011;
+    parameter XOR = 3'b100;
+    parameter SHL = 3'b101;
+    parameter SHR = 3'b110;
+    parameter CMP = 3'b111;
 
     always @(*) begin
         case (select)

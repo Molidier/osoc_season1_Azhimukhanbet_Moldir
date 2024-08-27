@@ -262,76 +262,113 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
                                             ? 0U : 3U)
                                         : ((1U & (IData)(vlTOPp->bigger__DOT__cur_state))
                                             ? 2U : 1U));
-    vlTOPp->instr = vlTOPp->bigger__DOT__mem_out;
-    if (vlTOPp->reset) {
+    vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
+            = ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
+                ? 0U : ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
+                         ? ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                             ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                      >> 2U)) : 0U)
+                         : 0U));
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__en_inst = 
+        ((~ (IData)(vlTOPp->reset)) & ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                                       | ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                                          & (2U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))));
+    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
         vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-        vlTOPp->done = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
-    } else {
-        vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-        vlTOPp->done = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
-        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
         if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-            if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
-                vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
-                    = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                             >> 0xdU));
-                if ((1U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                    vlTOPp->bigger__DOT__instance3__DOT__im_d 
-                        = (0xffU & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                    >> 5U));
+            vlTOPp->bigger__DOT__instance3__DOT__en_s 
+                = (2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)));
+        } else {
+            if ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                if ((2U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
                 }
             }
-            vlTOPp->done = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+        }
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+        if ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            if ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                vlTOPp->bigger__DOT__instance3__DOT__en 
+                    = ((2U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
+                        ? ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                            ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
+                               | ((IData)(1U) << (7U 
+                                                  & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                                     >> 0xdU))))
+                            : 0U) : 0U);
+            }
+        }
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
+        if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
+                = ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                    ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                             >> 0xdU)) : 9U);
         } else {
             if ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
-                        = ((0U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
+                    = ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                        ? ((0U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                             ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
                                      >> 0xaU)) : ((1U 
                                                    == 
                                                    (3U 
                                                     & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                                                    ? 8U
-                                                   : 9U));
-                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
-                        = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                 >> 2U));
-                }
-                vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
-                vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
+                                                   : 9U))
+                        : 9U);
             } else {
-                if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                    if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                        vlTOPp->bigger__DOT__instance3__DOT__en 
-                            = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                               | ((IData)(1U) << (7U 
-                                                  & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                                     >> 0xdU))));
-                    }
-                    vlTOPp->done = 1U;
-                    if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
-                    }
-                } else {
-                    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-                    vlTOPp->done = 0U;
-                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-                    vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+                if ((2U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
                 }
             }
         }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->bigger__DOT__instance3__DOT__im_d = 0U;
+    } else {
+        vlTOPp->bigger__DOT__instance3__DOT__im_d = 
+            (0xffU & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                      >> 5U));
+        if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
+                vlTOPp->bigger__DOT__instance3__DOT__im_d 
+                    = ((1U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                        ? (0xffU & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                    >> 5U)) : 0U);
+            }
+        }
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+        if ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            if ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
+            } else {
+                if ((2U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+                }
+            }
+        }
+    }
+    vlTOPp->instr = vlTOPp->bigger__DOT__mem_out;
+    vlTOPp->done = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->done = 0U;
+        vlTOPp->done = ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                        & ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                           & (2U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
     }
     if ((2U == (3U & (IData)(vlTOPp->bigger__DOT__mem_out)))) {
         if ((0U == (3U & ((IData)(vlTOPp->bigger__DOT__mem_out) 
@@ -389,30 +426,6 @@ void Vbigger::_settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) {
         vlTOPp->bigger__DOT__new_pc = (0xffU & ((IData)(1U) 
                                                 + (IData)(vlTOPp->bigger__DOT__addr)));
     }
-    vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
-        ((8U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-          ? ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-              ? 0U : ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                       ? 0U : ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                                ? 0U : (IData)(vlTOPp->bigger__DOT__instance3__DOT__im_d))))
-          : ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-              ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                  ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                      ? vlTOPp->bigger__DOT__instance3__DOT__out
-                     [7U] : vlTOPp->bigger__DOT__instance3__DOT__out
-                     [6U]) : ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                               ? vlTOPp->bigger__DOT__instance3__DOT__out
-                              [5U] : vlTOPp->bigger__DOT__instance3__DOT__out
-                              [4U])) : ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                                         ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                                             ? vlTOPp->bigger__DOT__instance3__DOT__out
-                                            [3U] : 
-                                            vlTOPp->bigger__DOT__instance3__DOT__out
-                                            [2U]) : 
-                                        ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
-                                          ? vlTOPp->bigger__DOT__instance3__DOT__out
-                                         [1U] : vlTOPp->bigger__DOT__instance3__DOT__out
-                                         [0U]))));
     vlTOPp->__Vtableidx1 = (((IData)(vlTOPp->done) 
                              << 4U) | (((IData)(vlTOPp->bigger__DOT__instance3__DOT__en_c) 
                                         << 3U) | ((
@@ -433,6 +446,8 @@ void Vbigger::_initial__TOP__4(Vbigger__Syms* __restrict vlSymsp) {
     // Variables
     WData/*127:0*/ __Vtemp1[4];
     // Body
+    vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+    vlTOPp->bigger__DOT__instance3__DOT__im_d = 0U;
     __Vtemp1[0U] = 0x2e747874U;
     __Vtemp1[1U] = 0x696f6e73U;
     __Vtemp1[2U] = 0x72756374U;
@@ -462,75 +477,112 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vbigger::_combo__TOP__6\n"); );
     Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    if (vlTOPp->reset) {
+    vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
+            = ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
+                ? 0U : ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
+                         ? ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                             ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                      >> 2U)) : 0U)
+                         : 0U));
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__en_inst = 
+        ((~ (IData)(vlTOPp->reset)) & ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                                       | ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                                          & (2U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)))));
+    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
         vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-        vlTOPp->done = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
-    } else {
-        vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-        vlTOPp->done = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
-        vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
         if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-            if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                vlTOPp->bigger__DOT__instance3__DOT__en_s = 1U;
-                vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
-                    = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                             >> 0xdU));
-                if ((1U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                    vlTOPp->bigger__DOT__instance3__DOT__im_d 
-                        = (0xffU & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                    >> 5U));
+            vlTOPp->bigger__DOT__instance3__DOT__en_s 
+                = (2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)));
+        } else {
+            if ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                if ((2U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
                 }
             }
-            vlTOPp->done = 0U;
-            vlTOPp->bigger__DOT__instance3__DOT__en_inst = 1U;
+        }
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+        if ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            if ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                vlTOPp->bigger__DOT__instance3__DOT__en 
+                    = ((2U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))
+                        ? ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                            ? ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
+                               | ((IData)(1U) << (7U 
+                                                  & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                                     >> 0xdU))))
+                            : 0U) : 0U);
+            }
+        }
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
+        if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
+                = ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                    ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                             >> 0xdU)) : 9U);
         } else {
             if ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
-                        = ((0U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                vlTOPp->bigger__DOT__instance3__DOT__mux_sel 
+                    = ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                        ? ((0U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                             ? (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
                                      >> 0xaU)) : ((1U 
                                                    == 
                                                    (3U 
                                                     & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
                                                    ? 8U
-                                                   : 9U));
-                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel 
-                        = (7U & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                 >> 2U));
-                }
-                vlTOPp->bigger__DOT__instance3__DOT__en_inst = 0U;
-                vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
+                                                   : 9U))
+                        : 9U);
             } else {
-                if ((3U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
-                    if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
-                        vlTOPp->bigger__DOT__instance3__DOT__en 
-                            = ((IData)(vlTOPp->bigger__DOT__instance3__DOT__en) 
-                               | ((IData)(1U) << (7U 
-                                                  & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
-                                                     >> 0xdU))));
-                    }
-                    vlTOPp->done = 1U;
-                    if (vlTOPp->bigger__DOT__instance3__DOT__en_s) {
-                        vlSymsp->TOP____024unit.__Vdpiimwrap_notify_counter_nine_3_TOP____024unit();
-                    }
-                } else {
-                    vlTOPp->bigger__DOT__instance3__DOT__en_s = 0U;
-                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
-                    vlTOPp->done = 0U;
-                    vlTOPp->bigger__DOT__instance3__DOT__alu_sel = 0U;
-                    vlTOPp->bigger__DOT__instance3__DOT__en = 0U;
+                if ((2U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                    vlTOPp->bigger__DOT__instance3__DOT__mux_sel = 9U;
                 }
             }
         }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->bigger__DOT__instance3__DOT__im_d = 0U;
+    } else {
+        vlTOPp->bigger__DOT__instance3__DOT__im_d = 
+            (0xffU & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                      >> 5U));
+        if ((0U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            if ((2U != (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))) {
+                vlTOPp->bigger__DOT__instance3__DOT__im_d 
+                    = ((1U == (3U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction)))
+                        ? (0xffU & ((IData)(vlTOPp->bigger__DOT__instance3__DOT__instruction) 
+                                    >> 5U)) : 0U);
+            }
+        }
+    }
+    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+        if ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+            if ((1U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                vlTOPp->bigger__DOT__instance3__DOT__en_c = 1U;
+            } else {
+                if ((2U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))) {
+                    vlTOPp->bigger__DOT__instance3__DOT__en_c = 0U;
+                }
+            }
+        }
+    }
+    vlTOPp->done = 0U;
+    if ((1U & (~ (IData)(vlTOPp->reset)))) {
+        vlTOPp->done = 0U;
+        vlTOPp->done = ((0U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                        & ((1U != (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state)) 
+                           & (2U == (IData)(vlTOPp->bigger__DOT__instance3__DOT__cpu_inst__DOT__cur_state))));
     }
     vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
         ((8U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
@@ -570,8 +622,38 @@ VL_INLINE_OPT void Vbigger::_combo__TOP__6(Vbigger__Syms* __restrict vlSymsp) {
         [vlTOPp->__Vtableidx1];
 }
 
-VL_INLINE_OPT void Vbigger::_sequent__TOP__7(Vbigger__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbigger::_sequent__TOP__7\n"); );
+void Vbigger::_settle__TOP__7(Vbigger__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbigger::_settle__TOP__7\n"); );
+    Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    vlTOPp->bigger__DOT__instance3__DOT__out_mux = 
+        ((8U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+          ? ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+              ? 0U : ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                       ? 0U : ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                                ? 0U : (IData)(vlTOPp->bigger__DOT__instance3__DOT__im_d))))
+          : ((4U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+              ? ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                  ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                      ? vlTOPp->bigger__DOT__instance3__DOT__out
+                     [7U] : vlTOPp->bigger__DOT__instance3__DOT__out
+                     [6U]) : ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                               ? vlTOPp->bigger__DOT__instance3__DOT__out
+                              [5U] : vlTOPp->bigger__DOT__instance3__DOT__out
+                              [4U])) : ((2U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                                         ? ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                                             ? vlTOPp->bigger__DOT__instance3__DOT__out
+                                            [3U] : 
+                                            vlTOPp->bigger__DOT__instance3__DOT__out
+                                            [2U]) : 
+                                        ((1U & (IData)(vlTOPp->bigger__DOT__instance3__DOT__mux_sel))
+                                          ? vlTOPp->bigger__DOT__instance3__DOT__out
+                                         [1U] : vlTOPp->bigger__DOT__instance3__DOT__out
+                                         [0U]))));
+}
+
+VL_INLINE_OPT void Vbigger::_sequent__TOP__8(Vbigger__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vbigger::_sequent__TOP__8\n"); );
     Vbigger* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     if ((2U == (3U & (IData)(vlTOPp->bigger__DOT__mem_out)))) {
@@ -653,7 +735,7 @@ void Vbigger::_eval(Vbigger__Syms* __restrict vlSymsp) {
     vlTOPp->__Vm_traceActivity = (0x10U | vlTOPp->__Vm_traceActivity);
     if ((((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk))) 
          | ((IData)(vlTOPp->reset) & (~ (IData)(vlTOPp->__Vclklast__TOP__reset))))) {
-        vlTOPp->_sequent__TOP__7(vlSymsp);
+        vlTOPp->_sequent__TOP__8(vlSymsp);
         vlTOPp->__Vm_traceActivity = (0x20U | vlTOPp->__Vm_traceActivity);
     }
     // Final
@@ -668,6 +750,7 @@ void Vbigger::_eval_initial(Vbigger__Syms* __restrict vlSymsp) {
     vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
     vlTOPp->__Vclklast__TOP__reset = vlTOPp->reset;
     vlTOPp->_initial__TOP__4(vlSymsp);
+    vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
 }
 
 void Vbigger::final() {
@@ -683,6 +766,7 @@ void Vbigger::_eval_settle(Vbigger__Syms* __restrict vlSymsp) {
     // Body
     vlTOPp->_settle__TOP__3(vlSymsp);
     vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
+    vlTOPp->_settle__TOP__7(vlSymsp);
 }
 
 VL_INLINE_OPT QData Vbigger::_change_request(Vbigger__Syms* __restrict vlSymsp) {
@@ -721,8 +805,6 @@ void Vbigger::_ctor_var_reset() {
     bigger__DOT__mem_out = VL_RAND_RESET_I(16);
     bigger__DOT__addr = VL_RAND_RESET_I(8);
     bigger__DOT__new_pc = VL_RAND_RESET_I(8);
-    bigger__DOT__d_in = VL_RAND_RESET_I(8);
-    bigger__DOT__instr_valid = VL_RAND_RESET_I(1);
     { int __Vi0=0; for (; __Vi0<256; ++__Vi0) {
             bigger__DOT__instance2__DOT__memory_array[__Vi0] = VL_RAND_RESET_I(16);
     }}
@@ -753,20 +835,20 @@ void Vbigger::_ctor_var_reset() {
     __Vtableidx1 = 0;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[0] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[1] = 1U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[2] = 0U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[3] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[2] = 2U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[3] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[4] = 1U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[5] = 1U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[6] = 0U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[7] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[6] = 2U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[7] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[8] = 0U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[9] = 3U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[10] = 0U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[11] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[9] = 2U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[10] = 2U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[11] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[12] = 1U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[13] = 3U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[14] = 0U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[15] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[13] = 2U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[14] = 2U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[15] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[16] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[17] = 1U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[18] = 0U;
@@ -776,11 +858,11 @@ void Vbigger::_ctor_var_reset() {
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[22] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[23] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[24] = 0U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[25] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[25] = 2U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[26] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[27] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[28] = 1U;
-    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[29] = 3U;
+    __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[29] = 2U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[30] = 0U;
     __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[31] = 0U;
     __Vm_traceActivity = 0;

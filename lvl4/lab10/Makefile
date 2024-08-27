@@ -4,7 +4,7 @@
 MODULE = bigger
 TB = testbench
 # Add fetch_unit.sv to the SOURCES list
-SOURCES = $(MODULE).v $(TB).cpp BittyEmulator.cpp BittyInstructionGenerator.cpp fetch_unit.sv
+SOURCES = $(MODULE).v $(TB).cpp BittyEmulator.cpp BittyInstructionGenerator.cpp fetch_unit.v
 
 .PHONY: all
 all: sim
@@ -37,7 +37,7 @@ obj_dir/V$(MODULE): .stamp.verilate
 .stamp.verilate: $(SOURCES)
 	@echo
 	@echo "### VERILATING ###"
-	verilator --trace --x-assign unique --x-initial unique -cc $(MODULE).v --exe $(SOURCES)
+	verilator --trace --x-assign unique --x-initial unique -Wall -cc $(MODULE).v --exe $(SOURCES)
 	@touch .stamp.verilate
 
 .PHONY: lint

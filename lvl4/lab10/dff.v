@@ -12,10 +12,12 @@ module dff(
 );
     always @(posedge clk or posedge reset) begin
         if (reset) begin
+            /* verilator lint_off BLKSEQ */
             mux_out = starting;
         end
         else if(en) begin
             //notify_counter_nine_here();
+            /* verilator lint_off BLKSEQ */
             mux_out = d_in;
         end
     end
