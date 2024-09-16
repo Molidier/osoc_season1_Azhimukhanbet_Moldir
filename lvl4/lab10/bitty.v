@@ -1,9 +1,5 @@
 /* verilator lint_off MODDUP */
-`ifdef VERILATOR
-`define DISPLAY(msg, args...) VL_PRINTF(msg, ## args)
-`else
-`define DISPLAY(msg, args...) $display(msg, ## args)
-`endif
+
 module bitty(
     input run,
     input clk,
