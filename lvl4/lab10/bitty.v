@@ -1,4 +1,9 @@
 /* verilator lint_off MODDUP */
+`ifdef VERILATOR
+`define DISPLAY(msg, args...) VL_PRINTF(msg, ## args)
+`else
+`define DISPLAY(msg, args...) $display(msg, ## args)
+`endif
 module bitty(
     input run,
     input clk,
@@ -7,6 +12,7 @@ module bitty(
 
     output [15:0] d_out,
     output done
+
 );
     genvar k;
     wire [3:0] mux_sel;
@@ -68,6 +74,10 @@ module bitty(
             );
         end
     endgenerate
+    
+
+ /*   `DISPLAY("from cpu: ", im_d);
+    `DISPLAY("to mux: ", im_d_mux);*/
 
     mux mux_inst(
         .reg0(out[0]),
@@ -90,7 +100,6 @@ module bitty(
 
     // Assigning out array elements to module outputs
     assign d_out = regc;
-    
 
     /*assign rega = regs;
     assign regb = out_mux;

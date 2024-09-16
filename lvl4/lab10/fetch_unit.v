@@ -1,5 +1,6 @@
 /******* fetch_unit.sv ****/
 /* verilator lint_off DECLFILENAME */
+/* verilator lint_off MODDUP */
 module memory(
     input clk,
     input [7:0] addr,
@@ -33,6 +34,7 @@ module pc(
 
 endmodule
 
+/* verilator lint_off MODDUP */
 module branch_logic (
     input [7:0] address,
     /* verilator lint_off UNUSED */

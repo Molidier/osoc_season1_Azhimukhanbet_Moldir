@@ -37,7 +37,7 @@ obj_dir/V$(MODULE): .stamp.verilate
 .stamp.verilate: $(SOURCES)
 	@echo
 	@echo "### VERILATING ###"
-	verilator --trace --x-assign unique --x-initial unique -Wall -cc $(MODULE).v --exe $(SOURCES)
+	verilator --trace --x-assign unique --x-initial unique -Wall -cc $(SOURCES) --exe $(SOURCES)
 	@touch .stamp.verilate
 
 .PHONY: lint

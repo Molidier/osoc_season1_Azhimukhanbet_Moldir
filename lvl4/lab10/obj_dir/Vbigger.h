@@ -64,7 +64,6 @@ VL_MODULE(Vbigger) {
     // Internals; generally not touched by application code
     CData/*4:0*/ __Vtableidx1;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    CData/*0:0*/ __Vclklast__TOP__reset;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
     SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
@@ -106,9 +105,6 @@ VL_MODULE(Vbigger) {
     void __Vconfigure(Vbigger__Syms* symsp, bool first);
   private:
     static QData _change_request(Vbigger__Syms* __restrict vlSymsp);
-  public:
-    static void _combo__TOP__6(Vbigger__Syms* __restrict vlSymsp);
-  private:
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
     static void _eval(Vbigger__Syms* __restrict vlSymsp);
@@ -119,22 +115,13 @@ VL_MODULE(Vbigger) {
   public:
     static void _eval_initial(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _eval_settle(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
-    static void _initial__TOP__4(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _initial__TOP__3(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__1(Vbigger__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__2(Vbigger__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__5(Vbigger__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__8(Vbigger__Syms* __restrict vlSymsp);
-    static void _settle__TOP__3(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
-    static void _settle__TOP__7(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _settle__TOP__2(Vbigger__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void traceChgThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__3(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__4(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__5(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__6(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__7(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__8(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__9(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceFullThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
     static void traceFullThis__1(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;
     static void traceInitThis(Vbigger__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code) VL_ATTR_COLD;

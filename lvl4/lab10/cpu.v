@@ -19,7 +19,7 @@ module cpu(
     output reg en_c,
     output reg [7:0] en,
     output reg en_inst,
-    output [15:0] im_d
+    output wire [15:0] im_d
 );
 
     parameter S0 = 2'b00;
@@ -29,26 +29,26 @@ module cpu(
     reg [1:0] cur_state, next_state;
     wire [1:0] format;
     assign format = d_inst[1:0];
-    initial begin
+    /*initial begin
         en_inst = 1;
         im_d = 16'b0;
-    end
+    end*/
 
     always @(*) begin
         // Default values to avoid latches
-        en_s = 0;
+        /*en_s = 0;
 
             en_c = 0;
             done = 0;
             sel = 3'b0;
             en = 8'b0;
             mux_sel = 4'b1001; //def_val
+            im_d = 16'b0;*/
 
-        if(reset == 1) begin
+        /*if(reset == 1) begin
             en_inst = 0;
-            im_d = 0;
         end
-        else begin
+        else begin*/
                 en_inst = 1;
                 en_s = 0;
                 en_c = 0;
@@ -66,15 +66,15 @@ module cpu(
                         if(format == 2'b01) begin
                             im_d = {8'b0, d_inst[12:5]}; 
                         end
-                        else begin
+                        /*else begin
                             im_d = 16'b0;      
-                        end
+                        end*/
                     end
-                    else begin
+                    /*else begin
                         en_s = 0;
                         mux_sel = 4'b1001;
                         //im_d = 16'b0;      
-                    end
+                    end*/
                     sel = 3'b0;
                     done = 0;
                     en_inst = 1;
@@ -116,7 +116,7 @@ module cpu(
                     end
 
                     sel = 3'b0;
-                    done = 1;
+                    done = 1'b1;
                     en_inst = 1;
                 end
                 default: begin
@@ -130,11 +130,11 @@ module cpu(
                     //im_d = 16'b0;
                 end
             endcase
-        end
+        //end
     end
 
     // Next state sequential logic
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk) begin
         if (reset) begin
             cur_state <= S0;
         end 
@@ -142,6 +142,9 @@ module cpu(
         else begin
             cur_state <= next_state;
         end
+        /*if(done==1'b1) begin
+            notify_counter_nine_3();
+        end*/
        // notify_counter_nine_here();
         //cur_state <= next_state;
     end
