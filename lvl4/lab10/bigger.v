@@ -9,14 +9,19 @@ module bigger(
     output [15:0] instr,
     output [15:0] d_out
 );
-
  
-    parameter S0 = 2'b00;
-    parameter S1 = 2'b01;
-    parameter S2 = 2'b10;
-    parameter S3 = 2'b11;
+    parameter S0 = 4'b0000;
+    parameter S1 = 4'b0001;
+    parameter S2 = 4'b0010;
+    parameter S3 = 4'b0011;
+    parameter S4 = 4'b0100;
+    parameter S5 = 4'b0101;
+    parameter S6 = 4'b0110;
+    parameter S7 = 4'b0111;
+    parameter S8 = 4'b1000;
+    parameter S9 = 4'b1001;
 
-    reg [1:0] cur_state, next_state;
+    reg [3:0] cur_state, next_state;
 
     reg run_bitty;
     reg [15:0] mem_out;
@@ -61,8 +66,6 @@ module bigger(
     always @(posedge clk) begin
         if(run) begin
             cur_state <= next_state;
-          //  $display("cur_state: ", cur_state);
-            //$display("instr: ", instr);
         end
         if(reset || done) begin
             cur_state<= S0;
@@ -90,8 +93,6 @@ module bigger(
         .done(done),
         .d_out(d_out)
     );
-
- 
 
     assign instr = mem_out;
 

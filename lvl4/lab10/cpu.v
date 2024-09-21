@@ -142,9 +142,9 @@ module cpu(
         else begin
             cur_state <= next_state;
         end
-        /*if(done==1'b1) begin
+        if(done==1'b1) begin
             notify_counter_nine_3();
-        end*/
+        end
        // notify_counter_nine_here();
         //cur_state <= next_state;
     end
