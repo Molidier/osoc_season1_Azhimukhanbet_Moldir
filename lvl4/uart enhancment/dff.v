@@ -1,5 +1,3 @@
-import "DPI-C" function void notify_counter_nine_here();
-
 module dff(
     input clk,
     input en,
@@ -12,13 +10,10 @@ module dff(
 );
     always @(posedge clk) begin
         if (reset) begin
-            /* verilator lint_off BLKSEQ */
-            mux_out = starting;
+            mux_out <= starting;
         end
         else if(en) begin
-            //notify_counter_nine_here();
-            /* verilator lint_off BLKSEQ */
-            mux_out = d_in;
+            mux_out <= d_in;
         end
     end
 endmodule

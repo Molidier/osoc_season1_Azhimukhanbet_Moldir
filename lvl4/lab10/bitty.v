@@ -1,5 +1,3 @@
-/* verilator lint_off MODDUP */
-
 module bitty(
     input run,
     input clk,
@@ -58,22 +56,19 @@ module bitty(
 
     // MUX connection
     generate
-        for (k = 0; k < 8; k++) begin
-            /* verilator lint_off PINMISSING */
-            dff reg_out (
+        for (k = 0; k < 8; k=k+1) begin : gen_dff
+
+            dff_lol reg_out (
                 .clk(clk),
                 .en(en[k]),
                 .d_in(regc),
-                .reset(reset),
                 .starting(16'h0000), // Corrected input signal name
-                .mux_out(out[k])      // Corrected output signal name
+                .reset(reset),
+				.mux_out(out[k])      // Corrected output signal name
             );
         end
     endgenerate
     
-
- /*   `DISPLAY("from cpu: ", im_d);
-    `DISPLAY("to mux: ", im_d_mux);*/
 
     mux mux_inst(
         .reg0(out[0]),
@@ -90,9 +85,9 @@ module bitty(
         .mux_out(out_mux)
     );
 
-    dff reg_inst(clk, en_inst, d_instr, 16'h0000, reset, instruction);
-    dff reg_s(clk, en_s, out_mux, 16'h0000, reset, regs);
-    dff reg_c(clk, en_c, alu_out, 16'h0000, reset, regc);
+    dff_lol reg_inst(clk, en_inst, d_instr, 16'h0000, reset, instruction);
+    dff_lol reg_s(clk, en_s, out_mux, 16'h0000, reset, regs);
+    dff_lol reg_c(clk, en_c, alu_out, 16'h0000, reset, regc);
 
     // Assigning out array elements to module outputs
     assign d_out = regc;
@@ -113,3 +108,23 @@ module bitty(
     assign reginst = instruction;*/
 
 endmodule
+
+/*module dff(
+    input clk,
+    input en,
+    input wire [15:0] d_in,
+    input [15:0] starting,
+    input reset,
+
+    output reg [15:0] mux_out
+
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            mux_out <= starting;
+        end
+        else if(en) begin
+            mux_out <= d_in;
+        end
+    end
+endmodule*/

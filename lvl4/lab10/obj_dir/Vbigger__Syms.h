@@ -11,9 +11,6 @@
 
 // INCLUDE MODULE CLASSES
 #include "Vbigger.h"
-#include "Vbigger___024unit.h"
-
-// DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS
 class Vbigger__Syms : public VerilatedSyms {
@@ -26,7 +23,6 @@ class Vbigger__Syms : public VerilatedSyms {
     
     // SUBCELL STATE
     Vbigger*                       TOPp;
-    Vbigger___024unit              TOP____024unit;
     
     // CREATORS
     Vbigger__Syms(Vbigger* topp, const char* namep);

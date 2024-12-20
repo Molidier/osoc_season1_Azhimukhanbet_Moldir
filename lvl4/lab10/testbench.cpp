@@ -7,21 +7,8 @@
 #include "BittyInstructionGenerator.h"
 #include <cassert>
 
-#define MAX_SIM_TIME 130
+#define MAX_SIM_TIME 150
 vluint64_t sim_time = 0;
-
-extern "C" void notify_counter_nine_1() {
-    std::cout << "S0 BABE!" << std::endl;
-}
-extern "C" void notify_counter_nine_2() {
-    std::cout << "S1 BABE!" << std::endl;
-}
-extern "C" void notify_counter_nine_3() {
-    std::cout << "S2 BABE!" << std::endl;
-}
-extern "C" void notify_counter_nine_here() {
-    std::cout << "HERE BABE" << std::endl;
-}
 
 /*BittyEmulator emulator;
 
@@ -177,7 +164,7 @@ int main(int argc, char **argv, char **env) {
                 else{
                     cout<<"GOOD!!"<<endl;
                     cout<<sim_time<<endl;
-                    cout<<"Instuction: "<< instruction << ". Result: "<<res_test<<endl;
+                    cout<<"Instuction: "<< std::hex << instruction << ". Result: "<<res_test<<endl;
                     cout<<rx << " " << alu_sel << " "<< ry<<endl;
                     cout<< "Before: "<<reg_val<<". After: "<< res_test<<endl;
                     cout<<endl;
@@ -185,15 +172,36 @@ int main(int argc, char **argv, char **env) {
                 }
             }
             pc = next_address;  
+            cout<< "reg0: " << emulator.GetRegisterValue(0x00)<< endl;
+    cout<< "reg1: " << emulator.GetRegisterValue(0x01)<< endl;
+    cout<< "reg2: " << emulator.GetRegisterValue(0x02)<< endl;
+    cout<< "reg3: " << emulator.GetRegisterValue(0x03)<< endl;
+    cout<< "reg4: " << emulator.GetRegisterValue(0x04)<< endl;
+    cout<< "reg5: " << emulator.GetRegisterValue(0x05)<< endl;
+    cout<< "reg6: " << emulator.GetRegisterValue(0x06)<< endl;
+    cout<< "reg7: " << emulator.GetRegisterValue(0x07)<< endl;
         }
         
         else{
             
         }
+        
         m_trace->dump(sim_time);
         sim_time++;
 
+
+
+
     }
+
+    /*
+    15
+    1111
+
+    5-> 0101
+     */
+    
+
     m_trace->close();
     delete top;
     exit(0);

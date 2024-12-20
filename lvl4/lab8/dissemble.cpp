@@ -10,6 +10,10 @@ std::unordered_map<std::string, int> dissembleMapInstructionsR = {
     {"xor", 4}, {"shl", 5}, {"shr", 6}, {"cmp", 7}
 };
 
+std::unordered_map<std::string, int> dissembleMapInstructionsLS = {
+    {"ld", 0}, {"st", 1}
+};
+
 std::unordered_map<std::string, int> dissembleMapInstructionsI = {
     {"addi", 0}, {"subi", 1}, {"andi", 2}, {"ori", 3},
     {"xori", 4}, {"shli", 5}, {"shri", 6}, {"cmpi", 7}
@@ -83,7 +87,21 @@ void Dissembler::dissemble(const std::string& inputFile, const std::string& outp
             format = 2;
 
             op = sel + immed + format;
-        } else {
+        } 
+        else if (dissembleMapInstructionsLS.count(operation[0])) {
+            // New load/store instruction handling
+            uint16_t reg1 = dissembleMapRegisters[operation[1]];
+            uint16_t reg2 = dissembleMapRegisters[operation[2]];
+            uint16_t ls = dissembleMapInstructionsLS[operation[0]];
+
+            uint16_t rx = (reg1 << 13) & 0xE000;
+            uint16_t ry = (reg2 << 10) & 0x1C00;
+            uint16_t ls_op = (ls << 2) & 0x0004;
+            format = 3;  // Format for load/store instructions
+
+            op = rx + ry + ls_op + format;
+        }
+        else {
             std::cerr << "Error: Unknown instruction " << operation[0] << std::endl;
             continue;
         }

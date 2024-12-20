@@ -9,23 +9,17 @@
 #define _VBIGGER_H_  // guard
 
 #include "verilated_heavy.h"
-#include "Vbigger__Dpi.h"
 
 //==========
 
 class Vbigger__Syms;
 class Vbigger_VerilatedVcd;
-class Vbigger___024unit;
 
 
 //----------
 
 VL_MODULE(Vbigger) {
   public:
-    // CELLS
-    // Public to allow access to /*verilator_public*/ items;
-    // otherwise the application code can consider these internals.
-    Vbigger___024unit* __PVT____024unit;
     
     // PORTS
     // The application code writes and reads these signals to
@@ -39,8 +33,8 @@ VL_MODULE(Vbigger) {
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
-    CData/*1:0*/ bigger__DOT__cur_state;
-    CData/*1:0*/ bigger__DOT__next_state;
+    CData/*3:0*/ bigger__DOT__cur_state;
+    CData/*3:0*/ bigger__DOT__next_state;
     CData/*7:0*/ bigger__DOT__addr;
     CData/*7:0*/ bigger__DOT__new_pc;
     CData/*3:0*/ bigger__DOT__instance3__DOT__mux_sel;
@@ -63,17 +57,19 @@ VL_MODULE(Vbigger) {
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
     CData/*4:0*/ __Vtableidx1;
+    CData/*6:0*/ __Vtableidx2;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__0__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__1__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__2__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__3__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__4__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__5__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__6__KET____DOT__reg_out__mux_out;
-    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__genblk1__BRA__7__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__0__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__1__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__2__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__3__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__4__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__5__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__6__KET____DOT__reg_out__mux_out;
+    SData/*15:0*/ bigger__DOT__instance3__DOT____Vcellout__gen_dff__BRA__7__KET____DOT__reg_out__mux_out;
     IData/*31:0*/ __Vm_traceActivity;
-    static CData/*1:0*/ __Vtable1_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[32];
+    static CData/*3:0*/ __Vtable1_bigger__DOT__next_state[32];
+    static CData/*1:0*/ __Vtable2_bigger__DOT__instance3__DOT__cpu_inst__DOT__next_state[128];
     
     // INTERNAL VARIABLES
     // Internals; generally not touched by application code

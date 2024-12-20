@@ -67,7 +67,7 @@ module bigger(
         if(run) begin
             cur_state <= next_state;
         end
-        if(reset || done) begin
+        if(reset) begin
             cur_state<= S0;
         end
     end
@@ -77,12 +77,10 @@ module bigger(
             S0: next_state = S1;
             S1: next_state = S2;
             S2: next_state = S3;
-            S3: next_state = S0;
+            S3: next_state = (done==1) ? S0:S3;
             default: next_state = S0;
         endcase
     end
-
-
 
 
     bitty instance3(
